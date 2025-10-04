@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: flower-sight-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+    # Descomente as linhas abaixo se precisar adicionar variáveis de ambiente
+    # env_file:
+    #   - ./frontend/.env.local
+    restart: unless-stopped
+    networks:
+      - flower-sight-network
+
+networks:
+  flower-sight-network:
+    driver: bridge
+
