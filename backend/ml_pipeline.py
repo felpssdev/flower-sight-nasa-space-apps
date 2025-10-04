@@ -1,0 +1,525 @@
+"""
+BloomWatch ML Pipeline - Ensemble de Modelos para Predição de Floração
+Usa LSTM + Random Forest + ANN com dados NDVI, GNDVI, SAVI e clima
+"""
+
+import numpy as np
+import pandas as pd
+from datetime import datetime, timedelta
+from typing import Tuple, Dict, List
+import warnings
+warnings.filterwarnings('ignore')
+
+# Deep Learning
+import tensorflow as tf
+from tensorflow import keras
+from keras.models import Sequential, Model
+from keras.layers import LSTM, Dense, Dropout, Input
+from keras.callbacks import EarlyStopping, ReduceLROnPlateau
+
+# Machine Learning
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+# Data processing
+import joblib
+
+
+class SpectralIndexCalculator:
+    """Calcula índices espectrais a partir de bandas de satélite"""
+    
+    @staticmethod
+    def ndvi(nir: np.ndarray, red: np.ndarray) -> np.ndarray:
+        """Normalized Difference Vegetation Index"""
+        return (nir - red) / (nir + red + 1e-8)
+    
+    @staticmethod
+    def gndvi(nir: np.ndarray, green: np.ndarray) -> np.ndarray:
+        """Green NDVI - Sensível à clorofila"""
+        return (nir - green) / (nir + green + 1e-8)
+    
+    @staticmethod
+    def savi(nir: np.ndarray, red: np.ndarray, L: float = 0.5) -> np.ndarray:
+        """Soil Adjusted Vegetation Index"""
+        return ((nir - red) / (nir + red + L)) * (1 + L)
+    
+    @staticmethod
+    def evi(nir: np.ndarray, red: np.ndarray, blue: np.ndarray) -> np.ndarray:
+        """Enhanced Vegetation Index"""
+        return 2.5 * ((nir - red) / (nir + 6*red - 7.5*blue + 1))
+
+
+class FeatureEngineering:
+    """Engenharia de features para predição de floração"""
+    
+    def __init__(self):
+        self.scaler = StandardScaler()
+        
+    def extract_temporal_features(self, ndvi_series: np.ndarray, 
+                                  window_sizes: List[int] = [7, 14, 30]) -> Dict:
+        """
+        Extrai features temporais da série NDVI
+        
+        Args:
+            ndvi_series: Array com valores NDVI ao longo do tempo
+            window_sizes: Tamanhos das janelas móveis
+        
+        Returns:
+            Dict com features extraídas
+        """
+        features = {}
+        
+        # Estatísticas básicas
+        features['ndvi_mean'] = np.mean(ndvi_series)
+        features['ndvi_std'] = np.std(ndvi_series)
+        features['ndvi_max'] = np.max(ndvi_series)
+        features['ndvi_min'] = np.min(ndvi_series)
+        
+        # Percentis
+        features['ndvi_p25'] = np.percentile(ndvi_series, 25)
+        features['ndvi_p75'] = np.percentile(ndvi_series, 75)
+        features['ndvi_p90'] = np.percentile(ndvi_series, 90)
+        
+        # Taxa de mudança (primeira derivada)
+        if len(ndvi_series) > 1:
+            ndvi_diff = np.diff(ndvi_series)
+            features['ndvi_rate_mean'] = np.mean(ndvi_diff)
+            features['ndvi_rate_max'] = np.max(ndvi_diff)
+            features['ndvi_acceleration'] = np.mean(np.diff(ndvi_diff)) if len(ndvi_diff) > 1 else 0
+        
+        # Tendência linear
+        if len(ndvi_series) >= 3:
+            x = np.arange(len(ndvi_series))
+            slope, _ = np.polyfit(x, ndvi_series, 1)
+            features['ndvi_trend'] = slope
+        
+        # Janelas móveis
+        for window in window_sizes:
+            if len(ndvi_series) >= window:
+                recent_mean = np.mean(ndvi_series[-window:])
+                features[f'ndvi_last_{window}d'] = recent_mean
+        
+        return features
+    
+    def calculate_gdd(self, temp_series: np.ndarray, 
+                     base_temp: float = 10.0) -> float:
+        """
+        Calcula Growing Degree Days acumulados
+        
+        Args:
+            temp_series: Série de temperaturas médias diárias (°C)
+            base_temp: Temperatura base para a cultura
+        """
+        gdd = np.sum(np.maximum(temp_series - base_temp, 0))
+        return gdd
+    
+    def prepare_features(self, data: pd.DataFrame) -> pd.DataFrame:
+        """
+        Prepara todas as features para o modelo
+        
+        Expected columns in data:
+        - ndvi, gndvi, savi, temperature, precipitation
+        """
+        features_df = pd.DataFrame()
+        
+        # Features espectrais
+        for idx_name in ['ndvi', 'gndvi', 'savi']:
+            if idx_name in data.columns:
+                series = data[idx_name].values
+                temp_features = self.extract_temporal_features(series)
+                for key, val in temp_features.items():
+                    features_df[f'{idx_name}_{key.split("_", 1)[1]}'] = [val]
+        
+        # Features climáticas
+        if 'temperature' in data.columns:
+            features_df['gdd'] = self.calculate_gdd(data['temperature'].values)
+            features_df['temp_mean'] = data['temperature'].mean()
+            features_df['temp_last_7d'] = data['temperature'].tail(7).mean()
+        
+        if 'precipitation' in data.columns:
+            features_df['precip_sum'] = data['precipitation'].sum()
+            features_df['days_no_rain'] = self._count_consecutive_zeros(data['precipitation'].values)
+        
+        return features_df
+    
+    def _count_consecutive_zeros(self, arr: np.ndarray) -> int:
+        """Conta dias consecutivos sem chuva"""
+        count = 0
+        for val in reversed(arr):
+            if val == 0:
+                count += 1
+            else:
+                break
+        return count
+
+
+class LSTMBloomPredictor:
+    """Modelo LSTM para predição de série temporal"""
+    
+    def __init__(self, sequence_length: int = 60):
+        self.sequence_length = sequence_length
+        self.model = None
+        self.scaler = MinMaxScaler()
+        
+    def build_model(self, n_features: int = 1):
+        """Constrói arquitetura LSTM"""
+        model = Sequential([
+            Input(shape=(self.sequence_length, n_features)),
+            LSTM(128, return_sequences=True),
+            Dropout(0.3),
+            LSTM(64),
+            Dropout(0.3),
+            Dense(32, activation='relu'),
+            Dense(1)  # Predição: dias até floração
+        ])
+        
+        model.compile(
+            optimizer=keras.optimizers.Adam(learning_rate=0.001),
+            loss='mse',
+            metrics=['mae']
+        )
+        
+        self.model = model
+        return model
+    
+    def prepare_sequences(self, data: np.ndarray, 
+                         target: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+        """Prepara sequências temporais para LSTM"""
+        X, y = [], []
+        
+        for i in range(len(data) - self.sequence_length):
+            X.append(data[i:i + self.sequence_length])
+            y.append(target[i + self.sequence_length])
+        
+        return np.array(X), np.array(y)
+    
+    def train(self, X_train: np.ndarray, y_train: np.ndarray,
+              X_val: np.ndarray, y_val: np.ndarray,
+              epochs: int = 100, batch_size: int = 32):
+        """Treina modelo LSTM"""
+        
+        callbacks = [
+            EarlyStopping(patience=15, restore_best_weights=True),
+            ReduceLROnPlateau(factor=0.5, patience=5)
+        ]
+        
+        history = self.model.fit(
+            X_train, y_train,
+            validation_data=(X_val, y_val),
+            epochs=epochs,
+            batch_size=batch_size,
+            callbacks=callbacks,
+            verbose=1
+        )
+        
+        return history
+    
+    def predict(self, X: np.ndarray) -> np.ndarray:
+        """Predição"""
+        return self.model.predict(X, verbose=0).flatten()
+
+
+class RandomForestBloomPredictor:
+    """Modelo Random Forest para predição robusta"""
+    
+    def __init__(self, n_estimators: int = 200):
+        self.model = RandomForestRegressor(
+            n_estimators=n_estimators,
+            max_depth=20,
+            min_samples_split=5,
+            min_samples_leaf=2,
+            random_state=42,
+            n_jobs=-1
+        )
+        self.scaler = StandardScaler()
+        self.feature_importance = None
+    
+    def train(self, X_train: pd.DataFrame, y_train: np.ndarray):
+        """Treina Random Forest"""
+        X_scaled = self.scaler.fit_transform(X_train)
+        self.model.fit(X_scaled, y_train)
+        
+        # Feature importance
+        self.feature_importance = pd.DataFrame({
+            'feature': X_train.columns,
+            'importance': self.model.feature_importances_
+        }).sort_values('importance', ascending=False)
+        
+        return self
+    
+    def predict(self, X: pd.DataFrame) -> np.ndarray:
+        """Predição"""
+        X_scaled = self.scaler.transform(X)
+        return self.model.predict(X_scaled)
+    
+    def get_feature_importance(self) -> pd.DataFrame:
+        """Retorna importância das features"""
+        return self.feature_importance
+
+
+class ANNBloomPredictor:
+    """Rede Neural Feedforward para predição"""
+    
+    def __init__(self):
+        self.model = None
+        self.scaler = StandardScaler()
+    
+    def build_model(self, n_features: int):
+        """Constrói arquitetura ANN"""
+        model = Sequential([
+            Input(shape=(n_features,)),
+            Dense(128, activation='relu'),
+            Dropout(0.3),
+            Dense(64, activation='relu'),
+            Dropout(0.3),
+            Dense(32, activation='relu'),
+            Dense(1)  # Dias até floração
+        ])
+        
+        model.compile(
+            optimizer=keras.optimizers.Adam(learning_rate=0.001),
+            loss='mse',
+            metrics=['mae']
+        )
+        
+        self.model = model
+        return model
+    
+    def train(self, X_train: pd.DataFrame, y_train: np.ndarray,
+              X_val: pd.DataFrame, y_val: np.ndarray,
+              epochs: int = 100, batch_size: int = 32):
+        """Treina ANN"""
+        
+        X_train_scaled = self.scaler.fit_transform(X_train)
+        X_val_scaled = self.scaler.transform(X_val)
+        
+        callbacks = [
+            EarlyStopping(patience=15, restore_best_weights=True),
+            ReduceLROnPlateau(factor=0.5, patience=5)
+        ]
+        
+        history = self.model.fit(
+            X_train_scaled, y_train,
+            validation_data=(X_val_scaled, y_val),
+            epochs=epochs,
+            batch_size=batch_size,
+            callbacks=callbacks,
+            verbose=1
+        )
+        
+        return history
+    
+    def predict(self, X: pd.DataFrame) -> np.ndarray:
+        """Predição"""
+        X_scaled = self.scaler.transform(X)
+        return self.model.predict(X_scaled, verbose=0).flatten()
+
+
+class BloomWatchEnsemble:
+    """
+    Ensemble de modelos LSTM + Random Forest + ANN
+    Combina predições com pesos otimizados
+    """
+    
+    def __init__(self):
+        self.lstm_model = LSTMBloomPredictor(sequence_length=60)
+        self.rf_model = RandomForestBloomPredictor(n_estimators=200)
+        self.ann_model = ANNBloomPredictor()
+        self.feature_eng = FeatureEngineering()
+        
+        # Pesos do ensemble (podem ser otimizados via validação)
+        self.weights = {
+            'lstm': 0.45,
+            'rf': 0.35,
+            'ann': 0.20
+        }
+        
+        self.is_trained = False
+    
+    def train(self, data: pd.DataFrame, target: np.ndarray,
+              val_split: float = 0.2):
+        """
+        Treina todos os modelos do ensemble
+        
+        Args:
+            data: DataFrame com colunas ndvi, gndvi, savi, temperature, etc
+            target: Array com dias até floração (ground truth)
+            val_split: Proporção para validação
+        """
+        
+        print("=" * 60)
+        print("TREINANDO BLOOMWATCH ENSEMBLE")
+        print("=" * 60)
+        
+        # 1. Preparar features agregadas para RF e ANN
+        print("\n[1/4] Preparando features...")
+        features_df = self.feature_eng.prepare_features(data)
+        
+        # Split train/val
+        X_train_agg, X_val_agg, y_train, y_val = train_test_split(
+            features_df, target, test_size=val_split, random_state=42
+        )
+        
+        # 2. Treinar Random Forest
+        print("\n[2/4] Treinando Random Forest...")
+        self.rf_model.train(X_train_agg, y_train)
+        rf_val_pred = self.rf_model.predict(X_val_agg)
+        rf_mae = mean_absolute_error(y_val, rf_val_pred)
+        print(f"✓ Random Forest - MAE: {rf_mae:.2f} dias")
+        
+        # 3. Treinar ANN
+        print("\n[3/4] Treinando ANN...")
+        self.ann_model.build_model(n_features=X_train_agg.shape[1])
+        self.ann_model.train(X_train_agg, y_train, X_val_agg, y_val, epochs=100)
+        ann_val_pred = self.ann_model.predict(X_val_agg)
+        ann_mae = mean_absolute_error(y_val, ann_val_pred)
+        print(f"✓ ANN - MAE: {ann_mae:.2f} dias")
+        
+        # 4. Treinar LSTM (requer sequências temporais)
+        print("\n[4/4] Treinando LSTM...")
+        if 'ndvi' in data.columns:
+            ndvi_data = data['ndvi'].values.reshape(-1, 1)
+            X_seq, y_seq = self.lstm_model.prepare_sequences(ndvi_data, target)
+            
+            # Split sequencial
+            split_idx = int(len(X_seq) * (1 - val_split))
+            X_train_seq, X_val_seq = X_seq[:split_idx], X_seq[split_idx:]
+            y_train_seq, y_val_seq = y_seq[:split_idx], y_seq[split_idx:]
+            
+            self.lstm_model.build_model(n_features=1)
+            self.lstm_model.train(X_train_seq, y_train_seq, 
+                                X_val_seq, y_val_seq, epochs=100)
+            
+            lstm_val_pred = self.lstm_model.predict(X_val_seq)
+            lstm_mae = mean_absolute_error(y_val_seq, lstm_val_pred)
+            print(f"✓ LSTM - MAE: {lstm_mae:.2f} dias")
+        
+        # 5. Avaliar ensemble
+        print("\n" + "=" * 60)
+        print("AVALIAÇÃO DO ENSEMBLE")
+        print("=" * 60)
+        
+        # Ensemble prediction (apenas onde temos todas as predições)
+        min_len = min(len(rf_val_pred), len(ann_val_pred))
+        ensemble_pred = (
+            self.weights['rf'] * rf_val_pred[:min_len] +
+            self.weights['ann'] * ann_val_pred[:min_len]
+        )
+        
+        if 'ndvi' in data.columns and len(lstm_val_pred) > 0:
+            # Ajustar tamanhos se necessário
+            min_len = min(min_len, len(lstm_val_pred))
+            ensemble_pred = (
+                self.weights['lstm'] * lstm_val_pred[:min_len] +
+                self.weights['rf'] * rf_val_pred[:min_len] +
+                self.weights['ann'] * ann_val_pred[:min_len]
+            )
+        
+        ensemble_mae = mean_absolute_error(y_val[:min_len], ensemble_pred)
+        ensemble_rmse = np.sqrt(mean_squared_error(y_val[:min_len], ensemble_pred))
+        ensemble_r2 = r2_score(y_val[:min_len], ensemble_pred)
+        
+        print(f"\n📊 MÉTRICAS FINAIS:")
+        print(f"   MAE:  {ensemble_mae:.2f} dias")
+        print(f"   RMSE: {ensemble_rmse:.2f} dias")
+        print(f"   R²:   {ensemble_r2:.3f}")
+        print("=" * 60)
+        
+        self.is_trained = True
+        
+        return {
+            'mae': ensemble_mae,
+            'rmse': ensemble_rmse,
+            'r2': ensemble_r2
+        }
+    
+    def predict(self, data: pd.DataFrame) -> Dict:
+        """
+        Predição com ensemble + intervalo de confiança
+        
+        Returns:
+            Dict com:
+            - predicted_days: dias até floração (média ponderada)
+            - confidence_interval: (lower, upper)
+            - individual_predictions: dict com predição de cada modelo
+        """
+        
+        if not self.is_trained:
+            raise ValueError("Modelo não treinado! Execute .train() primeiro.")
+        
+        # Preparar features
+        features_df = self.feature_eng.prepare_features(data)
+        
+        # Predições individuais
+        predictions = {}
+        
+        # Random Forest
+        predictions['rf'] = self.rf_model.predict(features_df)[0]
+        
+        # ANN
+        predictions['ann'] = self.ann_model.predict(features_df)[0]
+        
+        # LSTM (se tiver dados de sequência)
+        if 'ndvi' in data.columns and len(data) >= self.lstm_model.sequence_length:
+            ndvi_seq = data['ndvi'].values[-self.lstm_model.sequence_length:].reshape(1, -1, 1)
+            predictions['lstm'] = self.lstm_model.predict(ndvi_seq)[0]
+        
+        # Ensemble (média ponderada)
+        if 'lstm' in predictions:
+            predicted_days = (
+                self.weights['lstm'] * predictions['lstm'] +
+                self.weights['rf'] * predictions['rf'] +
+                self.weights['ann'] * predictions['ann']
+            )
+        else:
+            # Sem LSTM, redistribuir pesos
+            w_rf = self.weights['rf'] / (self.weights['rf'] + self.weights['ann'])
+            w_ann = self.weights['ann'] / (self.weights['rf'] + self.weights['ann'])
+            predicted_days = w_rf * predictions['rf'] + w_ann * predictions['ann']
+        
+        # Intervalo de confiança baseado na variância entre modelos
+        pred_values = list(predictions.values())
+        std_dev = np.std(pred_values)
+        ci_lower = predicted_days - 1.96 * std_dev
+        ci_upper = predicted_days + 1.96 * std_dev
+        
+        return {
+            'predicted_days': int(np.round(predicted_days)),
+            'confidence_interval': (int(np.round(ci_lower)), int(np.round(ci_upper))),
+            'individual_predictions': predictions,
+            'agreement_score': 1 - (std_dev / predicted_days) if predicted_days > 0 else 0
+        }
+    
+    def save_models(self, path: str = 'models/'):
+        """Salva modelos treinados"""
+        import os
+        os.makedirs(path, exist_ok=True)
+        
+        # Salvar modelos Keras
+        self.lstm_model.model.save(f'{path}lstm_model.h5')
+        self.ann_model.model.save(f'{path}ann_model.h5')
+        
+        # Salvar Random Forest e scalers
+        joblib.dump(self.rf_model.model, f'{path}rf_model.pkl')
+        joblib.dump(self.rf_model.scaler, f'{path}rf_scaler.pkl')
+        joblib.dump(self.ann_model.scaler, f'{path}ann_scaler.pkl')
+        joblib.dump(self.lstm_model.scaler, f'{path}lstm_scaler.pkl')
+        
+        print(f"✓ Modelos salvos em {path}")
+    
+    def load_models(self, path: str = 'models/'):
+        """Carrega modelos salvos"""
+        from keras.models import load_model
+        
+        self.lstm_model.model = load_model(f'{path}lstm_model.h5')
+        self.ann_model.model = load_model(f'{path}ann_model.h5')
+        self.rf_model.model = joblib.load(f'{path}rf_model.pkl')
+        self.rf_model.scaler = joblib.load(f'{path}rf_scaler.pkl')
+        self.ann_model.scaler = joblib.load(f'{path}ann_scaler.pkl')
+        self.lstm_model.scaler = joblib.load(f'{path}lstm_scaler.pkl')
+        
+        self.is_trained = True
+        print(f"✓ Modelos carregados de {path}")
+
