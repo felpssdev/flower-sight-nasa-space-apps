@@ -9,7 +9,6 @@ from pydantic import BaseModel, Field
 from typing import Optional, List, Dict
 from datetime import datetime, timedelta
 import pandas as pd
-import numpy as np
 import os
 
 from ml_pipeline import BloomWatchEnsemble
