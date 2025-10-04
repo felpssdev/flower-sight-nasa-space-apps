@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+.eggs/
+*.egg
+
+# Models and data (too large, train inside container or mount as volume)
+models/**/*.h5
+models/**/*.pkl
+data/**/*.csv
+data/**/*.npy
+
+# Keep structure
+!models/.gitkeep
+!data/.gitkeep
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+
+# Tests (optional, remove if you want to run tests in container)
+test_api.py
+
+# Setup script
+setup.sh
+

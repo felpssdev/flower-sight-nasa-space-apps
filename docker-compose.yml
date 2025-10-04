@@ -1,19 +1,46 @@
 version: '3.8'
 
 services:
+  # Backend API - BloomWatch ML
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bloomwatch-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TF_CPP_MIN_LOG_LEVEL=2  # Reduce TensorFlow verbosity
+    volumes:
+      # Mount models directory to persist trained models
+      - ./backend/models:/app/models
+      - ./backend/data:/app/data
+    restart: unless-stopped
+    networks:
+      - flower-sight-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend - Next.js
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: flower-sight-frontend
+    container_name: bloomwatch-frontend
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
-    # Descomente as linhas abaixo se precisar adicionar variáveis de ambiente
-    # env_file:
-    #   - ./frontend/.env.local
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+    depends_on:
+      backend:
+        condition: service_healthy
     restart: unless-stopped
     networks:
       - flower-sight-network
@@ -22,3 +49,6 @@ networks:
   flower-sight-network:
     driver: bridge
 
+volumes:
+  backend-models:
+  backend-data:

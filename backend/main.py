@@ -13,7 +13,6 @@ import numpy as np
 import os
 
 from ml_pipeline import BloomWatchEnsemble
-from data_generator import BloomDataGenerator
 
 
 # ============================================================================
@@ -101,31 +100,45 @@ def load_model(crop_type: str) -> BloomWatchEnsemble:
 # FUNÇÕES AUXILIARES
 # ============================================================================
 
-def fetch_ndvi_data(lat: float, lon: float, crop_type: str, days: int = 90) -> pd.DataFrame:
+def fetch_ndvi_data(lat: float, lon: float, days: int = 90) -> pd.DataFrame:
     """
-    Busca dados NDVI para uma localização
+    Busca dados REAIS da NASA (MODIS NDVI + Clima)
     
-    Em produção: integrar com Google Earth Engine
-    Para demo: usa gerador de dados sintéticos
+    Fontes:
+    - NASA AppEEARS: MODIS MOD13Q1 (NDVI, EVI)
+    - NASA POWER API: Temperatura, Precipitação
+    
+    OBRIGATÓRIO: Credenciais NASA Earthdata
+    Configure: export NASA_USERNAME='usuario'
+    Configure: export NASA_PASSWORD='senha'
     """
     
-    # SIMULAÇÃO: Em produção, aqui viria a chamada para Earth Engine
-    # Por enquanto, usa gerador com seed baseado na localização
-    seed = int(abs(lat * 1000 + lon * 1000)) % 10000
-    generator = BloomDataGenerator(crop_type=crop_type, seed=seed)
+    from nasa_data_fetcher import fetch_nasa_data
     
-    # Calcular dia atual do ano
-    current_date = datetime.now()
-    current_doy = current_date.timetuple().tm_yday
-    
-    # Gerar janela de dados
-    data = generator.generate_prediction_window(
-        current_doy=current_doy,
-        year=current_date.year,
-        window_days=days
-    )
-    
-    return data
+    try:
+        # Buscar dados NASA (AppEEARS + POWER)
+        data = fetch_nasa_data(
+            lat=lat,
+            lon=lon,
+            days=days
+        )
+        return data
+        
+    except ValueError as e:
+        # Credenciais não configuradas
+        print(f"❌ {e}")
+        raise HTTPException(
+            status_code=401,
+            detail="Credenciais NASA não configuradas. Configure NASA_USERNAME e NASA_PASSWORD."
+        )
+        
+    except Exception as e:
+        # Erro nas APIs NASA
+        print(f"❌ Erro ao buscar dados NASA: {e}")
+        raise HTTPException(
+            status_code=503,
+            detail=f"APIs NASA indisponíveis: {str(e)}"
+        )
 
 
 def generate_recommendations(days_until: int, crop_type: str) -> List[str]:
@@ -276,11 +289,10 @@ async def predict_bloom(request: PredictionRequest):
         # 1. Carregar modelo
         ensemble = load_model(request.crop_type)
         
-        # 2. Buscar dados NDVI
+        # 2. Buscar dados NASA (NDVI + Clima)
         data = fetch_ndvi_data(
             lat=request.lat,
             lon=request.lon,
-            crop_type=request.crop_type,
             days=90
         )
         

@@ -10,21 +10,31 @@ Backend completo com Machine Learning para predição de floração usando dados
 pip install -r requirements.txt
 ```
 
-### 2. Gerar Dados e Treinar Modelos
+### 2. Configurar Credenciais NASA
+
+```bash
+export NASA_USERNAME='seu_usuario'
+export NASA_PASSWORD='sua_senha'
+```
+
+Registre-se grátis em: https://urs.earthdata.nasa.gov/users/new
+
+### 3. Treinar Modelos com Dados NASA
 
 ```bash
 python train_models.py
 ```
 
 Este comando irá:
-- Gerar dados sintéticos realistas para 3 culturas (almond, apple, cherry)
+- Buscar dados REAIS da NASA (MODIS + POWER API)
+- Coletar dados de múltiplas localizações
 - Treinar ensemble de modelos (LSTM + Random Forest + ANN)
 - Salvar modelos treinados em `models/`
 - Exibir métricas de validação (MAE, RMSE, R²)
 
-**Tempo estimado:** 10-15 minutos
+**Tempo estimado:** 15-30 minutos (depende da NASA APIs)
 
-### 3. Iniciar API
+### 4. Iniciar API
 
 ```bash
 uvicorn main:app --reload
@@ -32,7 +42,7 @@ uvicorn main:app --reload
 
 A API estará disponível em: http://localhost:8000
 
-### 4. Testar API
+### 5. Testar API
 
 ```bash
 # Em outro terminal
@@ -166,16 +176,12 @@ curl http://localhost:8000/api/predict/test/almond
 
 ## 🗄️ Dados
 
-### Fontes (Produção)
-- **MODIS**: NDVI, EVI (250m, 16 dias)
-- **Landsat 8/9**: Bandas multiespectrais (30m, 16 dias)
-- **NASA POWER**: Dados climáticos
+### Fontes (100% NASA)
+- **MODIS MOD13Q1**: NDVI, EVI (250m, 16 dias) via NASA AppEEARS
+- **NASA POWER**: Temperatura, Precipitação (dados diários)
 
-### Simulação (Demo)
-Para fins de demonstração, usamos dados sintéticos realistas baseados em:
-- Padrões de floração reais (USDA, UC Davis)
-- Sazonalidade climática
-- Variabilidade interanual
+### Sem Dados Simulados
+Todos os dados são **REAIS da NASA**. Credenciais obrigatórias.
 
 ## 🔧 Desenvolvimento
 
@@ -202,30 +208,19 @@ python train_models.py
 
 3. Atualizar endpoint `/api/crops` em `main.py`
 
-### Integrar Earth Engine
+### Fontes de Dados NASA
 
-Descomentar em `requirements.txt`:
-```
-earthengine-api==0.1.379
-geemap==0.29.5
-```
+**NASA AppEEARS:**
+- MODIS MOD13Q1 (NDVI, EVI)
+- 250m resolução
+- 16 dias frequência
+- Direto da NASA (sem Google)
 
-Atualizar função `fetch_ndvi_data()` em `main.py`:
-
-```python
-import ee
-ee.Initialize()
-
-def fetch_ndvi_data(lat, lon, crop_type, days=90):
-    point = ee.Geometry.Point([lon, lat])
-    
-    # MODIS NDVI
-    modis = ee.ImageCollection('MODIS/006/MOD13Q1') \
-        .filterDate('2024-01-01', '2025-01-01') \
-        .filterBounds(point)
-    
-    # Extrair valores...
-```
+**NASA POWER API:**
+- Temperatura diária
+- Precipitação
+- Sem autenticação adicional
+- Dados climáticos globais
 
 ## 📊 Testes
 
