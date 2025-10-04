@@ -163,8 +163,8 @@ def train_model_for_crop(crop_type: str, locations: list):
             'r2': float(metrics['r2'])
         },
         'validation': {
-            'target_passed': metrics['mae'] < 5.0,
-            'excellent': metrics['mae'] < 4.0 and metrics['r2'] > 0.85
+            'target_passed': bool(metrics['mae'] < 5.0),
+            'excellent': bool(metrics['mae'] < 4.0 and metrics['r2'] > 0.85)
         }
     }
     

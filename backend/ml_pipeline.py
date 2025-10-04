@@ -117,30 +117,46 @@ class FeatureEngineering:
     
     def prepare_features(self, data: pd.DataFrame) -> pd.DataFrame:
         """
-        Prepara todas as features para o modelo
+        Prepara todas as features para o modelo (row-by-row)
         
         Expected columns in data:
-        - ndvi, gndvi, savi, temperature, precipitation
+        - ndvi, gndvi, savi, temperature, precipitation, date
         """
-        features_df = pd.DataFrame()
+        features_list = []
         
-        # Features espectrais
-        for idx_name in ['ndvi', 'gndvi', 'savi']:
-            if idx_name in data.columns:
-                series = data[idx_name].values
-                temp_features = self.extract_temporal_features(series)
-                for key, val in temp_features.items():
-                    features_df[f'{idx_name}_{key.split("_", 1)[1]}'] = [val]
+        # Processar cada linha individualmente
+        for idx in range(len(data)):
+            row_features = {}
+            
+            # Features espectrais diretas
+            for col in ['ndvi', 'gndvi', 'savi', 'evi']:
+                if col in data.columns:
+                    row_features[col] = data[col].iloc[idx]
+            
+            # Features climáticas diretas
+            if 'temperature' in data.columns:
+                row_features['temperature'] = data['temperature'].iloc[idx]
+            
+            if 'precipitation' in data.columns:
+                row_features['precipitation'] = data['precipitation'].iloc[idx]
+            
+            # Day of year (importante para sazonalidade)
+            if 'date' in data.columns:
+                doy = data['date'].iloc[idx].timetuple().tm_yday
+                row_features['day_of_year'] = doy
+                row_features['sin_doy'] = np.sin(2 * np.pi * doy / 365)
+                row_features['cos_doy'] = np.cos(2 * np.pi * doy / 365)
+            
+            # GDD acumulado até esta data
+            if 'temperature' in data.columns and idx > 0:
+                temp_history = data['temperature'].iloc[:idx+1].values
+                row_features['gdd_cumsum'] = self.calculate_gdd(temp_history)
+            else:
+                row_features['gdd_cumsum'] = 0
+            
+            features_list.append(row_features)
         
-        # Features climáticas
-        if 'temperature' in data.columns:
-            features_df['gdd'] = self.calculate_gdd(data['temperature'].values)
-            features_df['temp_mean'] = data['temperature'].mean()
-            features_df['temp_last_7d'] = data['temperature'].tail(7).mean()
-        
-        if 'precipitation' in data.columns:
-            features_df['precip_sum'] = data['precipitation'].sum()
-            features_df['days_no_rain'] = self._count_consecutive_zeros(data['precipitation'].values)
+        features_df = pd.DataFrame(features_list)
         
         return features_df
     

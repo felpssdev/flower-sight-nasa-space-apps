@@ -12,6 +12,8 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - TF_CPP_MIN_LOG_LEVEL=2  # Reduce TensorFlow verbosity
+      - NASA_USERNAME=${NASA_USERNAME}  # From host env or .env file
+      - NASA_PASSWORD=${NASA_PASSWORD}  # From host env or .env file
     volumes:
       # Mount models directory to persist trained models
       - ./backend/models:/app/models
@@ -23,8 +25,8 @@ services:
       test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 40s
+      retries: 5
+      start_period: 1800s  # 30 min - tempo para treinar modelos na primeira execução
 
   # Frontend - Next.js
   frontend:
