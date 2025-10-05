@@ -329,17 +329,18 @@ class NASAAppEEARS:
         for _, row in raw_df.iterrows():
             date = pd.to_datetime(row['Date'])
             
-            # NDVI e EVI tem scale factor de 0.0001
+            # AppEEARS já retorna valores NDVI/EVI escalados (0-1)!
+            # Não precisa multiplicar por 0.0001
             ndvi_col = [col for col in raw_df.columns if 'NDVI' in col][0]
             evi_col = [col for col in raw_df.columns if 'EVI' in col][0]
             
             ndvi_raw = row[ndvi_col]
             evi_raw = row[evi_col]
             
-            # Aplicar scale factor e filtrar valores inválidos
-            if ndvi_raw != -3000:  # -3000 = fill value
-                ndvi = ndvi_raw * 0.0001
-                evi = evi_raw * 0.0001 if evi_raw != -3000 else None
+            # Filtrar valores inválidos (negativos = fill values)
+            if ndvi_raw >= 0:  # Valores válidos são >= 0
+                ndvi = ndvi_raw  # JÁ ESCALADO!
+                evi = evi_raw if evi_raw >= 0 else None  # JÁ ESCALADO!
                 
                 # Clip para range válido
                 ndvi = np.clip(ndvi, 0, 1)

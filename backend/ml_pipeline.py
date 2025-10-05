@@ -11,16 +11,15 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Deep Learning
-import tensorflow as tf
 from tensorflow import keras
-from keras.models import Sequential, Model
+from keras.models import Sequential
 from keras.layers import LSTM, Dense, Dropout, Input
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
 # Machine Learning
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 # Data processing

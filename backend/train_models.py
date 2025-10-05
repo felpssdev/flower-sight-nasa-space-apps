@@ -82,8 +82,8 @@ def create_training_target(data: pd.DataFrame, bloom_patterns: dict) -> np.ndarr
         if days_to_bloom < 0:
             days_to_bloom = 365 + days_to_bloom
         
-        # Limitar a 0-90 dias
-        days_to_bloom = max(0, min(90, days_to_bloom))
+        # Limitar a 0-180 dias (6 meses máximo)
+        days_to_bloom = max(0, min(180, days_to_bloom))
         
         target.append(days_to_bloom)
     

@@ -1,0 +1,1410 @@
+time="2025-10-05T00:12:55-03:00" level=warning msg="/Users/felipesantos/Documents/Hackathons/Nasa-Space-Apps-2025/flower-sight-nasa-space-apps/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container bloomwatch-backend  Creating
+ Container bloomwatch-backend  Created
+Attaching to bloomwatch-backend
+bloomwatch-backend  | 🌸 BloomWatch Backend Starting...
+bloomwatch-backend  | ⚠️  Models not found. Training models (this may take 10-15 minutes)...
+bloomwatch-backend  | 
+bloomwatch-backend  | 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+bloomwatch-backend  | BLOOMWATCH - TREINAMENTO COM DADOS NASA
+bloomwatch-backend  | 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+bloomwatch-backend  | 
+bloomwatch-backend  | 
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | 🌸 TREINANDO MODELO PARA: ALMOND
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/4] Coletando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Coletando dados NASA para almond...
+bloomwatch-backend  |    Localizações: 3
+bloomwatch-backend  |    Anos: 5
+bloomwatch-backend  | 
+bloomwatch-backend  |   Buscando: Central Valley, CA (36.7468, -119.7726)
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=36.7468, lon=-119.7726
+bloomwatch-backend  |    Período: 365 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 36.7468, -119.7726
+bloomwatch-backend  |    Período: 10-05-2024 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=3f3cb83e-c28e-4630-85b5-b8655d1c8861
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 23 registros
+bloomwatch-backend  | ✓ MODIS: 23 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 362 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 363 registros NASA completos
+bloomwatch-backend  |     ✓ 363 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  |   Buscando: Modesto, CA (37.6688, -120.5472)
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=37.6688, lon=-120.5472
+bloomwatch-backend  |    Período: 365 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 37.6688, -120.5472
+bloomwatch-backend  |    Período: 10-05-2024 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=5721c3d4-e052-4ae6-9cdb-89d42ec67406
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 23 registros
+bloomwatch-backend  | ✓ MODIS: 23 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 362 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 363 registros NASA completos
+bloomwatch-backend  |     ✓ 363 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  |   Buscando: Fresno, CA (36.3302, -119.2921)
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=36.3302, lon=-119.2921
+bloomwatch-backend  |    Período: 365 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 36.3302, -119.2921
+bloomwatch-backend  |    Período: 10-05-2024 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=07c763ef-a62e-47fb-b624-0176c1c30cd4
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 23 registros
+bloomwatch-backend  | ✓ MODIS: 23 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 362 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 363 registros NASA completos
+bloomwatch-backend  |     ✓ 363 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | ✓ Total: 1089 registros de 3 localizações
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/4] Preparando target...
+bloomwatch-backend  | 
+bloomwatch-backend  | 📊 Criando targets de treinamento...
+bloomwatch-backend  | ✓ Target criado: 1089 amostras
+bloomwatch-backend  |   Range: 0 - 180 dias
+bloomwatch-backend  | ✓ Dados filtrados: 276 amostras válidas
+bloomwatch-backend  | 
+bloomwatch-backend  | [3/4] Treinando ensemble de modelos...
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | TREINANDO BLOOMWATCH ENSEMBLE
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/4] Preparando features...
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/4] Treinando Random Forest...
+bloomwatch-backend  | ✓ Random Forest - MAE: 0.10 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [3/4] Treinando ANN...
+bloomwatch-backend  | Epoch 1/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 1s - loss: 2830.7673 - mae: 44.78367/7 [==============================] - 0s 10ms/step - loss: 2740.9207 - mae: 45.0028 - val_loss: 2448.6313 - val_mae: 43.5446 - lr: 0.0010
+bloomwatch-backend  | Epoch 2/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 3139.5417 - mae: 47.78797/7 [==============================] - 0s 2ms/step - loss: 2683.2153 - mae: 44.3390 - val_loss: 2383.5535 - val_mae: 42.7622 - lr: 0.0010
+bloomwatch-backend  | Epoch 3/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2289.6589 - mae: 40.13727/7 [==============================] - 0s 2ms/step - loss: 2604.1951 - mae: 43.4622 - val_loss: 2285.3079 - val_mae: 41.6264 - lr: 0.0010
+bloomwatch-backend  | Epoch 4/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 3099.2585 - mae: 48.87797/7 [==============================] - 0s 2ms/step - loss: 2484.2153 - mae: 42.2207 - val_loss: 2133.5779 - val_mae: 39.8566 - lr: 0.0010
+bloomwatch-backend  | Epoch 5/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2670.2046 - mae: 44.13467/7 [==============================] - 0s 2ms/step - loss: 2314.5918 - mae: 40.4487 - val_loss: 1908.9379 - val_mae: 37.2062 - lr: 0.0010
+bloomwatch-backend  | Epoch 6/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2069.1616 - mae: 37.19317/7 [==============================] - 0s 2ms/step - loss: 2037.5403 - mae: 37.6323 - val_loss: 1594.9227 - val_mae: 33.4435 - lr: 0.0010
+bloomwatch-backend  | Epoch 7/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 897.8008 - mae: 23.76097/7 [==============================] - 0s 2ms/step - loss: 1673.3029 - mae: 33.7837 - val_loss: 1200.9113 - val_mae: 28.7474 - lr: 0.0010
+bloomwatch-backend  | Epoch 8/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 920.2177 - mae: 23.93987/7 [==============================] - 0s 2ms/step - loss: 1215.1427 - mae: 28.5486 - val_loss: 779.5706 - val_mae: 23.0663 - lr: 0.0010
+bloomwatch-backend  | Epoch 9/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 1355.2830 - mae: 31.92247/7 [==============================] - 0s 2ms/step - loss: 827.4790 - mae: 23.7035 - val_loss: 417.3283 - val_mae: 16.5790 - lr: 0.0010
+bloomwatch-backend  | Epoch 10/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 513.5706 - mae: 18.27827/7 [==============================] - 0s 2ms/step - loss: 554.0774 - mae: 18.5858 - val_loss: 224.2435 - val_mae: 12.0572 - lr: 0.0010
+bloomwatch-backend  | Epoch 11/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 437.2378 - mae: 17.55317/7 [==============================] - 0s 2ms/step - loss: 370.9367 - mae: 15.7853 - val_loss: 138.6348 - val_mae: 9.3466 - lr: 0.0010
+bloomwatch-backend  | Epoch 12/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 272.2554 - mae: 13.63047/7 [==============================] - 0s 2ms/step - loss: 254.5205 - mae: 12.6946 - val_loss: 90.6477 - val_mae: 7.3550 - lr: 0.0010
+bloomwatch-backend  | Epoch 13/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 252.9497 - mae: 13.88727/7 [==============================] - 0s 2ms/step - loss: 180.3387 - mae: 10.5806 - val_loss: 71.4469 - val_mae: 6.6712 - lr: 0.0010
+bloomwatch-backend  | Epoch 14/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 152.8605 - mae: 9.75397/7 [==============================] - 0s 2ms/step - loss: 187.6579 - mae: 10.7182 - val_loss: 66.8487 - val_mae: 6.5461 - lr: 0.0010
+bloomwatch-backend  | Epoch 15/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 208.0401 - mae: 11.87927/7 [==============================] - 0s 2ms/step - loss: 175.1591 - mae: 10.5268 - val_loss: 65.6409 - val_mae: 6.5237 - lr: 0.0010
+bloomwatch-backend  | Epoch 16/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 128.4274 - mae: 8.90907/7 [==============================] - 0s 2ms/step - loss: 139.1701 - mae: 9.2243 - val_loss: 59.7234 - val_mae: 6.1766 - lr: 0.0010
+bloomwatch-backend  | Epoch 17/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 93.2821 - mae: 7.59897/7 [==============================] - 0s 2ms/step - loss: 165.5783 - mae: 9.8163 - val_loss: 52.5924 - val_mae: 5.7512 - lr: 0.0010
+bloomwatch-backend  | Epoch 18/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 127.1176 - mae: 8.11367/7 [==============================] - 0s 2ms/step - loss: 131.4158 - mae: 8.9956 - val_loss: 42.6172 - val_mae: 5.1070 - lr: 0.0010
+bloomwatch-backend  | Epoch 19/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 103.9454 - mae: 7.63717/7 [==============================] - 0s 2ms/step - loss: 110.8809 - mae: 8.0850 - val_loss: 36.4105 - val_mae: 4.6958 - lr: 0.0010
+bloomwatch-backend  | Epoch 20/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 116.3236 - mae: 7.75037/7 [==============================] - 0s 2ms/step - loss: 102.6305 - mae: 7.7778 - val_loss: 31.8925 - val_mae: 4.3698 - lr: 0.0010
+bloomwatch-backend  | Epoch 21/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 108.3271 - mae: 7.90387/7 [==============================] - 0s 2ms/step - loss: 94.5620 - mae: 7.3586 - val_loss: 29.3150 - val_mae: 4.2037 - lr: 0.0010
+bloomwatch-backend  | Epoch 22/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 130.7968 - mae: 9.12697/7 [==============================] - 0s 2ms/step - loss: 105.8550 - mae: 7.8874 - val_loss: 27.6043 - val_mae: 4.0843 - lr: 0.0010
+bloomwatch-backend  | Epoch 23/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 123.0085 - mae: 8.96737/7 [==============================] - 0s 2ms/step - loss: 84.6654 - mae: 6.9470 - val_loss: 23.1895 - val_mae: 3.7997 - lr: 0.0010
+bloomwatch-backend  | Epoch 24/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 79.0582 - mae: 7.31867/7 [==============================] - 0s 2ms/step - loss: 85.6899 - mae: 7.1410 - val_loss: 20.1706 - val_mae: 3.5705 - lr: 0.0010
+bloomwatch-backend  | Epoch 25/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 137.4001 - mae: 9.10097/7 [==============================] - 0s 2ms/step - loss: 89.9441 - mae: 7.2955 - val_loss: 17.6744 - val_mae: 3.3693 - lr: 0.0010
+bloomwatch-backend  | Epoch 26/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 50.7733 - mae: 5.65707/7 [==============================] - 0s 2ms/step - loss: 69.6799 - mae: 6.3278 - val_loss: 16.6233 - val_mae: 3.2554 - lr: 0.0010
+bloomwatch-backend  | Epoch 27/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 108.7776 - mae: 8.35767/7 [==============================] - 0s 2ms/step - loss: 83.7133 - mae: 7.0251 - val_loss: 17.5335 - val_mae: 3.3308 - lr: 0.0010
+bloomwatch-backend  | Epoch 28/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 71.7012 - mae: 7.13917/7 [==============================] - 0s 2ms/step - loss: 80.5082 - mae: 6.9469 - val_loss: 14.9110 - val_mae: 3.1081 - lr: 0.0010
+bloomwatch-backend  | Epoch 29/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 59.7343 - mae: 6.11597/7 [==============================] - 0s 2ms/step - loss: 84.7336 - mae: 6.8812 - val_loss: 13.7896 - val_mae: 2.9404 - lr: 0.0010
+bloomwatch-backend  | Epoch 30/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 88.4156 - mae: 6.84847/7 [==============================] - 0s 2ms/step - loss: 78.2517 - mae: 6.9096 - val_loss: 14.0566 - val_mae: 2.9739 - lr: 0.0010
+bloomwatch-backend  | Epoch 31/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 53.3836 - mae: 5.42697/7 [==============================] - 0s 2ms/step - loss: 68.9882 - mae: 6.2587 - val_loss: 13.8988 - val_mae: 2.8670 - lr: 0.0010
+bloomwatch-backend  | Epoch 32/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 59.4518 - mae: 5.53887/7 [==============================] - 0s 2ms/step - loss: 68.9431 - mae: 5.9051 - val_loss: 11.6777 - val_mae: 2.6625 - lr: 0.0010
+bloomwatch-backend  | Epoch 33/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 58.3846 - mae: 6.07177/7 [==============================] - 0s 2ms/step - loss: 74.1579 - mae: 6.3817 - val_loss: 11.2121 - val_mae: 2.6123 - lr: 0.0010
+bloomwatch-backend  | Epoch 34/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 73.1911 - mae: 6.05977/7 [==============================] - 0s 2ms/step - loss: 63.5181 - mae: 5.9123 - val_loss: 11.1983 - val_mae: 2.6745 - lr: 0.0010
+bloomwatch-backend  | Epoch 35/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 106.1373 - mae: 7.74367/7 [==============================] - 0s 2ms/step - loss: 65.1783 - mae: 5.8366 - val_loss: 11.5590 - val_mae: 2.7719 - lr: 0.0010
+bloomwatch-backend  | Epoch 36/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 70.9403 - mae: 6.60717/7 [==============================] - 0s 2ms/step - loss: 70.7369 - mae: 6.5328 - val_loss: 10.9428 - val_mae: 2.6579 - lr: 0.0010
+bloomwatch-backend  | Epoch 37/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 39.7448 - mae: 4.80837/7 [==============================] - 0s 2ms/step - loss: 62.3495 - mae: 5.8340 - val_loss: 9.9050 - val_mae: 2.4301 - lr: 0.0010
+bloomwatch-backend  | Epoch 38/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 73.0262 - mae: 5.89447/7 [==============================] - 0s 2ms/step - loss: 72.2208 - mae: 6.0547 - val_loss: 11.3897 - val_mae: 2.7206 - lr: 0.0010
+bloomwatch-backend  | Epoch 39/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 54.3213 - mae: 5.71807/7 [==============================] - 0s 2ms/step - loss: 52.8876 - mae: 5.5297 - val_loss: 9.8562 - val_mae: 2.5685 - lr: 0.0010
+bloomwatch-backend  | Epoch 40/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 47.9548 - mae: 5.50047/7 [==============================] - 0s 2ms/step - loss: 56.9035 - mae: 5.4755 - val_loss: 8.9210 - val_mae: 2.4244 - lr: 0.0010
+bloomwatch-backend  | Epoch 41/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 54.8387 - mae: 6.14257/7 [==============================] - 0s 2ms/step - loss: 63.4972 - mae: 5.9323 - val_loss: 7.1619 - val_mae: 2.1432 - lr: 0.0010
+bloomwatch-backend  | Epoch 42/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 68.0160 - mae: 6.46927/7 [==============================] - 0s 2ms/step - loss: 72.1582 - mae: 6.3044 - val_loss: 7.9197 - val_mae: 2.3830 - lr: 0.0010
+bloomwatch-backend  | Epoch 43/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 42.8413 - mae: 4.76317/7 [==============================] - 0s 2ms/step - loss: 60.1148 - mae: 5.8033 - val_loss: 6.7118 - val_mae: 2.0334 - lr: 0.0010
+bloomwatch-backend  | Epoch 44/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 67.3531 - mae: 6.29907/7 [==============================] - 0s 2ms/step - loss: 57.7991 - mae: 5.5586 - val_loss: 8.5556 - val_mae: 2.4015 - lr: 0.0010
+bloomwatch-backend  | Epoch 45/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 43.1684 - mae: 5.03497/7 [==============================] - 0s 2ms/step - loss: 53.8488 - mae: 5.5064 - val_loss: 7.2233 - val_mae: 2.1490 - lr: 0.0010
+bloomwatch-backend  | Epoch 46/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 62.3166 - mae: 6.13907/7 [==============================] - 0s 2ms/step - loss: 56.3989 - mae: 5.6954 - val_loss: 6.3508 - val_mae: 1.9926 - lr: 0.0010
+bloomwatch-backend  | Epoch 47/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 49.7250 - mae: 5.60627/7 [==============================] - 0s 2ms/step - loss: 50.0361 - mae: 5.2980 - val_loss: 6.4111 - val_mae: 2.0029 - lr: 0.0010
+bloomwatch-backend  | Epoch 48/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 59.4059 - mae: 5.70657/7 [==============================] - 0s 2ms/step - loss: 53.1017 - mae: 5.5049 - val_loss: 7.6712 - val_mae: 2.1653 - lr: 0.0010
+bloomwatch-backend  | Epoch 49/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 34.9483 - mae: 4.52977/7 [==============================] - 0s 2ms/step - loss: 51.5793 - mae: 5.5077 - val_loss: 7.2289 - val_mae: 2.2275 - lr: 0.0010
+bloomwatch-backend  | Epoch 50/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 26.3269 - mae: 4.11167/7 [==============================] - 0s 2ms/step - loss: 51.8537 - mae: 5.3402 - val_loss: 5.8539 - val_mae: 2.0012 - lr: 0.0010
+bloomwatch-backend  | Epoch 51/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 43.3610 - mae: 4.50957/7 [==============================] - 0s 2ms/step - loss: 58.8008 - mae: 5.9783 - val_loss: 5.0442 - val_mae: 1.8051 - lr: 0.0010
+bloomwatch-backend  | Epoch 52/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 60.7745 - mae: 6.04847/7 [==============================] - 0s 2ms/step - loss: 53.1770 - mae: 5.5110 - val_loss: 5.8125 - val_mae: 2.0270 - lr: 0.0010
+bloomwatch-backend  | Epoch 53/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 50.3094 - mae: 5.21937/7 [==============================] - 0s 2ms/step - loss: 52.9079 - mae: 5.4030 - val_loss: 5.1993 - val_mae: 1.7618 - lr: 0.0010
+bloomwatch-backend  | Epoch 54/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 76.5118 - mae: 6.33577/7 [==============================] - 0s 2ms/step - loss: 57.1611 - mae: 5.6181 - val_loss: 5.8097 - val_mae: 1.9631 - lr: 0.0010
+bloomwatch-backend  | Epoch 55/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 49.4961 - mae: 5.61157/7 [==============================] - 0s 2ms/step - loss: 47.3117 - mae: 5.0854 - val_loss: 5.3546 - val_mae: 1.7994 - lr: 0.0010
+bloomwatch-backend  | Epoch 56/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 49.2355 - mae: 4.93887/7 [==============================] - 0s 2ms/step - loss: 48.8637 - mae: 5.1979 - val_loss: 6.1591 - val_mae: 2.0345 - lr: 0.0010
+bloomwatch-backend  | Epoch 57/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 47.9016 - mae: 5.32237/7 [==============================] - 0s 2ms/step - loss: 52.8892 - mae: 5.7063 - val_loss: 6.2982 - val_mae: 2.0670 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 58/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 81.0867 - mae: 6.60587/7 [==============================] - 0s 6ms/step - loss: 65.9477 - mae: 5.7957 - val_loss: 6.2753 - val_mae: 2.0927 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 59/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 66.7756 - mae: 6.56477/7 [==============================] - 0s 31ms/step - loss: 65.0010 - mae: 5.9421 - val_loss: 5.1949 - val_mae: 1.8564 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 60/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 61.8154 - mae: 6.04947/7 [==============================] - 0s 8ms/step - loss: 44.7592 - mae: 5.0180 - val_loss: 4.7387 - val_mae: 1.7534 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 61/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 28.7342 - mae: 4.37067/7 [==============================] - 0s 2ms/step - loss: 50.0180 - mae: 5.2463 - val_loss: 4.9087 - val_mae: 1.7988 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 62/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 58.7185 - mae: 5.07737/7 [==============================] - 0s 2ms/step - loss: 45.7039 - mae: 5.0947 - val_loss: 5.4787 - val_mae: 1.9239 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 63/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 41.9555 - mae: 5.04717/7 [==============================] - 0s 2ms/step - loss: 58.8353 - mae: 5.6730 - val_loss: 5.6855 - val_mae: 1.9798 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 64/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 38.2766 - mae: 5.49467/7 [==============================] - 0s 2ms/step - loss: 42.3778 - mae: 4.8573 - val_loss: 4.9671 - val_mae: 1.8438 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 65/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 35.8932 - mae: 4.48507/7 [==============================] - 0s 2ms/step - loss: 60.0917 - mae: 5.4539 - val_loss: 4.4065 - val_mae: 1.7128 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 66/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 97.2890 - mae: 7.29557/7 [==============================] - 0s 2ms/step - loss: 55.7886 - mae: 5.4900 - val_loss: 3.9325 - val_mae: 1.5880 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 67/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 65.4961 - mae: 6.00207/7 [==============================] - 0s 2ms/step - loss: 50.6539 - mae: 5.2953 - val_loss: 4.5166 - val_mae: 1.7553 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 68/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 49.1862 - mae: 5.33527/7 [==============================] - 0s 2ms/step - loss: 57.0833 - mae: 5.4411 - val_loss: 4.0719 - val_mae: 1.6327 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 69/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 35.0369 - mae: 4.98617/7 [==============================] - 0s 2ms/step - loss: 40.7216 - mae: 4.7736 - val_loss: 3.8260 - val_mae: 1.5369 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 70/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 45.3151 - mae: 5.54207/7 [==============================] - 0s 2ms/step - loss: 47.8728 - mae: 5.1729 - val_loss: 3.7094 - val_mae: 1.5076 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 71/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 36.8044 - mae: 4.70047/7 [==============================] - 0s 2ms/step - loss: 41.0186 - mae: 5.0376 - val_loss: 3.8878 - val_mae: 1.5435 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 72/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 39.6312 - mae: 4.59147/7 [==============================] - 0s 2ms/step - loss: 46.6887 - mae: 4.9508 - val_loss: 3.8195 - val_mae: 1.5232 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 73/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 26.2003 - mae: 4.14857/7 [==============================] - 0s 2ms/step - loss: 53.7783 - mae: 5.4452 - val_loss: 4.3701 - val_mae: 1.6261 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 74/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 44.6127 - mae: 5.33877/7 [==============================] - 0s 2ms/step - loss: 40.5214 - mae: 4.8902 - val_loss: 4.7705 - val_mae: 1.6962 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 75/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 34.9270 - mae: 4.62267/7 [==============================] - 0s 2ms/step - loss: 40.6730 - mae: 4.8015 - val_loss: 6.4081 - val_mae: 2.1027 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 76/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 43.1766 - mae: 4.84507/7 [==============================] - 0s 2ms/step - loss: 52.8410 - mae: 5.2421 - val_loss: 6.0377 - val_mae: 2.0301 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 77/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 52.6292 - mae: 5.69547/7 [==============================] - 0s 2ms/step - loss: 42.8767 - mae: 4.9099 - val_loss: 5.1366 - val_mae: 1.8535 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 78/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 35.4314 - mae: 4.80897/7 [==============================] - 0s 2ms/step - loss: 45.3290 - mae: 5.1489 - val_loss: 3.7256 - val_mae: 1.4956 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 79/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 41.0611 - mae: 5.18207/7 [==============================] - 0s 2ms/step - loss: 45.2507 - mae: 5.0541 - val_loss: 3.0589 - val_mae: 1.3289 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 80/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 63.0015 - mae: 6.04537/7 [==============================] - 0s 2ms/step - loss: 48.8369 - mae: 5.2510 - val_loss: 2.9056 - val_mae: 1.2958 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 81/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 29.4515 - mae: 3.72227/7 [==============================] - 0s 2ms/step - loss: 46.5178 - mae: 4.9605 - val_loss: 3.0744 - val_mae: 1.3598 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 82/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 42.3458 - mae: 4.50377/7 [==============================] - 0s 2ms/step - loss: 51.7703 - mae: 5.3610 - val_loss: 3.2197 - val_mae: 1.4201 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 83/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 41.6147 - mae: 4.79107/7 [==============================] - 0s 2ms/step - loss: 50.8321 - mae: 5.2553 - val_loss: 2.9403 - val_mae: 1.3687 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 84/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 35.6665 - mae: 4.05517/7 [==============================] - 0s 2ms/step - loss: 49.3343 - mae: 5.1716 - val_loss: 2.8966 - val_mae: 1.3588 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 85/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 33.1677 - mae: 4.30517/7 [==============================] - 0s 2ms/step - loss: 47.6041 - mae: 5.1507 - val_loss: 2.9184 - val_mae: 1.3629 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 86/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 29.9556 - mae: 4.52457/7 [==============================] - 0s 2ms/step - loss: 51.3258 - mae: 5.2244 - val_loss: 2.8547 - val_mae: 1.3298 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 87/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 49.0153 - mae: 5.15557/7 [==============================] - 0s 2ms/step - loss: 52.2819 - mae: 5.2645 - val_loss: 3.0915 - val_mae: 1.4028 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 88/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 34.5106 - mae: 4.78367/7 [==============================] - 0s 2ms/step - loss: 47.5625 - mae: 5.1827 - val_loss: 3.5058 - val_mae: 1.4994 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 89/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 41.0543 - mae: 5.00157/7 [==============================] - 0s 2ms/step - loss: 45.6220 - mae: 5.0595 - val_loss: 3.5296 - val_mae: 1.5350 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 90/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 30.4320 - mae: 4.17457/7 [==============================] - 0s 2ms/step - loss: 45.7991 - mae: 5.2726 - val_loss: 3.9630 - val_mae: 1.6242 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 91/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 52.0090 - mae: 5.02837/7 [==============================] - 0s 2ms/step - loss: 57.5051 - mae: 5.4023 - val_loss: 3.6671 - val_mae: 1.5713 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 92/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 50.3294 - mae: 5.38547/7 [==============================] - 0s 2ms/step - loss: 47.6149 - mae: 4.8856 - val_loss: 3.4001 - val_mae: 1.5090 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 93/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 44.4393 - mae: 4.75157/7 [==============================] - 0s 2ms/step - loss: 53.1096 - mae: 5.4249 - val_loss: 3.4680 - val_mae: 1.5253 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 94/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 31.4051 - mae: 4.52967/7 [==============================] - 0s 2ms/step - loss: 50.5123 - mae: 5.3193 - val_loss: 3.5253 - val_mae: 1.5381 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 95/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 36.2913 - mae: 4.43407/7 [==============================] - 0s 2ms/step - loss: 53.9706 - mae: 5.3143 - val_loss: 3.8188 - val_mae: 1.6265 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 96/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 67.4513 - mae: 5.86637/7 [==============================] - 0s 2ms/step - loss: 52.5183 - mae: 5.2761 - val_loss: 3.7019 - val_mae: 1.5962 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 97/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 21.2464 - mae: 3.39737/7 [==============================] - 0s 2ms/step - loss: 47.1682 - mae: 4.8014 - val_loss: 3.5682 - val_mae: 1.5563 - lr: 6.2500e-05
+bloomwatch-backend  | Epoch 98/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 52.9130 - mae: 5.56737/7 [==============================] - 0s 2ms/step - loss: 56.7638 - mae: 5.5439 - val_loss: 3.4752 - val_mae: 1.5257 - lr: 6.2500e-05
+bloomwatch-backend  | Epoch 99/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 37.3026 - mae: 4.49967/7 [==============================] - 0s 2ms/step - loss: 45.9315 - mae: 5.1270 - val_loss: 3.3679 - val_mae: 1.5004 - lr: 6.2500e-05
+bloomwatch-backend  | Epoch 100/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 69.8875 - mae: 6.32397/7 [==============================] - 0s 2ms/step - loss: 57.9609 - mae: 5.4191 - val_loss: 3.3868 - val_mae: 1.5044 - lr: 6.2500e-05
+bloomwatch-backend  | ✓ ANN - MAE: 1.50 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [4/4] Treinando LSTM...
+bloomwatch-backend  | Epoch 1/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 4s - loss: 3272.4053 - mae: 48.60803/6 [==============>...............] - ETA: 0s - loss: 2545.7375 - mae: 42.05035/6 [========================>.....] - ETA: 0s - loss: 2747.7434 - mae: 44.74706/6 [==============================] - 1s 85ms/step - loss: 2792.0266 - mae: 45.4637 - val_loss: 612.1656 - val_mae: 21.2437 - lr: 0.0010
+bloomwatch-backend  | Epoch 2/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 3011.5254 - mae: 46.90653/6 [==============>...............] - ETA: 0s - loss: 2745.2683 - mae: 44.29165/6 [========================>.....] - ETA: 0s - loss: 2643.4092 - mae: 43.64176/6 [==============================] - 0s 40ms/step - loss: 2674.9648 - mae: 44.2024 - val_loss: 476.0323 - val_mae: 18.1564 - lr: 0.0010
+bloomwatch-backend  | Epoch 3/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 2628.4978 - mae: 41.77973/6 [==============>...............] - ETA: 0s - loss: 2396.3408 - mae: 40.49355/6 [========================>.....] - ETA: 0s - loss: 2399.0015 - mae: 41.08026/6 [==============================] - 0s 39ms/step - loss: 2401.4019 - mae: 41.2825 - val_loss: 397.2418 - val_mae: 16.3605 - lr: 0.0010
+bloomwatch-backend  | Epoch 4/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 2535.3940 - mae: 43.32893/6 [==============>...............] - ETA: 0s - loss: 2335.8059 - mae: 40.08765/6 [========================>.....] - ETA: 0s - loss: 2312.0310 - mae: 40.46416/6 [==============================] - 0s 39ms/step - loss: 2218.9502 - mae: 39.2513 - val_loss: 327.7995 - val_mae: 14.7850 - lr: 0.0010
+bloomwatch-backend  | Epoch 5/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 2424.2363 - mae: 42.51803/6 [==============>...............] - ETA: 0s - loss: 2183.2458 - mae: 39.48395/6 [========================>.....] - ETA: 0s - loss: 1966.0566 - mae: 36.50886/6 [==============================] - 0s 40ms/step - loss: 2024.9186 - mae: 37.2727 - val_loss: 272.1033 - val_mae: 13.5143 - lr: 0.0010
+bloomwatch-backend  | Epoch 6/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1636.3297 - mae: 31.23543/6 [==============>...............] - ETA: 0s - loss: 1847.2233 - mae: 35.03935/6 [========================>.....] - ETA: 0s - loss: 1836.0566 - mae: 35.09876/6 [==============================] - 0s 40ms/step - loss: 1860.7133 - mae: 35.4915 - val_loss: 230.8908 - val_mae: 12.5800 - lr: 0.0010
+bloomwatch-backend  | Epoch 7/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1540.5676 - mae: 31.90533/6 [==============>...............] - ETA: 0s - loss: 1526.9750 - mae: 31.63725/6 [========================>.....] - ETA: 0s - loss: 1669.5775 - mae: 33.09486/6 [==============================] - 0s 39ms/step - loss: 1729.1261 - mae: 34.0071 - val_loss: 199.8821 - val_mae: 11.8769 - lr: 0.0010
+bloomwatch-backend  | Epoch 8/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1239.5747 - mae: 27.04953/6 [==============>...............] - ETA: 0s - loss: 1581.6149 - mae: 32.57225/6 [========================>.....] - ETA: 0s - loss: 1562.6404 - mae: 32.34426/6 [==============================] - 0s 39ms/step - loss: 1598.8392 - mae: 32.8221 - val_loss: 177.7040 - val_mae: 11.3739 - lr: 0.0010
+bloomwatch-backend  | Epoch 9/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1451.4697 - mae: 30.95743/6 [==============>...............] - ETA: 0s - loss: 1398.8385 - mae: 30.45935/6 [========================>.....] - ETA: 0s - loss: 1460.3958 - mae: 31.26956/6 [==============================] - 0s 40ms/step - loss: 1476.4146 - mae: 31.5029 - val_loss: 164.8358 - val_mae: 11.0812 - lr: 0.0010
+bloomwatch-backend  | Epoch 10/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1124.1776 - mae: 27.18413/6 [==============>...............] - ETA: 0s - loss: 1223.7358 - mae: 29.06235/6 [========================>.....] - ETA: 0s - loss: 1337.8926 - mae: 30.10946/6 [==============================] - 0s 39ms/step - loss: 1360.6350 - mae: 30.4068 - val_loss: 161.3295 - val_mae: 11.0000 - lr: 0.0010
+bloomwatch-backend  | Epoch 11/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1213.4019 - mae: 28.65883/6 [==============>...............] - ETA: 0s - loss: 1246.5619 - mae: 29.40765/6 [========================>.....] - ETA: 0s - loss: 1266.8707 - mae: 29.48456/6 [==============================] - 0s 39ms/step - loss: 1260.4841 - mae: 29.4379 - val_loss: 167.2527 - val_mae: 11.1318 - lr: 0.0010
+bloomwatch-backend  | Epoch 12/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1279.6511 - mae: 29.91192/6 [=========>....................] - ETA: 0s - loss: 1407.8223 - mae: 30.49933/6 [==============>...............] - ETA: 0s - loss: 1231.4774 - mae: 28.33145/6 [========================>.....] - ETA: 0s - loss: 1175.3291 - mae: 28.31536/6 [==============================] - 0s 80ms/step - loss: 1152.1030 - mae: 28.1678 - val_loss: 182.9605 - val_mae: 11.4908 - lr: 0.0010
+bloomwatch-backend  | Epoch 13/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 956.7464 - mae: 25.30172/6 [=========>....................] - ETA: 0s - loss: 1137.3790 - mae: 28.08724/6 [===================>..........] - ETA: 0s - loss: 1077.0621 - mae: 27.24946/6 [==============================] - ETA: 0s - loss: 1082.2324 - mae: 27.37966/6 [==============================] - 0s 45ms/step - loss: 1082.2324 - mae: 27.3796 - val_loss: 208.8588 - val_mae: 12.0818 - lr: 0.0010
+bloomwatch-backend  | Epoch 14/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 897.3782 - mae: 25.50903/6 [==============>...............] - ETA: 0s - loss: 1004.9251 - mae: 26.50765/6 [========================>.....] - ETA: 0s - loss: 1012.6185 - mae: 26.96556/6 [==============================] - 0s 40ms/step - loss: 998.7199 - mae: 26.6305 - val_loss: 243.3630 - val_mae: 12.8661 - lr: 0.0010
+bloomwatch-backend  | Epoch 15/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1122.9950 - mae: 27.29753/6 [==============>...............] - ETA: 0s - loss: 970.7111 - mae: 26.4472 5/6 [========================>.....] - ETA: 0s - loss: 944.5432 - mae: 26.27406/6 [==============================] - 0s 39ms/step - loss: 932.6544 - mae: 26.0470 - val_loss: 285.8091 - val_mae: 13.8303 - lr: 0.0010
+bloomwatch-backend  | Epoch 16/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 808.3119 - mae: 24.14183/6 [==============>...............] - ETA: 0s - loss: 794.6672 - mae: 24.24395/6 [========================>.....] - ETA: 0s - loss: 881.9789 - mae: 25.56576/6 [==============================] - 0s 43ms/step - loss: 891.2310 - mae: 25.5251 - val_loss: 308.0886 - val_mae: 14.3369 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 17/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1008.0828 - mae: 27.41893/6 [==============>...............] - ETA: 0s - loss: 889.9005 - mae: 25.5893 5/6 [========================>.....] - ETA: 0s - loss: 882.4979 - mae: 25.51426/6 [==============================] - 0s 41ms/step - loss: 865.5478 - mae: 25.2308 - val_loss: 332.0121 - val_mae: 14.8809 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 18/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1102.3047 - mae: 28.57813/6 [==============>...............] - ETA: 0s - loss: 999.8630 - mae: 27.7113 5/6 [========================>.....] - ETA: 0s - loss: 895.8822 - mae: 25.99836/6 [==============================] - 0s 41ms/step - loss: 879.8723 - mae: 25.6997 - val_loss: 355.6172 - val_mae: 15.4174 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 19/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 704.2650 - mae: 22.78503/6 [==============>...............] - ETA: 0s - loss: 962.5730 - mae: 27.24475/6 [========================>.....] - ETA: 0s - loss: 846.8817 - mae: 25.40316/6 [==============================] - 0s 40ms/step - loss: 845.2477 - mae: 25.3528 - val_loss: 378.3841 - val_mae: 15.9333 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 20/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1154.3438 - mae: 30.49103/6 [==============>...............] - ETA: 0s - loss: 856.0870 - mae: 25.5055 5/6 [========================>.....] - ETA: 0s - loss: 819.1139 - mae: 24.75176/6 [==============================] - 0s 41ms/step - loss: 813.5369 - mae: 24.7010 - val_loss: 402.1036 - val_mae: 16.4687 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 21/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 678.8364 - mae: 22.87973/6 [==============>...............] - ETA: 0s - loss: 836.2490 - mae: 25.74545/6 [========================>.....] - ETA: 0s - loss: 825.9225 - mae: 25.30456/6 [==============================] - 0s 40ms/step - loss: 800.2926 - mae: 24.8321 - val_loss: 414.1848 - val_mae: 16.7483 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 22/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 750.7532 - mae: 23.11643/6 [==============>...............] - ETA: 0s - loss: 818.1984 - mae: 24.81455/6 [========================>.....] - ETA: 0s - loss: 830.9271 - mae: 25.03526/6 [==============================] - 0s 40ms/step - loss: 816.5068 - mae: 24.8879 - val_loss: 424.9580 - val_mae: 16.9921 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 23/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 658.4589 - mae: 21.94183/6 [==============>...............] - ETA: 0s - loss: 740.6004 - mae: 23.63655/6 [========================>.....] - ETA: 0s - loss: 781.6201 - mae: 24.37966/6 [==============================] - 0s 42ms/step - loss: 770.5701 - mae: 24.2123 - val_loss: 435.7763 - val_mae: 17.2350 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 24/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 804.8258 - mae: 24.59933/6 [==============>...............] - ETA: 0s - loss: 738.0441 - mae: 23.94485/6 [========================>.....] - ETA: 0s - loss: 791.4971 - mae: 24.82166/6 [==============================] - 0s 40ms/step - loss: 803.1332 - mae: 24.9706 - val_loss: 446.8821 - val_mae: 17.4914 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 25/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 832.3672 - mae: 25.67823/6 [==============>...............] - ETA: 0s - loss: 905.4876 - mae: 26.70015/6 [========================>.....] - ETA: 0s - loss: 804.0146 - mae: 24.90226/6 [==============================] - 0s 41ms/step - loss: 782.3860 - mae: 24.4725 - val_loss: 458.4846 - val_mae: 17.7540 - lr: 2.5000e-04
+bloomwatch-backend  | ✓ LSTM - MAE: 11.00 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | AVALIAÇÃO DO ENSEMBLE
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | 📊 MÉTRICAS FINAIS:
+bloomwatch-backend  |    MAE:  11.35 dias
+bloomwatch-backend  |    RMSE: 13.73 dias
+bloomwatch-backend  |    R²:   0.616
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | [4/4] Salvando modelos...
+bloomwatch-backend  | ✓ Modelos salvos em models/almond/
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Modelo para almond treinado com sucesso!
+bloomwatch-backend  | 📊 Métricas finais:
+bloomwatch-backend  |    MAE:  11.35 dias ✗ REPROVADO
+bloomwatch-backend  |    RMSE: 13.73 dias
+bloomwatch-backend  |    R²:   0.616 ✗
+bloomwatch-backend  | 
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | 🌸 TREINANDO MODELO PARA: APPLE
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/4] Coletando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Coletando dados NASA para apple...
+bloomwatch-backend  |    Localizações: 3
+bloomwatch-backend  |    Anos: 5
+bloomwatch-backend  | 
+bloomwatch-backend  |   Buscando: Yakima Valley, WA (46.6021, -120.5059)
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=46.6021, lon=-120.5059
+bloomwatch-backend  |    Período: 365 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 46.6021, -120.5059
+bloomwatch-backend  |    Período: 10-05-2024 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=9a79750d-14a9-4183-b4cc-a46c3f39178d
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 23 registros
+bloomwatch-backend  | ✓ MODIS: 23 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 362 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 363 registros NASA completos
+bloomwatch-backend  |     ✓ 363 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  |   Buscando: Olympia, WA (47.0379, -122.9007)
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=47.0379, lon=-122.9007
+bloomwatch-backend  |    Período: 365 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 47.0379, -122.9007
+bloomwatch-backend  |    Período: 10-05-2024 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=75cc6fc3-4e89-46d0-8aef-45b7a8ad4549
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 23 registros
+bloomwatch-backend  | ✓ MODIS: 23 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 362 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 363 registros NASA completos
+bloomwatch-backend  |     ✓ 363 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  |   Buscando: Hood River, OR (45.7833, -121.5167)
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=45.7833, lon=-121.5167
+bloomwatch-backend  |    Período: 365 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 45.7833, -121.5167
+bloomwatch-backend  |    Período: 10-05-2024 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=51537db6-bad7-42a9-8593-0308d1e11718
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 23 registros
+bloomwatch-backend  | ✓ MODIS: 23 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 362 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 363 registros NASA completos
+bloomwatch-backend  |     ✓ 363 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | ✓ Total: 1089 registros de 3 localizações
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/4] Preparando target...
+bloomwatch-backend  | 
+bloomwatch-backend  | 📊 Criando targets de treinamento...
+bloomwatch-backend  | ✓ Target criado: 1089 amostras
+bloomwatch-backend  |   Range: 0 - 180 dias
+bloomwatch-backend  | ✓ Dados filtrados: 273 amostras válidas
+bloomwatch-backend  | 
+bloomwatch-backend  | [3/4] Treinando ensemble de modelos...
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | TREINANDO BLOOMWATCH ENSEMBLE
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/4] Preparando features...
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/4] Treinando Random Forest...
+bloomwatch-backend  | ✓ Random Forest - MAE: 0.13 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [3/4] Treinando ANN...
+bloomwatch-backend  | Epoch 1/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 1s - loss: 2715.8618 - mae: 44.59427/7 [==============================] - 0s 9ms/step - loss: 2744.7039 - mae: 45.0573 - val_loss: 2529.2446 - val_mae: 43.7267 - lr: 0.0010
+bloomwatch-backend  | Epoch 2/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2211.6287 - mae: 38.34227/7 [==============================] - 0s 2ms/step - loss: 2663.6138 - mae: 44.2485 - val_loss: 2456.9856 - val_mae: 42.9760 - lr: 0.0010
+bloomwatch-backend  | Epoch 3/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2968.8052 - mae: 46.00157/7 [==============================] - 0s 2ms/step - loss: 2577.2944 - mae: 43.3748 - val_loss: 2357.1013 - val_mae: 41.9244 - lr: 0.0010
+bloomwatch-backend  | Epoch 4/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2490.4841 - mae: 40.31067/7 [==============================] - 0s 2ms/step - loss: 2437.4753 - mae: 41.9761 - val_loss: 2204.3154 - val_mae: 40.2830 - lr: 0.0010
+bloomwatch-backend  | Epoch 5/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2244.1040 - mae: 39.90517/7 [==============================] - 0s 2ms/step - loss: 2236.1174 - mae: 40.0856 - val_loss: 1974.0294 - val_mae: 37.7715 - lr: 0.0010
+bloomwatch-backend  | Epoch 6/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 1853.5668 - mae: 35.99117/7 [==============================] - 0s 2ms/step - loss: 1955.6605 - mae: 37.0338 - val_loss: 1636.6227 - val_mae: 34.1850 - lr: 0.0010
+bloomwatch-backend  | Epoch 7/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2036.3691 - mae: 38.22157/7 [==============================] - 0s 2ms/step - loss: 1571.7388 - mae: 32.9275 - val_loss: 1188.0883 - val_mae: 29.0825 - lr: 0.0010
+bloomwatch-backend  | Epoch 8/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 1141.8489 - mae: 27.65787/7 [==============================] - 0s 2ms/step - loss: 1065.5996 - mae: 27.0727 - val_loss: 695.0751 - val_mae: 22.6078 - lr: 0.0010
+bloomwatch-backend  | Epoch 9/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 819.3213 - mae: 24.34727/7 [==============================] - 0s 2ms/step - loss: 586.6621 - mae: 20.0590 - val_loss: 321.3277 - val_mae: 15.4261 - lr: 0.0010
+bloomwatch-backend  | Epoch 10/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 282.1174 - mae: 13.56457/7 [==============================] - 0s 2ms/step - loss: 293.0276 - mae: 14.6558 - val_loss: 232.5377 - val_mae: 13.1116 - lr: 0.0010
+bloomwatch-backend  | Epoch 11/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 222.7375 - mae: 12.13477/7 [==============================] - 0s 3ms/step - loss: 244.6951 - mae: 13.1356 - val_loss: 212.5539 - val_mae: 12.2085 - lr: 0.0010
+bloomwatch-backend  | Epoch 12/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 147.9370 - mae: 9.93527/7 [==============================] - 0s 2ms/step - loss: 232.3090 - mae: 12.5446 - val_loss: 149.7879 - val_mae: 10.0036 - lr: 0.0010
+bloomwatch-backend  | Epoch 13/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 144.3750 - mae: 10.14977/7 [==============================] - 0s 2ms/step - loss: 179.2333 - mae: 10.9307 - val_loss: 131.5442 - val_mae: 9.1650 - lr: 0.0010
+bloomwatch-backend  | Epoch 14/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 152.1459 - mae: 9.40467/7 [==============================] - 0s 3ms/step - loss: 170.8225 - mae: 10.2890 - val_loss: 121.8668 - val_mae: 8.7790 - lr: 0.0010
+bloomwatch-backend  | Epoch 15/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 193.2656 - mae: 11.62637/7 [==============================] - 0s 2ms/step - loss: 156.7971 - mae: 9.8134 - val_loss: 109.3374 - val_mae: 8.3636 - lr: 0.0010
+bloomwatch-backend  | Epoch 16/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 121.2438 - mae: 8.76947/7 [==============================] - 0s 2ms/step - loss: 138.2738 - mae: 9.2884 - val_loss: 102.4558 - val_mae: 7.9963 - lr: 0.0010
+bloomwatch-backend  | Epoch 17/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 111.4593 - mae: 7.96647/7 [==============================] - 0s 2ms/step - loss: 157.7166 - mae: 9.8128 - val_loss: 96.1140 - val_mae: 7.6454 - lr: 0.0010
+bloomwatch-backend  | Epoch 18/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 118.7495 - mae: 8.05267/7 [==============================] - 0s 2ms/step - loss: 136.0061 - mae: 9.1454 - val_loss: 96.6312 - val_mae: 7.7296 - lr: 0.0010
+bloomwatch-backend  | Epoch 19/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 190.6185 - mae: 10.68127/7 [==============================] - 0s 2ms/step - loss: 151.6222 - mae: 9.5541 - val_loss: 93.9787 - val_mae: 7.6826 - lr: 0.0010
+bloomwatch-backend  | Epoch 20/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 171.7875 - mae: 10.57697/7 [==============================] - 0s 2ms/step - loss: 147.0058 - mae: 9.4525 - val_loss: 84.3386 - val_mae: 7.1639 - lr: 0.0010
+bloomwatch-backend  | Epoch 21/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 241.2382 - mae: 11.72877/7 [==============================] - 0s 2ms/step - loss: 138.4472 - mae: 9.2267 - val_loss: 77.4812 - val_mae: 6.9411 - lr: 0.0010
+bloomwatch-backend  | Epoch 22/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 165.6328 - mae: 10.97347/7 [==============================] - 0s 2ms/step - loss: 135.9878 - mae: 9.3717 - val_loss: 72.8550 - val_mae: 6.7466 - lr: 0.0010
+bloomwatch-backend  | Epoch 23/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 103.3062 - mae: 8.04727/7 [==============================] - 0s 3ms/step - loss: 110.6993 - mae: 8.4371 - val_loss: 68.5186 - val_mae: 6.4404 - lr: 0.0010
+bloomwatch-backend  | Epoch 24/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 107.7846 - mae: 8.34637/7 [==============================] - 0s 2ms/step - loss: 123.9080 - mae: 8.8277 - val_loss: 65.2599 - val_mae: 6.2284 - lr: 0.0010
+bloomwatch-backend  | Epoch 25/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 75.7532 - mae: 6.61897/7 [==============================] - 0s 3ms/step - loss: 112.2870 - mae: 8.4785 - val_loss: 65.0820 - val_mae: 6.1674 - lr: 0.0010
+bloomwatch-backend  | Epoch 26/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 150.0940 - mae: 10.00537/7 [==============================] - 0s 3ms/step - loss: 117.1473 - mae: 8.5354 - val_loss: 61.1087 - val_mae: 5.8738 - lr: 0.0010
+bloomwatch-backend  | Epoch 27/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 128.0101 - mae: 9.73907/7 [==============================] - 0s 2ms/step - loss: 103.5106 - mae: 8.1639 - val_loss: 55.8662 - val_mae: 5.6134 - lr: 0.0010
+bloomwatch-backend  | Epoch 28/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 91.2345 - mae: 7.88287/7 [==============================] - 0s 2ms/step - loss: 99.2826 - mae: 7.8984 - val_loss: 61.3797 - val_mae: 6.0467 - lr: 0.0010
+bloomwatch-backend  | Epoch 29/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 113.7927 - mae: 8.19287/7 [==============================] - 0s 2ms/step - loss: 94.4719 - mae: 7.6347 - val_loss: 58.7060 - val_mae: 5.9342 - lr: 0.0010
+bloomwatch-backend  | Epoch 30/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 170.8150 - mae: 9.50177/7 [==============================] - 0s 2ms/step - loss: 111.9972 - mae: 8.0815 - val_loss: 49.6473 - val_mae: 5.4997 - lr: 0.0010
+bloomwatch-backend  | Epoch 31/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 69.0439 - mae: 6.64237/7 [==============================] - 0s 2ms/step - loss: 93.6430 - mae: 7.7436 - val_loss: 44.4884 - val_mae: 5.1698 - lr: 0.0010
+bloomwatch-backend  | Epoch 32/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 75.9438 - mae: 6.61287/7 [==============================] - 0s 6ms/step - loss: 76.9753 - mae: 6.7016 - val_loss: 43.3486 - val_mae: 5.0774 - lr: 0.0010
+bloomwatch-backend  | Epoch 33/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 68.6475 - mae: 7.35077/7 [==============================] - 0s 2ms/step - loss: 96.1079 - mae: 7.7442 - val_loss: 46.6459 - val_mae: 5.3070 - lr: 0.0010
+bloomwatch-backend  | Epoch 34/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 102.8693 - mae: 7.47727/7 [==============================] - 0s 2ms/step - loss: 85.6953 - mae: 7.4311 - val_loss: 44.4015 - val_mae: 5.2296 - lr: 0.0010
+bloomwatch-backend  | Epoch 35/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 83.1138 - mae: 7.95797/7 [==============================] - 0s 2ms/step - loss: 88.3115 - mae: 7.5973 - val_loss: 35.9404 - val_mae: 4.5821 - lr: 0.0010
+bloomwatch-backend  | Epoch 36/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 80.0527 - mae: 7.32337/7 [==============================] - 0s 2ms/step - loss: 78.6308 - mae: 6.9718 - val_loss: 35.0903 - val_mae: 4.4979 - lr: 0.0010
+bloomwatch-backend  | Epoch 37/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 89.6713 - mae: 7.25287/7 [==============================] - 0s 2ms/step - loss: 77.7653 - mae: 6.9542 - val_loss: 36.3243 - val_mae: 4.5372 - lr: 0.0010
+bloomwatch-backend  | Epoch 38/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 50.1868 - mae: 5.65547/7 [==============================] - 0s 2ms/step - loss: 81.0434 - mae: 7.0827 - val_loss: 32.4746 - val_mae: 4.3147 - lr: 0.0010
+bloomwatch-backend  | Epoch 39/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 63.6819 - mae: 6.46327/7 [==============================] - 0s 2ms/step - loss: 78.4722 - mae: 6.9215 - val_loss: 32.4405 - val_mae: 4.5575 - lr: 0.0010
+bloomwatch-backend  | Epoch 40/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 77.7873 - mae: 6.50007/7 [==============================] - 0s 2ms/step - loss: 77.0208 - mae: 7.0015 - val_loss: 26.9021 - val_mae: 4.1590 - lr: 0.0010
+bloomwatch-backend  | Epoch 41/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 72.5162 - mae: 6.94507/7 [==============================] - 0s 2ms/step - loss: 64.4631 - mae: 6.3489 - val_loss: 25.0741 - val_mae: 3.9027 - lr: 0.0010
+bloomwatch-backend  | Epoch 42/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 61.7163 - mae: 5.76107/7 [==============================] - 0s 2ms/step - loss: 70.7968 - mae: 6.6439 - val_loss: 26.6579 - val_mae: 3.9394 - lr: 0.0010
+bloomwatch-backend  | Epoch 43/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 59.7533 - mae: 6.44817/7 [==============================] - 0s 2ms/step - loss: 77.9393 - mae: 6.7317 - val_loss: 26.9751 - val_mae: 3.9113 - lr: 0.0010
+bloomwatch-backend  | Epoch 44/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 71.7420 - mae: 6.92467/7 [==============================] - 0s 2ms/step - loss: 72.5008 - mae: 6.7537 - val_loss: 22.4157 - val_mae: 3.5959 - lr: 0.0010
+bloomwatch-backend  | Epoch 45/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 36.8357 - mae: 4.64737/7 [==============================] - 0s 2ms/step - loss: 64.0478 - mae: 6.1749 - val_loss: 21.1236 - val_mae: 3.5900 - lr: 0.0010
+bloomwatch-backend  | Epoch 46/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 62.6166 - mae: 6.38567/7 [==============================] - 0s 3ms/step - loss: 66.5009 - mae: 6.2455 - val_loss: 26.3304 - val_mae: 3.9701 - lr: 0.0010
+bloomwatch-backend  | Epoch 47/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 68.0177 - mae: 6.04837/7 [==============================] - 0s 3ms/step - loss: 73.9400 - mae: 6.5671 - val_loss: 28.2608 - val_mae: 4.0493 - lr: 0.0010
+bloomwatch-backend  | Epoch 48/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 81.0628 - mae: 7.13367/7 [==============================] - 0s 2ms/step - loss: 66.5871 - mae: 6.2536 - val_loss: 18.8283 - val_mae: 3.3586 - lr: 0.0010
+bloomwatch-backend  | Epoch 49/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 75.6756 - mae: 6.73167/7 [==============================] - 0s 2ms/step - loss: 55.5113 - mae: 5.7561 - val_loss: 16.3773 - val_mae: 3.0956 - lr: 0.0010
+bloomwatch-backend  | Epoch 50/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 43.0514 - mae: 5.39467/7 [==============================] - 0s 2ms/step - loss: 67.9167 - mae: 6.4920 - val_loss: 15.4739 - val_mae: 2.9147 - lr: 0.0010
+bloomwatch-backend  | Epoch 51/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 43.4021 - mae: 4.61207/7 [==============================] - 0s 2ms/step - loss: 57.9660 - mae: 5.8542 - val_loss: 18.9576 - val_mae: 3.2853 - lr: 0.0010
+bloomwatch-backend  | Epoch 52/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 55.1722 - mae: 5.36077/7 [==============================] - 0s 2ms/step - loss: 68.4148 - mae: 6.1476 - val_loss: 19.9345 - val_mae: 3.3423 - lr: 0.0010
+bloomwatch-backend  | Epoch 53/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 64.6492 - mae: 6.36597/7 [==============================] - 0s 2ms/step - loss: 57.3706 - mae: 5.8902 - val_loss: 12.4676 - val_mae: 2.5895 - lr: 0.0010
+bloomwatch-backend  | Epoch 54/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 38.4592 - mae: 4.84117/7 [==============================] - 0s 2ms/step - loss: 47.7399 - mae: 5.3561 - val_loss: 11.5638 - val_mae: 2.5029 - lr: 0.0010
+bloomwatch-backend  | Epoch 55/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 35.1494 - mae: 4.93617/7 [==============================] - 0s 2ms/step - loss: 60.4495 - mae: 5.7962 - val_loss: 12.0262 - val_mae: 2.5756 - lr: 0.0010
+bloomwatch-backend  | Epoch 56/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 58.1661 - mae: 5.69007/7 [==============================] - 0s 5ms/step - loss: 55.7755 - mae: 5.7663 - val_loss: 19.8525 - val_mae: 3.5216 - lr: 0.0010
+bloomwatch-backend  | Epoch 57/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 43.0546 - mae: 5.01787/7 [==============================] - 0s 29ms/step - loss: 45.8400 - mae: 5.1886 - val_loss: 14.2078 - val_mae: 2.8829 - lr: 0.0010
+bloomwatch-backend  | Epoch 58/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 76.5654 - mae: 7.27227/7 [==============================] - 0s 6ms/step - loss: 53.8907 - mae: 5.8992 - val_loss: 11.4207 - val_mae: 2.5328 - lr: 0.0010
+bloomwatch-backend  | Epoch 59/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 77.4187 - mae: 5.97127/7 [==============================] - 0s 3ms/step - loss: 60.0386 - mae: 5.7817 - val_loss: 10.4070 - val_mae: 2.3949 - lr: 0.0010
+bloomwatch-backend  | Epoch 60/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 80.7901 - mae: 6.76517/7 [==============================] - 0s 3ms/step - loss: 60.4755 - mae: 6.1565 - val_loss: 14.5294 - val_mae: 3.0491 - lr: 0.0010
+bloomwatch-backend  | Epoch 61/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 67.4880 - mae: 5.85107/7 [==============================] - 0s 2ms/step - loss: 56.1043 - mae: 5.8742 - val_loss: 12.8069 - val_mae: 2.7602 - lr: 0.0010
+bloomwatch-backend  | Epoch 62/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 96.0031 - mae: 7.45127/7 [==============================] - 0s 2ms/step - loss: 52.4751 - mae: 5.4424 - val_loss: 9.9298 - val_mae: 2.3993 - lr: 0.0010
+bloomwatch-backend  | Epoch 63/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 91.6538 - mae: 6.89367/7 [==============================] - 0s 2ms/step - loss: 71.1829 - mae: 6.3206 - val_loss: 7.8932 - val_mae: 2.0543 - lr: 0.0010
+bloomwatch-backend  | Epoch 64/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 66.5722 - mae: 6.80477/7 [==============================] - 0s 2ms/step - loss: 43.2409 - mae: 5.0918 - val_loss: 9.8677 - val_mae: 2.4815 - lr: 0.0010
+bloomwatch-backend  | Epoch 65/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 51.6932 - mae: 5.39927/7 [==============================] - 0s 2ms/step - loss: 37.5736 - mae: 4.8306 - val_loss: 8.8108 - val_mae: 2.2891 - lr: 0.0010
+bloomwatch-backend  | Epoch 66/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 64.2769 - mae: 6.00827/7 [==============================] - 0s 2ms/step - loss: 52.2687 - mae: 5.6459 - val_loss: 8.6305 - val_mae: 2.2173 - lr: 0.0010
+bloomwatch-backend  | Epoch 67/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 53.9390 - mae: 6.11147/7 [==============================] - 0s 2ms/step - loss: 45.7383 - mae: 5.2987 - val_loss: 8.9690 - val_mae: 2.2886 - lr: 0.0010
+bloomwatch-backend  | Epoch 68/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 60.2965 - mae: 5.97507/7 [==============================] - 0s 2ms/step - loss: 55.1630 - mae: 5.5543 - val_loss: 10.7180 - val_mae: 2.5280 - lr: 0.0010
+bloomwatch-backend  | Epoch 69/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 57.3170 - mae: 5.51797/7 [==============================] - 0s 2ms/step - loss: 49.3607 - mae: 5.1711 - val_loss: 9.2647 - val_mae: 2.3262 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 70/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 78.4926 - mae: 6.49547/7 [==============================] - 0s 2ms/step - loss: 58.6146 - mae: 5.7320 - val_loss: 7.1136 - val_mae: 2.0408 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 71/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 62.1172 - mae: 6.25217/7 [==============================] - 0s 2ms/step - loss: 52.8055 - mae: 5.5750 - val_loss: 6.7118 - val_mae: 1.9785 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 72/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 50.7357 - mae: 5.57587/7 [==============================] - 0s 2ms/step - loss: 44.9823 - mae: 5.3159 - val_loss: 9.2245 - val_mae: 2.3114 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 73/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 34.4104 - mae: 4.60567/7 [==============================] - 0s 2ms/step - loss: 55.2718 - mae: 5.3672 - val_loss: 10.6351 - val_mae: 2.5432 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 74/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 66.7014 - mae: 6.21667/7 [==============================] - 0s 2ms/step - loss: 59.9523 - mae: 5.8212 - val_loss: 7.8354 - val_mae: 2.1146 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 75/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 59.8123 - mae: 5.94367/7 [==============================] - 0s 2ms/step - loss: 44.2603 - mae: 5.1105 - val_loss: 5.8967 - val_mae: 1.7707 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 76/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 35.6697 - mae: 4.51847/7 [==============================] - 0s 3ms/step - loss: 47.1368 - mae: 5.0126 - val_loss: 5.6931 - val_mae: 1.7409 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 77/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 63.8831 - mae: 5.91967/7 [==============================] - 0s 2ms/step - loss: 48.0449 - mae: 5.1539 - val_loss: 7.0746 - val_mae: 2.0940 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 78/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 32.0696 - mae: 3.88487/7 [==============================] - 0s 2ms/step - loss: 44.7983 - mae: 4.9921 - val_loss: 5.7403 - val_mae: 1.8065 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 79/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 30.6374 - mae: 4.08337/7 [==============================] - 0s 3ms/step - loss: 49.2784 - mae: 5.2139 - val_loss: 5.1551 - val_mae: 1.7039 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 80/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 36.9637 - mae: 4.88407/7 [==============================] - 0s 2ms/step - loss: 49.3545 - mae: 5.1126 - val_loss: 6.0276 - val_mae: 1.8589 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 81/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 47.8474 - mae: 5.86237/7 [==============================] - 0s 2ms/step - loss: 47.5306 - mae: 5.3804 - val_loss: 7.4869 - val_mae: 2.1395 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 82/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 31.3310 - mae: 4.26717/7 [==============================] - 0s 2ms/step - loss: 46.5828 - mae: 5.1947 - val_loss: 6.6272 - val_mae: 1.9816 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 83/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 47.9895 - mae: 5.36337/7 [==============================] - 0s 2ms/step - loss: 49.1483 - mae: 5.3198 - val_loss: 6.2039 - val_mae: 1.9001 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 84/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 40.2405 - mae: 5.30087/7 [==============================] - 0s 2ms/step - loss: 47.6348 - mae: 5.3297 - val_loss: 5.7113 - val_mae: 1.8167 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 85/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 38.6648 - mae: 4.44757/7 [==============================] - 0s 2ms/step - loss: 45.8906 - mae: 5.0861 - val_loss: 5.7925 - val_mae: 1.8398 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 86/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 28.1064 - mae: 4.47317/7 [==============================] - 0s 2ms/step - loss: 46.0481 - mae: 5.1752 - val_loss: 5.2406 - val_mae: 1.7259 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 87/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 45.5845 - mae: 4.72267/7 [==============================] - 0s 2ms/step - loss: 41.1851 - mae: 4.9232 - val_loss: 4.6345 - val_mae: 1.5989 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 88/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 31.6374 - mae: 4.82097/7 [==============================] - 0s 2ms/step - loss: 40.0316 - mae: 4.8575 - val_loss: 4.5585 - val_mae: 1.5892 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 89/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 51.6508 - mae: 5.85627/7 [==============================] - 0s 2ms/step - loss: 45.4897 - mae: 5.1329 - val_loss: 4.6220 - val_mae: 1.5956 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 90/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 43.9144 - mae: 5.14957/7 [==============================] - 0s 2ms/step - loss: 46.3746 - mae: 4.9871 - val_loss: 4.9643 - val_mae: 1.6592 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 91/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 30.9047 - mae: 3.86037/7 [==============================] - 0s 2ms/step - loss: 49.0170 - mae: 5.2216 - val_loss: 5.3023 - val_mae: 1.7347 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 92/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 31.5712 - mae: 4.52867/7 [==============================] - 0s 2ms/step - loss: 39.5676 - mae: 4.7092 - val_loss: 5.7675 - val_mae: 1.8394 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 93/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 42.2312 - mae: 4.67937/7 [==============================] - 0s 2ms/step - loss: 43.7181 - mae: 4.9758 - val_loss: 6.9134 - val_mae: 2.0610 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 94/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 49.8969 - mae: 5.08347/7 [==============================] - 0s 2ms/step - loss: 37.6064 - mae: 4.6660 - val_loss: 7.0246 - val_mae: 2.0838 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 95/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 63.4406 - mae: 5.70427/7 [==============================] - 0s 2ms/step - loss: 45.3429 - mae: 4.8476 - val_loss: 6.8173 - val_mae: 2.0504 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 96/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 38.3108 - mae: 4.88957/7 [==============================] - 0s 2ms/step - loss: 36.7033 - mae: 4.5246 - val_loss: 5.9671 - val_mae: 1.8944 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 97/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 57.9274 - mae: 6.08577/7 [==============================] - 0s 2ms/step - loss: 44.2086 - mae: 5.1835 - val_loss: 5.1853 - val_mae: 1.7447 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 98/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 38.5601 - mae: 4.42017/7 [==============================] - 0s 2ms/step - loss: 39.9529 - mae: 4.6156 - val_loss: 4.8204 - val_mae: 1.6698 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 99/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 42.5207 - mae: 5.09487/7 [==============================] - 0s 2ms/step - loss: 40.9505 - mae: 4.9046 - val_loss: 4.8483 - val_mae: 1.6755 - lr: 6.2500e-05
+bloomwatch-backend  | Epoch 100/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 41.6830 - mae: 4.65267/7 [==============================] - 0s 2ms/step - loss: 60.2519 - mae: 5.8014 - val_loss: 4.9516 - val_mae: 1.7027 - lr: 6.2500e-05
+bloomwatch-backend  | ✓ ANN - MAE: 1.70 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [4/4] Treinando LSTM...
+bloomwatch-backend  | Epoch 1/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 4s - loss: 2629.3862 - mae: 44.44593/6 [==============>...............] - ETA: 0s - loss: 2720.1287 - mae: 44.77555/6 [========================>.....] - ETA: 0s - loss: 2768.1990 - mae: 44.92476/6 [==============================] - 1s 88ms/step - loss: 2791.5183 - mae: 45.4041 - val_loss: 533.7993 - val_mae: 19.5826 - lr: 0.0010
+bloomwatch-backend  | Epoch 2/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 3521.0398 - mae: 51.87243/6 [==============>...............] - ETA: 0s - loss: 2956.5994 - mae: 46.25835/6 [========================>.....] - ETA: 0s - loss: 2694.6094 - mae: 44.40946/6 [==============================] - 0s 41ms/step - loss: 2587.3232 - mae: 43.0925 - val_loss: 400.5224 - val_mae: 16.4822 - lr: 0.0010
+bloomwatch-backend  | Epoch 3/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1873.3319 - mae: 35.59783/6 [==============>...............] - ETA: 0s - loss: 2392.5645 - mae: 40.76915/6 [========================>.....] - ETA: 0s - loss: 2312.0098 - mae: 40.39516/6 [==============================] - 0s 40ms/step - loss: 2287.1738 - mae: 39.9587 - val_loss: 320.3369 - val_mae: 14.6147 - lr: 0.0010
+bloomwatch-backend  | Epoch 4/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 2551.4155 - mae: 42.73283/6 [==============>...............] - ETA: 0s - loss: 2355.6272 - mae: 40.80745/6 [========================>.....] - ETA: 0s - loss: 2087.8699 - mae: 37.65406/6 [==============================] - 0s 42ms/step - loss: 2073.4380 - mae: 37.5667 - val_loss: 254.8469 - val_mae: 13.0904 - lr: 0.0010
+bloomwatch-backend  | Epoch 5/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1810.9154 - mae: 34.98133/6 [==============>...............] - ETA: 0s - loss: 1873.4741 - mae: 34.41595/6 [========================>.....] - ETA: 0s - loss: 1906.9772 - mae: 35.90156/6 [==============================] - 0s 40ms/step - loss: 1875.1097 - mae: 35.6685 - val_loss: 208.9642 - val_mae: 12.0281 - lr: 0.0010
+bloomwatch-backend  | Epoch 6/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1560.6587 - mae: 31.11453/6 [==============>...............] - ETA: 0s - loss: 1643.5596 - mae: 32.43555/6 [========================>.....] - ETA: 0s - loss: 1683.5457 - mae: 33.42156/6 [==============================] - 0s 40ms/step - loss: 1698.4694 - mae: 33.7820 - val_loss: 177.6511 - val_mae: 11.2970 - lr: 0.0010
+bloomwatch-backend  | Epoch 7/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1829.3055 - mae: 36.49353/6 [==============>...............] - ETA: 0s - loss: 1631.1969 - mae: 33.17555/6 [========================>.....] - ETA: 0s - loss: 1545.5735 - mae: 32.29506/6 [==============================] - 0s 40ms/step - loss: 1541.0909 - mae: 32.2120 - val_loss: 159.1309 - val_mae: 10.8680 - lr: 0.0010
+bloomwatch-backend  | Epoch 8/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1209.8521 - mae: 27.38773/6 [==============>...............] - ETA: 0s - loss: 1517.6172 - mae: 32.07685/6 [========================>.....] - ETA: 0s - loss: 1408.5101 - mae: 30.75056/6 [==============================] - 0s 40ms/step - loss: 1390.5181 - mae: 30.6887 - val_loss: 154.1409 - val_mae: 10.7529 - lr: 0.0010
+bloomwatch-backend  | Epoch 9/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1185.4468 - mae: 28.88493/6 [==============>...............] - ETA: 0s - loss: 1146.7500 - mae: 27.55785/6 [========================>.....] - ETA: 0s - loss: 1270.4971 - mae: 29.36926/6 [==============================] - 0s 40ms/step - loss: 1291.3395 - mae: 29.5596 - val_loss: 163.2002 - val_mae: 10.9589 - lr: 0.0010
+bloomwatch-backend  | Epoch 10/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1216.5430 - mae: 28.63603/6 [==============>...............] - ETA: 0s - loss: 1199.5741 - mae: 28.38875/6 [========================>.....] - ETA: 0s - loss: 1186.8004 - mae: 28.65946/6 [==============================] - 0s 41ms/step - loss: 1164.2423 - mae: 28.3427 - val_loss: 187.5612 - val_mae: 11.5285 - lr: 0.0010
+bloomwatch-backend  | Epoch 11/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1287.8633 - mae: 30.93023/6 [==============>...............] - ETA: 0s - loss: 1092.6415 - mae: 27.93295/6 [========================>.....] - ETA: 0s - loss: 1093.5220 - mae: 27.92786/6 [==============================] - 0s 41ms/step - loss: 1062.2263 - mae: 27.4889 - val_loss: 225.8717 - val_mae: 12.4214 - lr: 0.0010
+bloomwatch-backend  | Epoch 12/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 802.8726 - mae: 23.48003/6 [==============>...............] - ETA: 0s - loss: 939.9736 - mae: 25.56115/6 [========================>.....] - ETA: 0s - loss: 976.7148 - mae: 26.60266/6 [==============================] - 0s 41ms/step - loss: 976.5562 - mae: 26.6044 - val_loss: 275.5971 - val_mae: 13.5726 - lr: 0.0010
+bloomwatch-backend  | Epoch 13/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1006.8026 - mae: 27.64003/6 [==============>...............] - ETA: 0s - loss: 870.3704 - mae: 25.1059 5/6 [========================>.....] - ETA: 0s - loss: 903.3361 - mae: 26.05926/6 [==============================] - 0s 40ms/step - loss: 904.1742 - mae: 26.0643 - val_loss: 337.7798 - val_mae: 15.0239 - lr: 0.0010
+bloomwatch-backend  | Epoch 14/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 720.7348 - mae: 22.11643/6 [==============>...............] - ETA: 0s - loss: 755.9029 - mae: 23.43095/6 [========================>.....] - ETA: 0s - loss: 860.2092 - mae: 25.38306/6 [==============================] - 0s 40ms/step - loss: 866.3723 - mae: 25.4654 - val_loss: 369.2425 - val_mae: 15.7550 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 15/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 843.1919 - mae: 25.10003/6 [==============>...............] - ETA: 0s - loss: 936.7871 - mae: 26.59935/6 [========================>.....] - ETA: 0s - loss: 854.0352 - mae: 25.31276/6 [==============================] - 0s 40ms/step - loss: 848.5927 - mae: 25.1672 - val_loss: 403.7050 - val_mae: 16.5550 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 16/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 793.8678 - mae: 23.47613/6 [==============>...............] - ETA: 0s - loss: 832.7386 - mae: 25.19315/6 [========================>.....] - ETA: 0s - loss: 820.3961 - mae: 24.88096/6 [==============================] - 0s 41ms/step - loss: 811.5195 - mae: 24.6827 - val_loss: 436.8880 - val_mae: 17.3264 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 17/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 570.8357 - mae: 21.06743/6 [==============>...............] - ETA: 0s - loss: 758.8112 - mae: 24.53895/6 [========================>.....] - ETA: 0s - loss: 812.6342 - mae: 25.13826/6 [==============================] - 0s 43ms/step - loss: 813.0668 - mae: 25.1137 - val_loss: 471.2650 - val_mae: 18.1260 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 18/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 713.6986 - mae: 24.19783/6 [==============>...............] - ETA: 0s - loss: 806.8679 - mae: 24.69255/6 [========================>.....] - ETA: 0s - loss: 791.6898 - mae: 24.65086/6 [==============================] - 0s 42ms/step - loss: 787.8629 - mae: 24.6464 - val_loss: 503.5628 - val_mae: 18.8785 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 19/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1065.4490 - mae: 30.67713/6 [==============>...............] - ETA: 0s - loss: 847.2690 - mae: 25.9756 5/6 [========================>.....] - ETA: 0s - loss: 787.7969 - mae: 24.73116/6 [==============================] - 0s 42ms/step - loss: 782.6669 - mae: 24.5891 - val_loss: 519.5244 - val_mae: 19.2472 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 20/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 732.0604 - mae: 23.89353/6 [==============>...............] - ETA: 0s - loss: 821.1323 - mae: 25.48035/6 [========================>.....] - ETA: 0s - loss: 803.5941 - mae: 25.13396/6 [==============================] - 0s 43ms/step - loss: 810.9326 - mae: 25.1725 - val_loss: 533.1118 - val_mae: 19.5665 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 21/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 787.1491 - mae: 24.17593/6 [==============>...............] - ETA: 0s - loss: 736.7812 - mae: 23.40625/6 [========================>.....] - ETA: 0s - loss: 756.1609 - mae: 23.97146/6 [==============================] - 0s 43ms/step - loss: 771.2733 - mae: 24.1497 - val_loss: 546.0679 - val_mae: 19.8658 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 22/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 771.4656 - mae: 24.31383/6 [==============>...............] - ETA: 0s - loss: 715.2436 - mae: 23.67825/6 [========================>.....] - ETA: 0s - loss: 749.1320 - mae: 24.14996/6 [==============================] - 0s 41ms/step - loss: 746.5078 - mae: 24.0167 - val_loss: 559.6498 - val_mae: 20.1807 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 23/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 771.4503 - mae: 24.41883/6 [==============>...............] - ETA: 0s - loss: 722.4427 - mae: 23.58625/6 [========================>.....] - ETA: 0s - loss: 748.2112 - mae: 24.03176/6 [==============================] - 0s 42ms/step - loss: 759.9525 - mae: 24.2150 - val_loss: 570.4559 - val_mae: 20.4348 - lr: 2.5000e-04
+bloomwatch-backend  | ✓ LSTM - MAE: 10.75 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | AVALIAÇÃO DO ENSEMBLE
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | 📊 MÉTRICAS FINAIS:
+bloomwatch-backend  |    MAE:  13.15 dias
+bloomwatch-backend  |    RMSE: 15.49 dias
+bloomwatch-backend  |    R²:   0.567
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | [4/4] Salvando modelos...
+bloomwatch-backend  | ✓ Modelos salvos em models/apple/
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Modelo para apple treinado com sucesso!
+bloomwatch-backend  | 📊 Métricas finais:
+bloomwatch-backend  |    MAE:  13.15 dias ✗ REPROVADO
+bloomwatch-backend  |    RMSE: 15.49 dias
+bloomwatch-backend  |    R²:   0.567 ✗
+bloomwatch-backend  | 
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | 🌸 TREINANDO MODELO PARA: CHERRY
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/4] Coletando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Coletando dados NASA para cherry...
+bloomwatch-backend  |    Localizações: 3
+bloomwatch-backend  |    Anos: 5
+bloomwatch-backend  | 
+bloomwatch-backend  |   Buscando: Traverse City, MI (44.7631, -85.6206)
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=44.7631, lon=-85.6206
+bloomwatch-backend  |    Período: 365 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 44.7631, -85.6206
+bloomwatch-backend  |    Período: 10-05-2024 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=7bc9ea85-d86c-4869-a42c-b0d7933cddf6
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 23 registros
+bloomwatch-backend  | ✓ MODIS: 22 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 362 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 363 registros NASA completos
+bloomwatch-backend  |     ✓ 363 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  |   Buscando: Kalamazoo, MI (42.3370, -85.1797)
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=42.3370, lon=-85.1797
+bloomwatch-backend  |    Período: 365 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 42.3370, -85.1797
+bloomwatch-backend  |    Período: 10-05-2024 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=0ac90d85-680c-43bb-b20f-6ecfea58f901
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 23 registros
+bloomwatch-backend  | ✓ MODIS: 23 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 362 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 363 registros NASA completos
+bloomwatch-backend  |     ✓ 363 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  |   Buscando: Portland, OR (45.4215, -122.6762)
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=45.4215, lon=-122.6762
+bloomwatch-backend  |    Período: 365 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 45.4215, -122.6762
+bloomwatch-backend  |    Período: 10-05-2024 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=7e92a8c6-a1ad-49b1-9f28-87d1855b8c3c
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 23 registros
+bloomwatch-backend  | ✓ MODIS: 23 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 362 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 363 registros NASA completos
+bloomwatch-backend  |     ✓ 363 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | ✓ Total: 1089 registros de 3 localizações
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/4] Preparando target...
+bloomwatch-backend  | 
+bloomwatch-backend  | 📊 Criando targets de treinamento...
+bloomwatch-backend  | ✓ Target criado: 1089 amostras
+bloomwatch-backend  |   Range: 0 - 180 dias
+bloomwatch-backend  | ✓ Dados filtrados: 276 amostras válidas
+bloomwatch-backend  | 
+bloomwatch-backend  | [3/4] Treinando ensemble de modelos...
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | TREINANDO BLOOMWATCH ENSEMBLE
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/4] Preparando features...
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/4] Treinando Random Forest...
+bloomwatch-backend  | ✓ Random Forest - MAE: 0.11 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [3/4] Treinando ANN...
+bloomwatch-backend  | Epoch 1/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 1s - loss: 2126.8569 - mae: 39.34587/7 [==============================] - 0s 10ms/step - loss: 2757.6111 - mae: 45.1086 - val_loss: 2482.5569 - val_mae: 43.8108 - lr: 0.0010
+bloomwatch-backend  | Epoch 2/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2307.0039 - mae: 42.24317/7 [==============================] - 0s 2ms/step - loss: 2688.0730 - mae: 44.4221 - val_loss: 2399.9277 - val_mae: 42.9424 - lr: 0.0010
+bloomwatch-backend  | Epoch 3/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2608.5769 - mae: 44.40047/7 [==============================] - 0s 2ms/step - loss: 2568.7358 - mae: 43.2954 - val_loss: 2263.5273 - val_mae: 41.4847 - lr: 0.0010
+bloomwatch-backend  | Epoch 4/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2651.8022 - mae: 44.29557/7 [==============================] - 0s 2ms/step - loss: 2377.9753 - mae: 41.4516 - val_loss: 2041.8748 - val_mae: 39.0512 - lr: 0.0010
+bloomwatch-backend  | Epoch 5/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 2488.4783 - mae: 43.49027/7 [==============================] - 0s 2ms/step - loss: 2092.2866 - mae: 38.6503 - val_loss: 1708.1277 - val_mae: 35.2660 - lr: 0.0010
+bloomwatch-backend  | Epoch 6/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 1838.5474 - mae: 34.46087/7 [==============================] - 0s 2ms/step - loss: 1656.6176 - mae: 34.1295 - val_loss: 1249.4404 - val_mae: 29.9985 - lr: 0.0010
+bloomwatch-backend  | Epoch 7/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 1516.2852 - mae: 33.51837/7 [==============================] - 0s 2ms/step - loss: 1150.4973 - mae: 28.2456 - val_loss: 712.3593 - val_mae: 22.4765 - lr: 0.0010
+bloomwatch-backend  | Epoch 8/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 804.2168 - mae: 23.81237/7 [==============================] - 0s 2ms/step - loss: 582.1492 - mae: 19.3398 - val_loss: 269.6100 - val_mae: 13.6136 - lr: 0.0010
+bloomwatch-backend  | Epoch 9/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 299.8035 - mae: 14.07377/7 [==============================] - 0s 2ms/step - loss: 333.5802 - mae: 14.5060 - val_loss: 118.5506 - val_mae: 9.0157 - lr: 0.0010
+bloomwatch-backend  | Epoch 10/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 187.0291 - mae: 11.16497/7 [==============================] - 0s 2ms/step - loss: 248.8031 - mae: 12.5200 - val_loss: 110.8758 - val_mae: 8.6994 - lr: 0.0010
+bloomwatch-backend  | Epoch 11/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 152.1816 - mae: 10.10137/7 [==============================] - 0s 2ms/step - loss: 218.9974 - mae: 11.6194 - val_loss: 79.9231 - val_mae: 7.2197 - lr: 0.0010
+bloomwatch-backend  | Epoch 12/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 144.9941 - mae: 9.54767/7 [==============================] - 0s 2ms/step - loss: 152.0683 - mae: 9.7287 - val_loss: 75.1688 - val_mae: 7.0587 - lr: 0.0010
+bloomwatch-backend  | Epoch 13/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 90.9702 - mae: 7.81987/7 [==============================] - 0s 10ms/step - loss: 161.7794 - mae: 9.7944 - val_loss: 68.1731 - val_mae: 6.6038 - lr: 0.0010
+bloomwatch-backend  | Epoch 14/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 93.8224 - mae: 8.16317/7 [==============================] - 0s 4ms/step - loss: 113.6798 - mae: 8.2072 - val_loss: 49.5181 - val_mae: 5.5691 - lr: 0.0010
+bloomwatch-backend  | Epoch 15/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 78.4860 - mae: 7.53327/7 [==============================] - 0s 2ms/step - loss: 117.3357 - mae: 8.4585 - val_loss: 35.9625 - val_mae: 4.8012 - lr: 0.0010
+bloomwatch-backend  | Epoch 16/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 138.4998 - mae: 9.47057/7 [==============================] - 0s 2ms/step - loss: 115.7329 - mae: 8.5613 - val_loss: 31.9609 - val_mae: 4.4555 - lr: 0.0010
+bloomwatch-backend  | Epoch 17/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 115.0968 - mae: 8.82277/7 [==============================] - 0s 2ms/step - loss: 125.4314 - mae: 8.4418 - val_loss: 30.8335 - val_mae: 4.2180 - lr: 0.0010
+bloomwatch-backend  | Epoch 18/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 94.0675 - mae: 7.84337/7 [==============================] - 0s 3ms/step - loss: 90.6812 - mae: 7.4447 - val_loss: 28.9725 - val_mae: 4.0005 - lr: 0.0010
+bloomwatch-backend  | Epoch 19/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 78.8232 - mae: 7.01217/7 [==============================] - 0s 2ms/step - loss: 110.2176 - mae: 8.2648 - val_loss: 27.5382 - val_mae: 3.8378 - lr: 0.0010
+bloomwatch-backend  | Epoch 20/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 84.4752 - mae: 7.72627/7 [==============================] - 0s 2ms/step - loss: 97.2902 - mae: 7.7977 - val_loss: 27.4328 - val_mae: 3.7874 - lr: 0.0010
+bloomwatch-backend  | Epoch 21/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 62.8927 - mae: 6.81397/7 [==============================] - 0s 3ms/step - loss: 101.6608 - mae: 7.9461 - val_loss: 26.4686 - val_mae: 3.6773 - lr: 0.0010
+bloomwatch-backend  | Epoch 22/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 107.4752 - mae: 8.24017/7 [==============================] - 0s 2ms/step - loss: 93.2990 - mae: 7.5093 - val_loss: 27.0166 - val_mae: 3.8637 - lr: 0.0010
+bloomwatch-backend  | Epoch 23/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 100.4543 - mae: 7.85707/7 [==============================] - 0s 2ms/step - loss: 87.6554 - mae: 7.2283 - val_loss: 26.5141 - val_mae: 3.7865 - lr: 0.0010
+bloomwatch-backend  | Epoch 24/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 116.3276 - mae: 8.54507/7 [==============================] - 0s 2ms/step - loss: 113.3335 - mae: 8.3365 - val_loss: 25.6579 - val_mae: 3.5845 - lr: 0.0010
+bloomwatch-backend  | Epoch 25/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 113.0007 - mae: 8.52057/7 [==============================] - 0s 2ms/step - loss: 74.4965 - mae: 6.7889 - val_loss: 24.9289 - val_mae: 3.5034 - lr: 0.0010
+bloomwatch-backend  | Epoch 26/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 83.6038 - mae: 6.98997/7 [==============================] - 0s 2ms/step - loss: 94.2495 - mae: 7.6709 - val_loss: 22.8491 - val_mae: 3.2881 - lr: 0.0010
+bloomwatch-backend  | Epoch 27/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 87.8173 - mae: 7.01567/7 [==============================] - 0s 2ms/step - loss: 83.1590 - mae: 7.1569 - val_loss: 23.7226 - val_mae: 3.4424 - lr: 0.0010
+bloomwatch-backend  | Epoch 28/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 90.7386 - mae: 7.79267/7 [==============================] - 0s 2ms/step - loss: 93.3445 - mae: 7.4235 - val_loss: 24.4884 - val_mae: 3.5549 - lr: 0.0010
+bloomwatch-backend  | Epoch 29/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 135.2608 - mae: 9.04127/7 [==============================] - 0s 2ms/step - loss: 85.5709 - mae: 7.4096 - val_loss: 22.7994 - val_mae: 3.4412 - lr: 0.0010
+bloomwatch-backend  | Epoch 30/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 98.1370 - mae: 7.89777/7 [==============================] - 0s 2ms/step - loss: 84.7284 - mae: 7.1680 - val_loss: 22.6102 - val_mae: 3.3990 - lr: 0.0010
+bloomwatch-backend  | Epoch 31/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 56.5794 - mae: 6.26247/7 [==============================] - 0s 2ms/step - loss: 83.7460 - mae: 7.1804 - val_loss: 21.9011 - val_mae: 3.3334 - lr: 0.0010
+bloomwatch-backend  | Epoch 32/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 38.4651 - mae: 4.61747/7 [==============================] - 0s 2ms/step - loss: 73.2808 - mae: 6.5267 - val_loss: 24.9235 - val_mae: 3.8533 - lr: 0.0010
+bloomwatch-backend  | Epoch 33/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 82.2040 - mae: 7.36097/7 [==============================] - 0s 2ms/step - loss: 73.3111 - mae: 6.7055 - val_loss: 22.2039 - val_mae: 3.5085 - lr: 0.0010
+bloomwatch-backend  | Epoch 34/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 74.0235 - mae: 5.77887/7 [==============================] - 0s 2ms/step - loss: 80.6856 - mae: 6.9736 - val_loss: 18.7879 - val_mae: 3.1180 - lr: 0.0010
+bloomwatch-backend  | Epoch 35/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 82.8327 - mae: 7.36467/7 [==============================] - 0s 2ms/step - loss: 78.8209 - mae: 6.8987 - val_loss: 19.6304 - val_mae: 3.4923 - lr: 0.0010
+bloomwatch-backend  | Epoch 36/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 99.8178 - mae: 7.65327/7 [==============================] - 0s 2ms/step - loss: 86.0747 - mae: 7.0395 - val_loss: 16.6635 - val_mae: 2.8959 - lr: 0.0010
+bloomwatch-backend  | Epoch 37/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 61.3054 - mae: 6.56167/7 [==============================] - 0s 2ms/step - loss: 72.4372 - mae: 6.7323 - val_loss: 19.9308 - val_mae: 3.3727 - lr: 0.0010
+bloomwatch-backend  | Epoch 38/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 71.7812 - mae: 6.76757/7 [==============================] - 0s 2ms/step - loss: 76.5079 - mae: 6.7908 - val_loss: 23.0744 - val_mae: 3.8506 - lr: 0.0010
+bloomwatch-backend  | Epoch 39/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 110.3275 - mae: 8.43727/7 [==============================] - 0s 2ms/step - loss: 71.1882 - mae: 6.7231 - val_loss: 17.9511 - val_mae: 3.1285 - lr: 0.0010
+bloomwatch-backend  | Epoch 40/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 70.6554 - mae: 6.47597/7 [==============================] - 0s 2ms/step - loss: 76.6062 - mae: 6.8006 - val_loss: 14.9710 - val_mae: 2.6914 - lr: 0.0010
+bloomwatch-backend  | Epoch 41/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 98.5473 - mae: 8.10047/7 [==============================] - 0s 2ms/step - loss: 73.9017 - mae: 6.5415 - val_loss: 15.3960 - val_mae: 2.7557 - lr: 0.0010
+bloomwatch-backend  | Epoch 42/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 103.7854 - mae: 8.60917/7 [==============================] - 0s 2ms/step - loss: 68.5159 - mae: 6.4992 - val_loss: 17.3191 - val_mae: 3.0524 - lr: 0.0010
+bloomwatch-backend  | Epoch 43/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 59.4720 - mae: 5.51247/7 [==============================] - 0s 3ms/step - loss: 65.3196 - mae: 6.3138 - val_loss: 15.8039 - val_mae: 2.8669 - lr: 0.0010
+bloomwatch-backend  | Epoch 44/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 41.5357 - mae: 5.61747/7 [==============================] - 0s 3ms/step - loss: 58.0162 - mae: 6.0214 - val_loss: 14.4571 - val_mae: 2.7361 - lr: 0.0010
+bloomwatch-backend  | Epoch 45/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 63.9666 - mae: 6.49957/7 [==============================] - 0s 2ms/step - loss: 63.6192 - mae: 6.2266 - val_loss: 18.4901 - val_mae: 3.4427 - lr: 0.0010
+bloomwatch-backend  | Epoch 46/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 50.9594 - mae: 5.62257/7 [==============================] - 0s 2ms/step - loss: 68.3249 - mae: 6.4185 - val_loss: 19.7259 - val_mae: 3.6468 - lr: 0.0010
+bloomwatch-backend  | Epoch 47/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 100.2488 - mae: 7.35227/7 [==============================] - 0s 2ms/step - loss: 69.6755 - mae: 6.4097 - val_loss: 17.7196 - val_mae: 3.4036 - lr: 0.0010
+bloomwatch-backend  | Epoch 48/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 84.2022 - mae: 7.24277/7 [==============================] - 0s 2ms/step - loss: 53.0573 - mae: 5.6356 - val_loss: 11.7554 - val_mae: 2.3269 - lr: 0.0010
+bloomwatch-backend  | Epoch 49/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 62.9957 - mae: 6.53187/7 [==============================] - 0s 2ms/step - loss: 60.9062 - mae: 6.1632 - val_loss: 12.5771 - val_mae: 2.6388 - lr: 0.0010
+bloomwatch-backend  | Epoch 50/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 56.0079 - mae: 6.25697/7 [==============================] - 0s 2ms/step - loss: 62.6939 - mae: 6.3926 - val_loss: 13.0168 - val_mae: 2.5993 - lr: 0.0010
+bloomwatch-backend  | Epoch 51/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 41.2638 - mae: 5.16627/7 [==============================] - 0s 2ms/step - loss: 59.9899 - mae: 6.0434 - val_loss: 20.1934 - val_mae: 3.8497 - lr: 0.0010
+bloomwatch-backend  | Epoch 52/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 83.1130 - mae: 6.88327/7 [==============================] - 0s 2ms/step - loss: 72.4518 - mae: 6.3400 - val_loss: 11.8350 - val_mae: 2.4460 - lr: 0.0010
+bloomwatch-backend  | Epoch 53/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 90.2726 - mae: 7.13527/7 [==============================] - 0s 2ms/step - loss: 65.7127 - mae: 6.2567 - val_loss: 10.2689 - val_mae: 2.2614 - lr: 0.0010
+bloomwatch-backend  | Epoch 54/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 39.8186 - mae: 4.52187/7 [==============================] - 0s 2ms/step - loss: 65.0138 - mae: 6.0368 - val_loss: 10.8052 - val_mae: 2.3285 - lr: 0.0010
+bloomwatch-backend  | Epoch 55/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 117.0229 - mae: 7.91197/7 [==============================] - 0s 2ms/step - loss: 56.5664 - mae: 5.7219 - val_loss: 16.7673 - val_mae: 3.4027 - lr: 0.0010
+bloomwatch-backend  | Epoch 56/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 61.2670 - mae: 6.13057/7 [==============================] - 0s 2ms/step - loss: 63.7126 - mae: 6.2944 - val_loss: 13.9881 - val_mae: 3.0194 - lr: 0.0010
+bloomwatch-backend  | Epoch 57/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 44.6363 - mae: 5.17747/7 [==============================] - 0s 2ms/step - loss: 57.8585 - mae: 5.9074 - val_loss: 11.0096 - val_mae: 2.4729 - lr: 0.0010
+bloomwatch-backend  | Epoch 58/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 84.9223 - mae: 6.93857/7 [==============================] - 0s 2ms/step - loss: 61.3518 - mae: 6.1456 - val_loss: 10.3456 - val_mae: 2.3461 - lr: 0.0010
+bloomwatch-backend  | Epoch 59/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 72.6973 - mae: 6.15987/7 [==============================] - 0s 2ms/step - loss: 60.2058 - mae: 6.1235 - val_loss: 10.6739 - val_mae: 2.4507 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 60/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 103.0558 - mae: 6.88277/7 [==============================] - 0s 2ms/step - loss: 71.3822 - mae: 6.4697 - val_loss: 11.7866 - val_mae: 2.6582 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 61/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 93.2738 - mae: 7.94557/7 [==============================] - 0s 2ms/step - loss: 60.8416 - mae: 6.0806 - val_loss: 11.6607 - val_mae: 2.6847 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 62/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 49.5456 - mae: 5.25017/7 [==============================] - 0s 2ms/step - loss: 53.4318 - mae: 5.6657 - val_loss: 10.4024 - val_mae: 2.4395 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 63/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 54.9066 - mae: 5.31617/7 [==============================] - 0s 2ms/step - loss: 61.6751 - mae: 5.9454 - val_loss: 9.3092 - val_mae: 2.2536 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 64/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 63.3065 - mae: 5.87767/7 [==============================] - 0s 2ms/step - loss: 60.5872 - mae: 5.9825 - val_loss: 9.1750 - val_mae: 2.2476 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 65/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 78.5833 - mae: 6.48407/7 [==============================] - 0s 2ms/step - loss: 58.4909 - mae: 5.6693 - val_loss: 13.6748 - val_mae: 3.1215 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 66/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 47.3686 - mae: 5.61757/7 [==============================] - 0s 2ms/step - loss: 70.4958 - mae: 6.3300 - val_loss: 14.2399 - val_mae: 3.2188 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 67/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 69.5274 - mae: 5.69227/7 [==============================] - 0s 2ms/step - loss: 65.3077 - mae: 6.0065 - val_loss: 10.4186 - val_mae: 2.5794 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 68/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 71.5084 - mae: 6.45077/7 [==============================] - 0s 2ms/step - loss: 57.1510 - mae: 5.6512 - val_loss: 9.0975 - val_mae: 2.2982 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 69/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 53.9188 - mae: 5.86057/7 [==============================] - 0s 2ms/step - loss: 55.6829 - mae: 5.6895 - val_loss: 9.0813 - val_mae: 2.2839 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 70/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 43.2338 - mae: 5.09997/7 [==============================] - 0s 2ms/step - loss: 55.8655 - mae: 5.8516 - val_loss: 10.9449 - val_mae: 2.6289 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 71/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 62.3359 - mae: 6.23327/7 [==============================] - 0s 2ms/step - loss: 56.6178 - mae: 5.8245 - val_loss: 14.1567 - val_mae: 3.1392 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 72/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 67.5995 - mae: 6.24057/7 [==============================] - 0s 2ms/step - loss: 62.3285 - mae: 6.1457 - val_loss: 11.3667 - val_mae: 2.7181 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 73/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 52.7969 - mae: 5.92957/7 [==============================] - 0s 2ms/step - loss: 45.0038 - mae: 5.3203 - val_loss: 9.2514 - val_mae: 2.3889 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 74/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 73.5587 - mae: 6.46587/7 [==============================] - 0s 2ms/step - loss: 62.3859 - mae: 5.8735 - val_loss: 7.6057 - val_mae: 2.0429 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 75/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 50.4745 - mae: 5.32447/7 [==============================] - 0s 2ms/step - loss: 50.1842 - mae: 5.5134 - val_loss: 7.8729 - val_mae: 2.1326 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 76/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 86.3747 - mae: 6.82337/7 [==============================] - 0s 2ms/step - loss: 49.5262 - mae: 5.5285 - val_loss: 8.0515 - val_mae: 2.1359 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 77/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 50.2474 - mae: 5.34527/7 [==============================] - 0s 2ms/step - loss: 50.0441 - mae: 5.3604 - val_loss: 10.3951 - val_mae: 2.5455 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 78/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 25.8903 - mae: 4.01047/7 [==============================] - 0s 2ms/step - loss: 52.5702 - mae: 5.6063 - val_loss: 11.8658 - val_mae: 2.8057 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 79/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 48.3746 - mae: 5.62777/7 [==============================] - 0s 2ms/step - loss: 62.6631 - mae: 5.8401 - val_loss: 8.8265 - val_mae: 2.4070 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 80/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 38.3256 - mae: 4.48697/7 [==============================] - 0s 2ms/step - loss: 47.5659 - mae: 5.2619 - val_loss: 7.2375 - val_mae: 2.0500 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 81/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 24.4534 - mae: 4.00007/7 [==============================] - 0s 2ms/step - loss: 49.7326 - mae: 5.4383 - val_loss: 6.5333 - val_mae: 1.8553 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 82/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 23.9260 - mae: 3.93057/7 [==============================] - 0s 2ms/step - loss: 50.9484 - mae: 5.3470 - val_loss: 6.0896 - val_mae: 1.7488 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 83/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 57.9635 - mae: 5.88567/7 [==============================] - 0s 2ms/step - loss: 55.8137 - mae: 5.8291 - val_loss: 6.3980 - val_mae: 1.8243 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 84/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 62.7103 - mae: 6.11557/7 [==============================] - 0s 2ms/step - loss: 63.7131 - mae: 6.0007 - val_loss: 8.6921 - val_mae: 2.3617 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 85/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 66.2950 - mae: 6.41727/7 [==============================] - 0s 2ms/step - loss: 50.7489 - mae: 5.4620 - val_loss: 10.5727 - val_mae: 2.7266 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 86/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 41.4997 - mae: 5.44307/7 [==============================] - 0s 2ms/step - loss: 52.9509 - mae: 5.5895 - val_loss: 11.4226 - val_mae: 2.8929 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 87/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 53.3370 - mae: 5.35717/7 [==============================] - 0s 2ms/step - loss: 61.6350 - mae: 6.0039 - val_loss: 11.3241 - val_mae: 2.8821 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 88/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 61.1717 - mae: 6.32337/7 [==============================] - 0s 2ms/step - loss: 49.4586 - mae: 5.5311 - val_loss: 9.8824 - val_mae: 2.6251 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 89/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 62.2990 - mae: 6.33977/7 [==============================] - 0s 2ms/step - loss: 51.7044 - mae: 5.5954 - val_loss: 8.1869 - val_mae: 2.2855 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 90/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 52.2954 - mae: 5.48667/7 [==============================] - 0s 2ms/step - loss: 44.5268 - mae: 5.1387 - val_loss: 7.0699 - val_mae: 2.0123 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 91/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 66.9715 - mae: 6.44417/7 [==============================] - 0s 2ms/step - loss: 48.4234 - mae: 5.3115 - val_loss: 6.3673 - val_mae: 1.8938 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 92/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 49.9424 - mae: 4.99637/7 [==============================] - 0s 2ms/step - loss: 53.7743 - mae: 5.1361 - val_loss: 6.4714 - val_mae: 1.8981 - lr: 1.2500e-04
+bloomwatch-backend  | Epoch 93/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 44.1759 - mae: 5.07977/7 [==============================] - 0s 2ms/step - loss: 56.2080 - mae: 5.7127 - val_loss: 6.5123 - val_mae: 1.9012 - lr: 6.2500e-05
+bloomwatch-backend  | Epoch 94/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 57.8966 - mae: 5.81027/7 [==============================] - 0s 2ms/step - loss: 52.5019 - mae: 5.5457 - val_loss: 6.7307 - val_mae: 1.9438 - lr: 6.2500e-05
+bloomwatch-backend  | Epoch 95/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 49.6783 - mae: 5.89087/7 [==============================] - 0s 2ms/step - loss: 50.4182 - mae: 5.4374 - val_loss: 6.7880 - val_mae: 1.9644 - lr: 6.2500e-05
+bloomwatch-backend  | Epoch 96/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 45.1534 - mae: 5.32527/7 [==============================] - 0s 2ms/step - loss: 56.2826 - mae: 5.6506 - val_loss: 6.6418 - val_mae: 1.9294 - lr: 6.2500e-05
+bloomwatch-backend  | Epoch 97/100
+bloomwatch-backend  | 1/7 [===>..........................] - ETA: 0s - loss: 29.2173 - mae: 4.39567/7 [==============================] - 0s 2ms/step - loss: 39.2552 - mae: 4.8602 - val_loss: 6.5159 - val_mae: 1.8960 - lr: 6.2500e-05
+bloomwatch-backend  | WARNING:tensorflow:5 out of the last 9 calls to <function Model.make_predict_function.<locals>.predict_function at 0xffff36b57c40> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+bloomwatch-backend  | ✓ ANN - MAE: 1.75 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [4/4] Treinando LSTM...
+bloomwatch-backend  | Epoch 1/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 5s - loss: 2719.6177 - mae: 43.82153/6 [==============>...............] - ETA: 0s - loss: 2637.0740 - mae: 43.10645/6 [========================>.....] - ETA: 0s - loss: 2708.2803 - mae: 44.39506/6 [==============================] - 2s 86ms/step - loss: 2838.6638 - mae: 45.8254 - val_loss: 558.7913 - val_mae: 20.0812 - lr: 0.0010
+bloomwatch-backend  | Epoch 2/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 2734.0898 - mae: 44.19293/6 [==============>...............] - ETA: 0s - loss: 2814.8584 - mae: 45.28215/6 [========================>.....] - ETA: 0s - loss: 2682.8235 - mae: 44.37956/6 [==============================] - 0s 44ms/step - loss: 2652.8774 - mae: 43.9092 - val_loss: 413.5961 - val_mae: 16.7361 - lr: 0.0010
+bloomwatch-backend  | Epoch 3/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 2372.6753 - mae: 40.65143/6 [==============>...............] - ETA: 0s - loss: 2448.4219 - mae: 42.38195/6 [========================>.....] - ETA: 0s - loss: 2312.5413 - mae: 40.19736/6 [==============================] - 0s 41ms/step - loss: 2285.8137 - mae: 39.9204 - val_loss: 328.3527 - val_mae: 14.7977 - lr: 0.0010
+bloomwatch-backend  | Epoch 4/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 3061.5723 - mae: 46.76423/6 [==============>...............] - ETA: 0s - loss: 1882.5211 - mae: 35.00835/6 [========================>.....] - ETA: 0s - loss: 2103.1536 - mae: 37.94546/6 [==============================] - 0s 40ms/step - loss: 2083.9927 - mae: 37.7824 - val_loss: 261.7861 - val_mae: 13.2849 - lr: 0.0010
+bloomwatch-backend  | Epoch 5/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 1s - loss: 1691.1851 - mae: 32.05612/6 [=========>....................] - ETA: 0s - loss: 1748.1077 - mae: 34.08254/6 [===================>..........] - ETA: 0s - loss: 1766.9077 - mae: 34.21116/6 [==============================] - ETA: 0s - loss: 1872.5289 - mae: 35.68356/6 [==============================] - 0s 50ms/step - loss: 1872.5289 - mae: 35.6835 - val_loss: 215.2874 - val_mae: 12.2253 - lr: 0.0010
+bloomwatch-backend  | Epoch 6/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1522.7086 - mae: 31.33663/6 [==============>...............] - ETA: 0s - loss: 1847.8506 - mae: 35.03885/6 [========================>.....] - ETA: 0s - loss: 1738.7322 - mae: 34.29006/6 [==============================] - 0s 41ms/step - loss: 1700.9047 - mae: 33.6840 - val_loss: 184.0047 - val_mae: 11.5160 - lr: 0.0010
+bloomwatch-backend  | Epoch 7/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 2210.8806 - mae: 41.95633/6 [==============>...............] - ETA: 0s - loss: 1699.8866 - mae: 33.43755/6 [========================>.....] - ETA: 0s - loss: 1560.3318 - mae: 32.23526/6 [==============================] - 0s 41ms/step - loss: 1554.3790 - mae: 32.2511 - val_loss: 166.3299 - val_mae: 11.1140 - lr: 0.0010
+bloomwatch-backend  | Epoch 8/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 819.4053 - mae: 22.75083/6 [==============>...............] - ETA: 0s - loss: 1334.2904 - mae: 29.38065/6 [========================>.....] - ETA: 0s - loss: 1434.0316 - mae: 30.89066/6 [==============================] - 0s 41ms/step - loss: 1422.3076 - mae: 30.8482 - val_loss: 161.3116 - val_mae: 11.0000 - lr: 0.0010
+bloomwatch-backend  | Epoch 9/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1280.9999 - mae: 28.52692/6 [=========>....................] - ETA: 0s - loss: 1243.6516 - mae: 29.39204/6 [===================>..........] - ETA: 0s - loss: 1267.1436 - mae: 29.11126/6 [==============================] - ETA: 0s - loss: 1292.0731 - mae: 29.57886/6 [==============================] - 0s 47ms/step - loss: 1292.0731 - mae: 29.5788 - val_loss: 169.1204 - val_mae: 11.1780 - lr: 0.0010
+bloomwatch-backend  | Epoch 10/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1029.1708 - mae: 26.01263/6 [==============>...............] - ETA: 0s - loss: 1284.0688 - mae: 29.74165/6 [========================>.....] - ETA: 0s - loss: 1207.8701 - mae: 28.89446/6 [==============================] - 0s 42ms/step - loss: 1193.6003 - mae: 28.7536 - val_loss: 189.8882 - val_mae: 11.6481 - lr: 0.0010
+bloomwatch-backend  | Epoch 11/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 678.2709 - mae: 20.48373/6 [==============>...............] - ETA: 0s - loss: 1051.4315 - mae: 27.17145/6 [========================>.....] - ETA: 0s - loss: 1111.3215 - mae: 27.97416/6 [==============================] - 0s 41ms/step - loss: 1092.3348 - mae: 27.8217 - val_loss: 222.3340 - val_mae: 12.3875 - lr: 0.0010
+bloomwatch-backend  | Epoch 12/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 983.5216 - mae: 26.48473/6 [==============>...............] - ETA: 0s - loss: 972.2932 - mae: 26.48615/6 [========================>.....] - ETA: 0s - loss: 956.5000 - mae: 26.13536/6 [==============================] - 0s 41ms/step - loss: 999.6447 - mae: 26.8049 - val_loss: 264.6046 - val_mae: 13.3483 - lr: 0.0010
+bloomwatch-backend  | Epoch 13/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1176.6401 - mae: 28.78363/6 [==============>...............] - ETA: 0s - loss: 1004.7933 - mae: 26.94185/6 [========================>.....] - ETA: 0s - loss: 938.6359 - mae: 26.2457 6/6 [==============================] - 0s 46ms/step - loss: 937.5855 - mae: 26.3260 - val_loss: 318.1016 - val_mae: 14.5597 - lr: 0.0010
+bloomwatch-backend  | Epoch 14/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 817.9048 - mae: 24.13773/6 [==============>...............] - ETA: 0s - loss: 932.8224 - mae: 26.30525/6 [========================>.....] - ETA: 0s - loss: 916.1387 - mae: 26.17126/6 [==============================] - 0s 48ms/step - loss: 892.4913 - mae: 25.8573 - val_loss: 346.1484 - val_mae: 15.1986 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 15/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1137.4526 - mae: 29.89963/6 [==============>...............] - ETA: 0s - loss: 928.6724 - mae: 26.5959 5/6 [========================>.....] - ETA: 0s - loss: 865.7194 - mae: 25.68606/6 [==============================] - 0s 47ms/step - loss: 870.4940 - mae: 25.7504 - val_loss: 373.6800 - val_mae: 15.8238 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 16/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 816.0760 - mae: 24.41822/6 [=========>....................] - ETA: 0s - loss: 867.3648 - mae: 25.80434/6 [===================>..........] - ETA: 0s - loss: 853.0468 - mae: 25.43936/6 [==============================] - ETA: 0s - loss: 821.9062 - mae: 24.96796/6 [==============================] - 0s 64ms/step - loss: 821.9062 - mae: 24.9679 - val_loss: 401.1902 - val_mae: 16.4477 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 17/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 1040.9985 - mae: 28.74003/6 [==============>...............] - ETA: 0s - loss: 870.5096 - mae: 26.0148 5/6 [========================>.....] - ETA: 0s - loss: 801.7404 - mae: 24.74986/6 [==============================] - 0s 46ms/step - loss: 810.4299 - mae: 24.8400 - val_loss: 429.9681 - val_mae: 17.1037 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 18/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 732.4165 - mae: 24.00223/6 [==============>...............] - ETA: 0s - loss: 761.7761 - mae: 24.50545/6 [========================>.....] - ETA: 0s - loss: 791.2581 - mae: 24.81646/6 [==============================] - 0s 45ms/step - loss: 800.7869 - mae: 24.8647 - val_loss: 459.0528 - val_mae: 17.7667 - lr: 5.0000e-04
+bloomwatch-backend  | Epoch 19/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 650.0704 - mae: 21.64283/6 [==============>...............] - ETA: 0s - loss: 749.0536 - mae: 23.68795/6 [========================>.....] - ETA: 0s - loss: 818.4827 - mae: 25.14166/6 [==============================] - 0s 43ms/step - loss: 818.0796 - mae: 25.1220 - val_loss: 473.5292 - val_mae: 18.0948 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 20/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 720.9407 - mae: 24.09613/6 [==============>...............] - ETA: 0s - loss: 795.4327 - mae: 25.11605/6 [========================>.....] - ETA: 0s - loss: 761.4523 - mae: 24.28516/6 [==============================] - 0s 42ms/step - loss: 794.1996 - mae: 24.9490 - val_loss: 487.5445 - val_mae: 18.4157 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 21/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 797.4930 - mae: 25.54803/6 [==============>...............] - ETA: 0s - loss: 840.3205 - mae: 25.55905/6 [========================>.....] - ETA: 0s - loss: 844.4906 - mae: 25.56566/6 [==============================] - 0s 44ms/step - loss: 819.7061 - mae: 25.1814 - val_loss: 500.6034 - val_mae: 18.7085 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 22/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 769.0922 - mae: 23.78273/6 [==============>...............] - ETA: 0s - loss: 712.1508 - mae: 23.13785/6 [========================>.....] - ETA: 0s - loss: 749.2793 - mae: 23.76386/6 [==============================] - 0s 42ms/step - loss: 777.0800 - mae: 24.3658 - val_loss: 512.8575 - val_mae: 18.9897 - lr: 2.5000e-04
+bloomwatch-backend  | Epoch 23/100
+bloomwatch-backend  | 1/6 [====>.........................] - ETA: 0s - loss: 815.5514 - mae: 25.22903/6 [==============>...............] - ETA: 0s - loss: 738.3669 - mae: 24.43805/6 [========================>.....] - ETA: 0s - loss: 778.2975 - mae: 24.80596/6 [==============================] - 0s 42ms/step - loss: 782.6750 - mae: 24.8051 - val_loss: 525.4805 - val_mae: 19.2778 - lr: 2.5000e-04
+bloomwatch-backend  | WARNING:tensorflow:6 out of the last 11 calls to <function Model.make_predict_function.<locals>.predict_function at 0xffff4b9360c0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+bloomwatch-backend  | ✓ LSTM - MAE: 11.00 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | AVALIAÇÃO DO ENSEMBLE
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | 📊 MÉTRICAS FINAIS:
+bloomwatch-backend  |    MAE:  11.61 dias
+bloomwatch-backend  |    RMSE: 13.99 dias
+bloomwatch-backend  |    R²:   0.614
+bloomwatch-backend  | ============================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | [4/4] Salvando modelos...
+bloomwatch-backend  | ✓ Modelos salvos em models/cherry/
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Modelo para cherry treinado com sucesso!
+bloomwatch-backend  | 📊 Métricas finais:
+bloomwatch-backend  |    MAE:  11.61 dias ✗ REPROVADO
+bloomwatch-backend  |    RMSE: 13.99 dias
+bloomwatch-backend  |    R²:   0.614 ✗
+bloomwatch-backend  | 
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | 📋 RESUMO FINAL DO TREINAMENTO
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | ALMOND    : ✓ Sucesso | MAE: 11.35 | RMSE: 13.73 | R²: 0.616
+bloomwatch-backend  | 
+bloomwatch-backend  | APPLE     : ✓ Sucesso | MAE: 13.15 | RMSE: 15.49 | R²: 0.567
+bloomwatch-backend  | 
+bloomwatch-backend  | CHERRY    : ✓ Sucesso | MAE: 11.61 | RMSE: 13.99 | R²: 0.614
+bloomwatch-backend  | 
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | ✅ TREINAMENTO CONCLUÍDO COM DADOS NASA!
+bloomwatch-backend  | ======================================================================
+bloomwatch-backend  | 
+bloomwatch-backend  | Próximos passos:
+bloomwatch-backend  |   1. Revisar métricas em models/*/metrics.json
+bloomwatch-backend  |   2. Iniciar API: uvicorn main:app --reload
+bloomwatch-backend  |   3. Testar: curl http://localhost:8000/api/predict/test/almond
+bloomwatch-backend  | 
+bloomwatch-backend  | 
+bloomwatch-backend  | ✓ Models trained successfully!
+bloomwatch-backend  | 🚀 Starting FastAPI server...
+bloomwatch-backend  | INFO:     Started server process [1]
+bloomwatch-backend  | INFO:     Waiting for application startup.
+bloomwatch-backend  | INFO:     Application startup complete.
+bloomwatch-backend  | 
+bloomwatch-backend  | 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸
+bloomwatch-backend  | BLOOMWATCH API INICIADA
+bloomwatch-backend  | 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Endpoints disponíveis:
+bloomwatch-backend  |    GET  /           - Info da API
+bloomwatch-backend  |    GET  /health     - Health check
+bloomwatch-backend  |    GET  /api/crops  - Lista culturas
+bloomwatch-backend  |    POST /api/predict - Predição de floração
+bloomwatch-backend  | 
+bloomwatch-backend  | 💡 Teste rápido:
+bloomwatch-backend  |    curl http://localhost:8000/api/predict/test/almond
+bloomwatch-backend  | 
+bloomwatch-backend  | 🚀 API pronta para uso!
+bloomwatch-backend  | 
+bloomwatch-backend  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+bloomwatch-backend  | INFO:     127.0.0.1:42710 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:47946 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:57936 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     172.217.29.106:26868 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | ✓ Modelos carregados de models/almond/
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=36.7468, lon=-119.7726
+bloomwatch-backend  |    Período: 90 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 36.7468, -119.7726
+bloomwatch-backend  |    Período: 07-07-2025 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=0aaccacd-216f-4732-aa11-37011760d140
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 6 registros
+bloomwatch-backend  | ✓ MODIS: 6 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 87 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 88 registros NASA completos
+bloomwatch-backend  | INFO:     172.217.29.106:30868 - "GET /api/predict/test/almond HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:35562 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:35370 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:39006 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | ✓ Modelos carregados de models/apple/
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=46.6021, lon=-120.5059
+bloomwatch-backend  |    Período: 90 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 46.6021, -120.5059
+bloomwatch-backend  |    Período: 07-07-2025 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=81944dc8-d927-40b5-9c92-a78b87b1956b
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 6 registros
+bloomwatch-backend  | ✓ MODIS: 6 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 87 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 88 registros NASA completos
+bloomwatch-backend  | INFO:     172.217.29.106:39833 - "GET /api/predict/test/apple HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:39582 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:50920 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:36090 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:59210 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:45498 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:51386 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:53200 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:55442 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:52294 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:47936 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | ✓ Modelos carregados de models/cherry/
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados NASA para: lat=44.7631, lon=-85.6206
+bloomwatch-backend  |    Período: 90 dias
+bloomwatch-backend  | 
+bloomwatch-backend  | [1/2] Buscando NDVI MODIS (NASA AppEEARS)...
+bloomwatch-backend  | 📡 Buscando NDVI MODIS via NASA AppEEARS...
+bloomwatch-backend  | ✓ Autenticado na NASA AppEEARS
+bloomwatch-backend  | 
+bloomwatch-backend  | 📡 Buscando dados MODIS NDVI via NASA AppEEARS
+bloomwatch-backend  |    Localização: 44.7631, -85.6206
+bloomwatch-backend  |    Período: 07-07-2025 até 10-05-2025
+bloomwatch-backend  | ✓ Requisição submetida: task_id=d7531c49-6c86-4db6-aeac-37a734e087cd
+bloomwatch-backend  | ⏳ Aguardando processamento (timeout: 600s)...
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: queued
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: processing
+bloomwatch-backend  |    Status: done
+bloomwatch-backend  | ✓ Processamento concluído!
+bloomwatch-backend  | ✓ Dados baixados: 6 registros
+bloomwatch-backend  | ✓ MODIS: 6 registros obtidos
+bloomwatch-backend  | 
+bloomwatch-backend  | [2/2] Buscando dados climáticos (NASA POWER)...
+bloomwatch-backend  | 🌍 Buscando dados NASA POWER API...
+bloomwatch-backend  | ✓ NASA POWER: 87 dias de dados climáticos
+bloomwatch-backend  | 
+bloomwatch-backend  | 🔗 Combinando dados NASA...
+bloomwatch-backend  | 
+bloomwatch-backend  | ✅ Total: 88 registros NASA completos
+bloomwatch-backend  | WARNING:tensorflow:5 out of the last 9 calls to <function Model.make_predict_function.<locals>.predict_function at 0xffff3c2ba480> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+bloomwatch-backend  | WARNING:tensorflow:6 out of the last 12 calls to <function Model.make_predict_function.<locals>.predict_function at 0xffff3c2bbba0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+bloomwatch-backend  | INFO:     172.217.29.106:34427 - "GET /api/predict/test/cherry HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:41214 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:46922 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:34054 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:57922 - "GET /health HTTP/1.1" 200 OK
+bloomwatch-backend  | INFO:     127.0.0.1:35456 - "GET /health HTTP/1.1" 200 OK
+[Kbloomwatch-backend exited with code 137

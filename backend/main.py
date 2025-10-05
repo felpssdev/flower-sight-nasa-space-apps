@@ -315,7 +315,11 @@ async def predict_bloom(request: PredictionRequest):
         
         # 7. Preparar NDVI trend (últimos 30 dias)
         ndvi_trend = None
-        if 'ndvi' in data.columns:
+        if 'ndvi' in data.columns and 'date' in data.columns:
+            # Garantir que date é datetime
+            if not pd.api.types.is_datetime64_any_dtype(data['date']):
+                data['date'] = pd.to_datetime(data['date'])
+            
             recent_data = data.tail(30)
             ndvi_trend = [
                 {
