@@ -125,12 +125,12 @@ const FARMS: Farm[] = [
 ]
 
 const LOADING_STEPS = [
-  { label: 'Conectando à NASA...', duration: 500 },
-  { label: 'Coletando dados NDVI...', duration: 1500 },
-  { label: 'Analisando clima...', duration: 1000 },
-  { label: 'Processando features...', duration: 800 },
-  { label: 'Executando modelos...', duration: 1200 },
-  { label: 'Calculando confiança...', duration: 500 },
+  { label: 'Connecting to NASA...', duration: 500 },
+  { label: 'Collecting NDVI data...', duration: 1500 },
+  { label: 'Analyzing climate...', duration: 1000 },
+  { label: 'Processing features...', duration: 800 },
+  { label: 'Running ML models...', duration: 1200 },
+  { label: 'Calculating confidence...', duration: 500 },
 ]
 
 // ============================================================================
@@ -188,8 +188,8 @@ export default function FlowerSight() {
       const data = await apiPromise
       setPrediction(data)
     } catch (error) {
-      console.error('Erro:', error)
-      alert('Erro ao buscar previsão')
+      console.error('Error:', error)
+      alert('Error fetching prediction')
     } finally {
       setIsLoading(false)
       setLoadingStep(0)
@@ -210,7 +210,7 @@ export default function FlowerSight() {
               <Loader2 className="w-8 h-8 animate-spin text-green-600" />
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
-                  Processando Previsão
+                  Processing Prediction
                 </h3>
                 <p className="text-sm text-gray-500">
                   {LOADING_STEPS[loadingStep]?.label}
@@ -245,7 +245,7 @@ export default function FlowerSight() {
             <div>
               <h1 className="text-xl font-bold text-gray-900">FlowerSight</h1>
               <p className="text-xs text-gray-500">
-                Previsão de Floração por IA
+                AI-Powered Bloom Prediction
               </p>
             </div>
           </div>
@@ -277,7 +277,7 @@ export default function FlowerSight() {
                 }}
                 className="appearance-none bg-white border border-gray-300 rounded-xl px-4 py-2.5 pr-10 text-sm font-medium text-gray-700 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all cursor-pointer"
               >
-                <option value="">Selecionar Fazenda</option>
+                <option value="">Select Farm</option>
                 {FARMS.map((farm) => (
                   <option key={farm.id} value={farm.id}>
                     {farm.name}
@@ -357,10 +357,10 @@ export default function FlowerSight() {
                 <MapPin className="w-10 h-10 text-gray-400" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Selecione uma Fazenda
+                Select a Farm
               </h2>
               <p className="text-gray-500 mb-6">
-                Escolha uma fazenda no menu acima para iniciar a análise
+                Choose a farm from the menu above to start the analysis
               </p>
             </div>
           </div>
@@ -391,7 +391,7 @@ export default function FlowerSight() {
                 onClick={() => handlePredict(selectedFarm)}
                 className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 rounded-xl transition-all shadow-lg shadow-green-500/30 hover:shadow-xl hover:shadow-green-500/40"
               >
-                Iniciar Análise de Floração
+                Start Bloom Analysis
               </button>
             </div>
           </div>
@@ -407,10 +407,10 @@ export default function FlowerSight() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-bold text-gray-900 mb-2">
-                      Previsão de ML Não Disponível
+                      ML Prediction Not Available
                     </h3>
                     <p className="text-sm text-gray-700 mb-4">
-                      <strong>Estágio Atual:</strong>{' '}
+                      <strong>Current Stage:</strong>{' '}
                       {prediction.phenology_stage_name}
                     </p>
                     <div className="bg-white/60 rounded-xl p-4 text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
@@ -420,7 +420,7 @@ export default function FlowerSight() {
                       <div className="mt-4 flex items-center gap-4">
                         <div className="flex-1 bg-white/60 rounded-xl p-3">
                           <div className="text-xs text-gray-600 mb-1">
-                            Janela Estimada
+                            Estimated Window
                           </div>
                           <div className="font-semibold text-gray-900">
                             {new Date(
@@ -454,18 +454,18 @@ export default function FlowerSight() {
                     <div className="flex items-center gap-2 mb-4">
                       <Calendar className="w-5 h-5 opacity-90" />
                       <span className="text-sm font-medium opacity-90">
-                        Previsão de Floração
+                        Bloom Prediction
                       </span>
                     </div>
                     <div className="text-6xl font-black mb-2">
                       {prediction.days_until_bloom}
                     </div>
                     <div className="text-xl opacity-90 mb-6">
-                      dias até a floração
+                      days until bloom
                     </div>
                     <div className="flex items-center gap-4 text-sm">
                       <div>
-                        <div className="opacity-75 mb-1">Data Prevista</div>
+                        <div className="opacity-75 mb-1">Predicted Date</div>
                         <div className="font-semibold text-lg">
                           {new Date(
                             prediction.predicted_bloom_date,
@@ -483,7 +483,7 @@ export default function FlowerSight() {
                     <div className="flex items-center gap-2 mb-4">
                       <TrendingUp className="w-5 h-5 text-gray-600" />
                       <span className="text-sm font-medium text-gray-600">
-                        Confiança do Modelo
+                        Model Confidence
                       </span>
                     </div>
                     <div className="text-5xl font-black text-gray-900 mb-4">
@@ -505,7 +505,7 @@ export default function FlowerSight() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-white border border-gray-200 rounded-2xl p-5">
                       <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                        Mais Cedo
+                        Earliest
                       </div>
                       <div className="text-3xl font-bold text-gray-900">
                         {new Date(prediction.confidence_low).toLocaleDateString(
@@ -517,12 +517,12 @@ export default function FlowerSight() {
                         )}
                       </div>
                       <div className="text-xs text-gray-500 mt-1">
-                        Intervalo 95%
+                        95% Interval
                       </div>
                     </div>
                     <div className="bg-white border border-gray-200 rounded-2xl p-5">
                       <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                        Mais Tarde
+                        Latest
                       </div>
                       <div className="text-3xl font-bold text-gray-900">
                         {new Date(
@@ -533,7 +533,7 @@ export default function FlowerSight() {
                         })}
                       </div>
                       <div className="text-xs text-gray-500 mt-1">
-                        Intervalo 95%
+                        95% Interval
                       </div>
                     </div>
                   </div>
@@ -696,8 +696,8 @@ export default function FlowerSight() {
                             ) /
                               prediction.ndvi_trend.length >=
                             0.3
-                          ? '○ Mod'
-                          : '✕ Baixo'}
+                          ? '○ Med'
+                          : '✕ Low'}
                     </div>
                   </div>
                 </div>
