@@ -12,28 +12,30 @@ from nasa_data_fetcher import fetch_nasa_data
 import json
 
 
-def collect_training_data(crop_type: str, locations: list, years: int = 5):
+def collect_training_data(crop_type: str, locations: list, years: int = 3):
     """
     Coleta dados NASA para múltiplas localizações e anos
     
     Args:
         crop_type: 'almond', 'apple' ou 'cherry'
         locations: Lista de (lat, lon, nome)
-        years: Anos de dados históricos
+        years: Anos de dados históricos (padrão: 3 anos)
     """
     
     print(f"\n📡 Coletando dados NASA para {crop_type}...")
     print(f"   Localizações: {len(locations)}")
     print(f"   Anos: {years}")
+    print(f"   Total dias por localização: {365 * years}")
     
     all_data = []
+    historical_days = 365 * years  # Calcular dias históricos
     
     for lat, lon, name in locations:
         print(f"\n  Buscando: {name} ({lat:.4f}, {lon:.4f})")
         
         try:
-            # Buscar últimos N dias de dados
-            data = fetch_nasa_data(lat=lat, lon=lon, days=365)
+            # Buscar últimos N anos de dados
+            data = fetch_nasa_data(lat=lat, lon=lon, days=historical_days)
             data['location'] = name
             data['crop_type'] = crop_type
             all_data.append(data)

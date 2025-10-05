@@ -1,16 +1,16 @@
 {
   "crop_type": "cherry",
-  "training_date": "2025-10-05 03:26:52",
-  "n_samples": 276,
+  "training_date": "2025-10-05 12:11:52",
+  "n_samples": 822,
   "n_locations": 3,
   "data_source": "NASA AppEEARS + POWER API",
   "metrics": {
-    "mae": 11.614526486822093,
-    "rmse": 13.9852831714184,
-    "r2": 0.6144413937170677
+    "mae": 4.639634797588089,
+    "rmse": 5.400313551039596,
+    "r2": 0.9580219214521063
   },
   "validation": {
-    "target_passed": false,
+    "target_passed": true,
     "excellent": false
   }
 }
