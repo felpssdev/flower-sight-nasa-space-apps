@@ -28,3 +28,9 @@ python-dotenv==1.0.0
 # Development
 pytest==7.4.3
 
+# Google Earth Engine (dados complementares)
+earthengine-api==0.1.403
+
+# XGBoost (modelo otimizado para séries temporais)
+xgboost==2.1.1
+

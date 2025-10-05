@@ -23,6 +23,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 # Data processing
 import joblib
+import xgboost as xgb
 
 
 class SpectralIndexCalculator:
@@ -226,6 +227,48 @@ class FeatureEngineering:
             else:
                 row_features['gdd_cumsum'] = 0
             
+            # ============================================================
+            # 7. FEATURES FENOLÓGICAS (NOVO - Para qualquer época do ano)
+            # ============================================================
+            if 'ndvi' in data.columns and 'date' in data.columns:
+                # Histórico de 12 meses de NDVI (se disponível)
+                current_date = data['date'].iloc[idx]
+                
+                # NDVI histórico (30, 60, 90, 180, 365 dias atrás)
+                for lookback_days in [30, 60, 90, 180, 365]:
+                    historical_idx = idx - lookback_days
+                    if historical_idx >= 0:
+                        row_features[f'ndvi_lag_{lookback_days}d'] = ndvi_series[historical_idx]
+                    else:
+                        row_features[f'ndvi_lag_{lookback_days}d'] = ndvi_series[0]
+                
+                # NDVI relativo (comparado com média histórica)
+                if idx >= 30:
+                    historical_mean = np.mean(ndvi_series[max(0, idx-365):idx])
+                    row_features['ndvi_relative'] = ndvi_series[idx] / (historical_mean + 1e-6)
+                else:
+                    row_features['ndvi_relative'] = 1.0
+                
+                # Fase fenológica inferida (0=dormência, 1=crescimento, 2=pico)
+                if idx >= 30:
+                    recent_mean = np.mean(ndvi_series[max(0, idx-30):idx+1])
+                    if recent_mean < 0.2:
+                        row_features['phenology_phase'] = 0  # Dormência
+                    elif recent_mean < 0.5:
+                        row_features['phenology_phase'] = 1  # Crescimento
+                    else:
+                        row_features['phenology_phase'] = 2  # Pico vegetativo
+                else:
+                    row_features['phenology_phase'] = 1
+                
+                # Taxa de mudança de longo prazo (30-60 dias)
+                if idx >= 60:
+                    ndvi_30d_ago = ndvi_series[idx-30]
+                    ndvi_60d_ago = ndvi_series[idx-60]
+                    row_features['ndvi_longterm_change'] = ndvi_30d_ago - ndvi_60d_ago
+                else:
+                    row_features['ndvi_longterm_change'] = 0
+            
             features_list.append(row_features)
         
         features_df = pd.DataFrame(features_list)
@@ -405,24 +448,90 @@ class ANNBloomPredictor:
         return self.model.predict(X_scaled, verbose=0).flatten()
 
 
+class XGBoostBloomPredictor:
+    """
+    XGBoost Bloom Predictor - Otimizado para séries temporais
+    Melhor para capturar padrões sazonais e relações não-lineares
+    """
+    
+    def __init__(self):
+        self.model = None
+        self.scaler = StandardScaler()
+    
+    def build_model(self, n_features: int):
+        """Constrói modelo XGBoost otimizado"""
+        self.model = xgb.XGBRegressor(
+            n_estimators=500,
+            max_depth=8,
+            learning_rate=0.05,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            min_child_weight=3,
+            gamma=0.1,
+            reg_alpha=0.01,  # L1 regularization
+            reg_lambda=1.0,   # L2 regularization
+            random_state=42,
+            n_jobs=-1,
+            tree_method='hist',  # Mais rápido
+            early_stopping_rounds=30
+        )
+        return self.model
+    
+    def train(self, X_train: pd.DataFrame, y_train: np.ndarray,
+              X_val: pd.DataFrame, y_val: np.ndarray):
+        """Treina XGBoost com validação"""
+        
+        # Escalar features
+        X_train_scaled = self.scaler.fit_transform(X_train)
+        X_val_scaled = self.scaler.transform(X_val)
+        
+        # Treinar com early stopping
+        self.model.fit(
+            X_train_scaled, y_train,
+            eval_set=[(X_val_scaled, y_val)],
+            verbose=False
+        )
+        
+        return self
+    
+    def predict(self, X: pd.DataFrame) -> np.ndarray:
+        """Predição"""
+        X_scaled = self.scaler.transform(X)
+        return self.model.predict(X_scaled)
+    
+    def get_feature_importance(self) -> pd.DataFrame:
+        """Retorna importância das features"""
+        if self.model is None:
+            return None
+        
+        importance = self.model.feature_importances_
+        return pd.DataFrame({
+            'feature': range(len(importance)),
+            'importance': importance
+        }).sort_values('importance', ascending=False)
+
+
 class BloomWatchEnsemble:
     """
-    Ensemble de modelos LSTM + Random Forest + ANN
+    Ensemble de modelos LSTM + Random Forest + ANN + XGBoost
     Combina predições com pesos otimizados
+    APRIMORADO: XGBoost para capturar padrões sazonais complexos
     """
     
     def __init__(self):
         self.lstm_model = LSTMBloomPredictor(sequence_length=60)
         self.rf_model = RandomForestBloomPredictor(n_estimators=200)
         self.ann_model = ANNBloomPredictor()
+        self.xgb_model = XGBoostBloomPredictor()  # NOVO
         self.feature_eng = FeatureEngineering()
         
-        # Pesos do ensemble otimizados baseado em performance observada
-        # RF teve MAE ~0.06 dias (excelente), LSTM ~23 dias (alto)
+        # Pesos do ensemble otimizados
+        # XGBoost é excelente para features fenológicas e sazonalidade
         self.weights = {
-            'lstm': 0.20,  # Reduzido (alta variância)
-            'rf': 0.60,    # Aumentado (melhor performance)
-            'ann': 0.20    # Mantido (performance média)
+            'lstm': 0.10,  # Reduzido (alta variância)
+            'rf': 0.30,    # Reduzido (bom, mas menos flexível)
+            'ann': 0.15,   # Reduzido (performance média)
+            'xgb': 0.45    # NOVO - Maior peso (melhor para sazonalidade)
         }
         
         self.is_trained = False
@@ -458,16 +567,24 @@ class BloomWatchEnsemble:
         rf_mae = mean_absolute_error(y_val, rf_val_pred)
         print(f"✓ Random Forest - MAE: {rf_mae:.2f} dias")
         
-        # 3. Treinar ANN
-        print("\n[3/4] Treinando ANN...")
+        # 3. Treinar XGBoost (NOVO)
+        print("\n[3/5] Treinando XGBoost...")
+        self.xgb_model.build_model(n_features=X_train_agg.shape[1])
+        self.xgb_model.train(X_train_agg, y_train, X_val_agg, y_val)
+        xgb_val_pred = self.xgb_model.predict(X_val_agg)
+        xgb_mae = mean_absolute_error(y_val, xgb_val_pred)
+        print(f"✓ XGBoost - MAE: {xgb_mae:.2f} dias")
+        
+        # 4. Treinar ANN
+        print("\n[4/5] Treinando ANN...")
         self.ann_model.build_model(n_features=X_train_agg.shape[1])
         self.ann_model.train(X_train_agg, y_train, X_val_agg, y_val, epochs=100)
         ann_val_pred = self.ann_model.predict(X_val_agg)
         ann_mae = mean_absolute_error(y_val, ann_val_pred)
         print(f"✓ ANN - MAE: {ann_mae:.2f} dias")
         
-        # 4. Treinar LSTM (requer sequências temporais)
-        print("\n[4/4] Treinando LSTM...")
+        # 5. Treinar LSTM (requer sequências temporais)
+        print("\n[5/5] Treinando LSTM...")
         if 'ndvi' in data.columns:
             ndvi_data = data['ndvi'].values.reshape(-1, 1)
             X_seq, y_seq = self.lstm_model.prepare_sequences(ndvi_data, target)
@@ -503,7 +620,8 @@ class BloomWatchEnsemble:
             ensemble_pred = (
                 self.weights['lstm'] * lstm_val_pred[:min_len] +
                 self.weights['rf'] * rf_val_pred[:min_len] +
-                self.weights['ann'] * ann_val_pred[:min_len]
+                self.weights['ann'] * ann_val_pred[:min_len] +
+                self.weights['xgb'] * xgb_val_pred[:min_len]
             )
         
         ensemble_mae = mean_absolute_error(y_val[:min_len], ensemble_pred)
@@ -550,6 +668,9 @@ class BloomWatchEnsemble:
         # ANN
         predictions['ann'] = self.ann_model.predict(features_df)[0]
         
+        # XGBoost (NOVO)
+        predictions['xgb'] = self.xgb_model.predict(features_df)[0]
+        
         # LSTM (se tiver dados de sequência)
         if 'ndvi' in data.columns and len(data) >= self.lstm_model.sequence_length:
             ndvi_seq = data['ndvi'].values[-self.lstm_model.sequence_length:].reshape(1, -1, 1)
@@ -560,13 +681,20 @@ class BloomWatchEnsemble:
             predicted_days = (
                 self.weights['lstm'] * predictions['lstm'] +
                 self.weights['rf'] * predictions['rf'] +
-                self.weights['ann'] * predictions['ann']
+                self.weights['ann'] * predictions['ann'] +
+                self.weights['xgb'] * predictions['xgb']
             )
         else:
             # Sem LSTM, redistribuir pesos
-            w_rf = self.weights['rf'] / (self.weights['rf'] + self.weights['ann'])
-            w_ann = self.weights['ann'] / (self.weights['rf'] + self.weights['ann'])
-            predicted_days = w_rf * predictions['rf'] + w_ann * predictions['ann']
+            total_weight = self.weights['rf'] + self.weights['ann'] + self.weights['xgb']
+            w_rf = self.weights['rf'] / total_weight
+            w_ann = self.weights['ann'] / total_weight
+            w_xgb = self.weights['xgb'] / total_weight
+            predicted_days = (
+                w_rf * predictions['rf'] + 
+                w_ann * predictions['ann'] + 
+                w_xgb * predictions['xgb']
+            )
         
         # Intervalo de confiança baseado na variância entre modelos
         pred_values = list(predictions.values())
@@ -590,9 +718,11 @@ class BloomWatchEnsemble:
         self.lstm_model.model.save(f'{path}lstm_model.h5')
         self.ann_model.model.save(f'{path}ann_model.h5')
         
-        # Salvar Random Forest e scalers
+        # Salvar Random Forest, XGBoost e scalers
         joblib.dump(self.rf_model.model, f'{path}rf_model.pkl')
+        joblib.dump(self.xgb_model.model, f'{path}xgb_model.pkl')
         joblib.dump(self.rf_model.scaler, f'{path}rf_scaler.pkl')
+        joblib.dump(self.xgb_model.scaler, f'{path}xgb_scaler.pkl')
         joblib.dump(self.ann_model.scaler, f'{path}ann_scaler.pkl')
         joblib.dump(self.lstm_model.scaler, f'{path}lstm_scaler.pkl')
         
@@ -605,7 +735,9 @@ class BloomWatchEnsemble:
         self.lstm_model.model = load_model(f'{path}lstm_model.h5')
         self.ann_model.model = load_model(f'{path}ann_model.h5')
         self.rf_model.model = joblib.load(f'{path}rf_model.pkl')
+        self.xgb_model.model = joblib.load(f'{path}xgb_model.pkl')
         self.rf_model.scaler = joblib.load(f'{path}rf_scaler.pkl')
+        self.xgb_model.scaler = joblib.load(f'{path}xgb_scaler.pkl')
         self.ann_model.scaler = joblib.load(f'{path}ann_scaler.pkl')
         self.lstm_model.scaler = joblib.load(f'{path}lstm_scaler.pkl')
         

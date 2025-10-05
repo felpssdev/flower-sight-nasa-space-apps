@@ -12,7 +12,7 @@ from nasa_data_fetcher import fetch_nasa_data
 import json
 
 
-def collect_training_data(crop_type: str, locations: list, years: int = 3):
+def collect_training_data(crop_type: str, locations: list, years: int = 5):
     """
     Coleta dados NASA para múltiplas localizações e anos
     
