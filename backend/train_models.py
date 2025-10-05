@@ -1,5 +1,5 @@
 """
-Script de Treinamento dos Modelos BloomWatch
+Script de Treinamento dos Modelos FlowerSight
 Usa DADOS REAIS DA NASA para treinar os modelos
 """
 
@@ -7,7 +7,7 @@ import os
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
-from ml_pipeline import BloomWatchEnsemble
+from ml_pipeline import FlowerSightEnsemble
 from nasa_data_fetcher import fetch_nasa_data
 import json
 
@@ -139,7 +139,7 @@ def train_model_for_crop(crop_type: str, locations: list):
     
     # 3. Treinar ensemble
     print("\n[3/4] Treinando ensemble de modelos...")
-    ensemble = BloomWatchEnsemble()
+    ensemble = FlowerSightEnsemble()
     
     metrics = ensemble.train(
         data=data_filtered,
@@ -186,7 +186,7 @@ def main():
     """Função principal - treina modelos com dados NASA reais"""
     
     print("\n" + "🚀"*35)
-    print("BLOOMWATCH - TREINAMENTO COM DADOS NASA")
+    print("FLOWERSIGHT - TREINAMENTO COM DADOS NASA")
     print("🚀"*35 + "\n")
     
     # Verificar credenciais

@@ -1,4 +1,4 @@
-# 🌸 BloomWatch - Flower Sight NASA Space Apps 2025
+# 🌸 FlowerSight - NASA Space Apps 2025
 
 **Predição inteligente de floração usando dados de satélite NASA + Machine Learning**
 
@@ -20,7 +20,7 @@ Agricultores perdem **$2.7 bilhões/ano** porque não conseguem prever com preci
 
 ## 💡 Nossa Solução
 
-**BloomWatch** usa dados de satélite da NASA (MODIS/Landsat) combinados com ensemble de modelos de Machine Learning (LSTM + Random Forest + ANN) para prever floração com **7-14 dias de antecedência** e precisão de **±4 dias**.
+**FlowerSight** usa dados de satélite da NASA (MODIS/Landsat) combinados com ensemble de modelos de Machine Learning (LSTM + Random Forest + ANN + XGBoost) para prever floração com **7-14 dias de antecedência** e precisão de **±4 dias**.
 
 ### 🚀 Features Principais
 
@@ -334,7 +334,7 @@ Este projeto foi desenvolvido para o **NASA Space Apps Challenge 2025**.
 
 ---
 
-## 👥 Time BloomWatch
+## 👥 Time FlowerSight
 
 Desenvolvido com ❤️ para o NASA Space Apps Challenge 2025
 
@@ -362,7 +362,7 @@ Desenvolvido com ❤️ para o NASA Space Apps Challenge 2025
 
 ---
 
-**🌸 BloomWatch - Transformando dados de satélite em inteligência agrícola**
+**🌸 FlowerSight - Transformando dados de satélite em inteligência agrícola**
 
 [![NASA](https://img.shields.io/badge/Powered_by-NASA_Earth_Data-blue)](https://earthdata.nasa.gov/)
 [![MODIS](https://img.shields.io/badge/Data-MODIS-green)](https://modis.gsfc.nasa.gov/)

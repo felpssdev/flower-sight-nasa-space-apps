@@ -1,5 +1,5 @@
 """
-BloomWatch FastAPI Backend
+FlowerSight FastAPI Backend
 API para predição de floração usando ensemble ML
 """
 
@@ -11,7 +11,8 @@ from datetime import datetime, timedelta
 import pandas as pd
 import os
 
-from ml_pipeline import BloomWatchEnsemble
+from ml_pipeline import FlowerSightEnsemble
+from phenology_classifier import PhenologyClassifier
 
 
 # ============================================================================
@@ -19,7 +20,7 @@ from ml_pipeline import BloomWatchEnsemble
 # ============================================================================
 
 app = FastAPI(
-    title="BloomWatch API",
+    title="FlowerSight API",
     description="Predição inteligente de floração usando dados de satélite NASA + Machine Learning",
     version="1.0.0"
 )
@@ -70,6 +71,14 @@ class PredictionResponse(BaseModel):
     individual_predictions: Dict[str, float]
     historical_average: Optional[str] = None
     days_shift: Optional[int] = None
+    
+    # Informações fenológicas
+    phenology_stage: Optional[str] = None
+    phenology_stage_name: Optional[str] = None
+    phenology_confidence: Optional[float] = None
+    phenology_message: Optional[str] = None
+    can_predict_bloom: Optional[bool] = None
+    estimated_bloom_window: Optional[Dict] = None
 
 
 # ============================================================================
@@ -78,7 +87,7 @@ class PredictionResponse(BaseModel):
 
 models_cache = {}
 
-def load_model(crop_type: str) -> BloomWatchEnsemble:
+def load_model(crop_type: str) -> FlowerSightEnsemble:
     """Carrega modelo do cache ou disco"""
     if crop_type not in models_cache:
         model_path = f'models/{crop_type}/'
@@ -88,7 +97,7 @@ def load_model(crop_type: str) -> BloomWatchEnsemble:
                 detail=f"Modelo para cultura '{crop_type}' não encontrado. Execute train_models.py primeiro."
             )
         
-        ensemble = BloomWatchEnsemble()
+        ensemble = FlowerSightEnsemble()
         ensemble.load_models(path=model_path)
         models_cache[crop_type] = ensemble
     
@@ -210,7 +219,7 @@ def calculate_historical_average(crop_type: str) -> tuple:
 async def root():
     """Endpoint raiz com informações da API"""
     return {
-        "service": "BloomWatch API",
+        "service": "FlowerSight API",
         "version": "1.0.0",
         "status": "operational",
         "description": "Predição de floração usando NASA Earth Data + Machine Learning",
@@ -295,22 +304,68 @@ async def predict_bloom(request: PredictionRequest):
             days=90
         )
         
-        # 3. Fazer predição
-        prediction = ensemble.predict(data)
+        # 2.5. Classificar estágio fenológico
+        phenology_classifier = PhenologyClassifier(request.crop_type)
+        phenology_info = phenology_classifier.classify_stage(data)
         
-        # 4. Calcular datas
-        today = datetime.now()
-        bloom_date = today + timedelta(days=prediction['predicted_days'])
-        ci_low_date = today + timedelta(days=prediction['confidence_interval'][0])
-        ci_high_date = today + timedelta(days=prediction['confidence_interval'][1])
+        # 3. DECISÃO: Fazer previsão ML APENAS se estágio permitir
+        if phenology_info['can_predict']:
+            # === CENÁRIO A: Planta pronta para previsão ===
+            prediction = ensemble.predict(data)
+            
+            # Calcular datas
+            today = datetime.now()
+            bloom_date = today + timedelta(days=prediction['predicted_days'])
+            ci_low_date = today + timedelta(days=prediction['confidence_interval'][0])
+            ci_high_date = today + timedelta(days=prediction['confidence_interval'][1])
+            
+            # Gerar recomendações baseadas na previsão
+            recommendations = generate_recommendations(
+                prediction['predicted_days'],
+                request.crop_type
+            )
+            
+            days_until_bloom = prediction['predicted_days']
+            agreement_score = prediction['agreement_score']
+            individual_predictions = prediction['individual_predictions']
+            
+        else:
+            # === CENÁRIO B: Planta NÃO pronta (NDVI baixo, dormência, etc) ===
+            # NÃO fazer previsão ML - dados insuficientes/inadequados
+            prediction = None
+            
+            # Usar janela estimada do classificador fenológico
+            if phenology_info['estimated_bloom_window']:
+                bloom_window = phenology_info['estimated_bloom_window']
+                bloom_date_str = bloom_window['earliest']
+                ci_low_date_str = bloom_window['earliest']
+                ci_high_date_str = bloom_window['latest']
+                
+                # Calcular dias aproximados até a janela
+                bloom_date = datetime.strptime(bloom_date_str, '%Y-%m-%d')
+                ci_low_date = datetime.strptime(ci_low_date_str, '%Y-%m-%d')
+                ci_high_date = datetime.strptime(ci_high_date_str, '%Y-%m-%d')
+                
+                today = datetime.now()
+                days_until_bloom = (bloom_date - today).days
+            else:
+                # Sem janela estimada - valores padrão
+                today = datetime.now()
+                bloom_date = today + timedelta(days=180)  # 6 meses no futuro
+                ci_low_date = today + timedelta(days=150)
+                ci_high_date = today + timedelta(days=210)
+                days_until_bloom = 180
+            
+            # Valores padrão para previsão não disponível
+            agreement_score = 0.0
+            individual_predictions = {}
+            recommendations = [
+                "⚠️ Previsão de ML não disponível: NDVI muito baixo",
+                f"Planta em estágio: {phenology_info['stage_name']}",
+                "Aguarde o início da brotação para previsões assertivas"
+            ]
         
-        # 5. Gerar recomendações
-        recommendations = generate_recommendations(
-            prediction['predicted_days'],
-            request.crop_type
-        )
-        
-        # 6. Dados históricos
+        # 4. Dados históricos (sempre calcular)
         historical_avg, days_shift = calculate_historical_average(request.crop_type)
         
         # 7. Preparar NDVI trend (últimos 30 dias)
@@ -337,13 +392,20 @@ async def predict_bloom(request: PredictionRequest):
             predicted_bloom_date=bloom_date.strftime('%Y-%m-%d'),
             confidence_low=ci_low_date.strftime('%Y-%m-%d'),
             confidence_high=ci_high_date.strftime('%Y-%m-%d'),
-            days_until_bloom=prediction['predicted_days'],
-            agreement_score=prediction['agreement_score'],
+            days_until_bloom=days_until_bloom,
+            agreement_score=agreement_score,
             recommendations=recommendations,
             ndvi_trend=ndvi_trend,
-            individual_predictions=prediction['individual_predictions'],
+            individual_predictions=individual_predictions,
             historical_average=historical_avg,
-            days_shift=days_shift
+            days_shift=days_shift,
+            # Informações fenológicas
+            phenology_stage=phenology_info['stage'],
+            phenology_stage_name=phenology_info['stage_name'],
+            phenology_confidence=phenology_info['confidence'],
+            phenology_message=phenology_info['message'],
+            can_predict_bloom=phenology_info['can_predict'],
+            estimated_bloom_window=phenology_info['estimated_bloom_window']
         )
         
         return response
@@ -393,7 +455,7 @@ async def test_prediction(crop_type: str):
 async def startup_event():
     """Executado ao iniciar a API"""
     print("\n" + "🌸"*30)
-    print("BLOOMWATCH API INICIADA")
+    print("FLOWERSIGHT API INICIADA")
     print("🌸"*30)
     print("\n📡 Endpoints disponíveis:")
     print("   GET  /           - Info da API")

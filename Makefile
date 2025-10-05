@@ -1,4 +1,4 @@
-# BloomWatch - Makefile
+# FlowerSight - Makefile
 # Comandos úteis para desenvolvimento e deploy
 
 .PHONY: help build up down restart logs test clean train
@@ -10,7 +10,7 @@ NC     := \033[0m # No Color
 
 help: ## Mostra esta mensagem de ajuda
 	@echo ""
-	@echo "$(GREEN)🌸 BloomWatch - Comandos Disponíveis$(NC)"
+	@echo "$(GREEN)🌸 FlowerSight - Comandos Disponíveis$(NC)"
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(YELLOW)%-20s$(NC) %s\n", $$1, $$2}'
 	@echo ""
@@ -195,7 +195,7 @@ quick-test: ## Teste rápido de todas as culturas
 
 info: ## Mostra informações do projeto
 	@echo ""
-	@echo "$(GREEN)🌸 BloomWatch - Project Information$(NC)"
+	@echo "$(GREEN)🌸 FlowerSight - Project Information$(NC)"
 	@echo ""
 	@echo "  Backend:  Python 3.11 + FastAPI + TensorFlow"
 	@echo "  Frontend: Next.js 14 + React + TypeScript"

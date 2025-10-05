@@ -1,6 +1,6 @@
-# 🐳 Docker Guide - BloomWatch
+# 🐳 Docker Guide - FlowerSight
 
-Guia completo para rodar o BloomWatch usando Docker e Docker Compose.
+Guia completo para rodar o FlowerSight usando Docker e Docker Compose.
 
 ## 📋 Pré-requisitos
 
@@ -51,7 +51,7 @@ docker-compose up backend
 
 ## 📦 Serviços Configurados
 
-### Backend (`bloomwatch-backend`)
+### Backend (`flowersight-backend`)
 - **Porta:** 8000
 - **Tecnologias:** Python 3.11, FastAPI, TensorFlow, scikit-learn
 - **Features:**
@@ -60,7 +60,7 @@ docker-compose up backend
   - Health check configurado
   - Auto-restart
 
-### Frontend (`bloomwatch-frontend`)
+### Frontend (`flowersight-frontend`)
 - **Porta:** 3000
 - **Tecnologias:** Next.js 14, React, TypeScript
 - **Features:**
@@ -324,8 +324,8 @@ docker stats
 ### Inspecionar Container
 
 ```bash
-docker inspect bloomwatch-backend
-docker inspect bloomwatch-frontend
+docker inspect flowersight-backend
+docker inspect flowersight-frontend
 ```
 
 ---

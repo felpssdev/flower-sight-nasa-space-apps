@@ -1,4 +1,4 @@
-# 🌸 BloomWatch Backend
+# 🌸 FlowerSight Backend
 
 Backend completo com Machine Learning para predição de floração usando dados de satélite NASA.
 
@@ -263,7 +263,7 @@ uvicorn main:app --port 8001
 
 ## 📝 Licença
 
-NASA Space Apps Challenge 2025 - BloomWatch Team
+NASA Space Apps Challenge 2025 - FlowerSight Team
 
 ## 🙏 Créditos
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "🌸 BloomWatch Backend Starting..."
+echo "🌸 FlowerSight Backend Starting..."
 
 # Check if models exist, if not, train them
 if [ ! -d "/app/models/almond" ] || [ ! -d "/app/models/apple" ] || [ ! -d "/app/models/cherry" ]; then

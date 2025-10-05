@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  # Backend API - BloomWatch ML
+  # Backend API - FlowerSight ML
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: bloomwatch-backend
+    container_name: flowersight-backend
     ports:
       - "8000:8000"
     environment:
@@ -33,7 +33,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: bloomwatch-frontend
+    container_name: flowersight-frontend
     ports:
       - "3000:3000"
     environment:

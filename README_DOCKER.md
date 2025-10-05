@@ -1,4 +1,4 @@
-# 🐳 Docker Quick Start - BloomWatch
+# 🐳 Docker Quick Start - FlowerSight
 
 ## ✅ **Status do Teste Docker**
 
@@ -88,7 +88,7 @@ Modelos já treinados:
 docker-compose logs backend
 
 # Resultado esperado:
-# 🌸 BloomWatch Backend Starting...
+# 🌸 FlowerSight Backend Starting...
 # ⚠️  Models not found. Training models...
 # ❌ Credenciais NASA não encontradas!
 ```

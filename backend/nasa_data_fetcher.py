@@ -1,8 +1,9 @@
 """
-NASA Data Fetcher - Integração EXCLUSIVA com APIs NASA
-Usa APENAS fontes NASA oficiais:
-1. NASA AppEEARS (MODIS) - NDVI, EVI
+NASA Data Fetcher - Integração com APIs NASA + Google Earth Engine
+Fontes de dados:
+1. NASA AppEEARS (MODIS) - NDVI, EVI (250m)
 2. NASA POWER API - Dados climáticos
+3. Google Earth Engine - Sentinel-2 (10m) + Landsat (30m) [COMPLEMENTAR]
 """
 
 import pandas as pd
@@ -14,23 +15,34 @@ import warnings
 import os
 warnings.filterwarnings('ignore')
 
+# Importar Google Earth Engine (opcional)
+try:
+    from earth_engine_fetcher import EarthEngineFetcher
+    GEE_AVAILABLE = True
+except ImportError:
+    GEE_AVAILABLE = False
+    print("⚠️  Google Earth Engine não disponível (módulo não encontrado)")
+
 
 class NASADataFetcher:
     """
-    Busca dados EXCLUSIVAMENTE da NASA
+    Busca dados NASA + Google Earth Engine (complementar)
     
-    APIs NASA Oficiais:
-    1. NASA AppEEARS - MODIS MOD13Q1 (NDVI, EVI)
+    APIs:
+    1. NASA AppEEARS - MODIS MOD13Q1 (NDVI, EVI) - 250m
     2. NASA POWER API - Dados climáticos
+    3. Google Earth Engine - Sentinel-2 (10m) + Landsat (30m) [OPCIONAL]
     """
     
     def __init__(self, 
                  nasa_username: Optional[str] = None,
-                 nasa_password: Optional[str] = None):
+                 nasa_password: Optional[str] = None,
+                 use_gee: bool = True):
         """
         Args:
             nasa_username: Username NASA Earthdata (ou usar env var NASA_USERNAME)
             nasa_password: Password NASA Earthdata (ou usar env var NASA_PASSWORD)
+            use_gee: Se True, tenta usar Google Earth Engine como fonte complementar
         """
         self.nasa_username = nasa_username or os.getenv('NASA_USERNAME')
         self.nasa_password = nasa_password or os.getenv('NASA_PASSWORD')
@@ -42,6 +54,20 @@ class NASADataFetcher:
                 "Configure: export NASA_PASSWORD='sua_senha'\n"
                 "Registre-se: https://urs.earthdata.nasa.gov/users/new"
             )
+        
+        # Inicializar Google Earth Engine (se disponível e solicitado)
+        self.gee_fetcher = None
+        if use_gee and GEE_AVAILABLE:
+            try:
+                self.gee_fetcher = EarthEngineFetcher()
+                if self.gee_fetcher.available:
+                    print("✅ Google Earth Engine ativado (fonte complementar)")
+                else:
+                    print("⚠️  Google Earth Engine não autenticado")
+                    self.gee_fetcher = None
+            except Exception as e:
+                print(f"⚠️  Google Earth Engine falhou: {e}")
+                self.gee_fetcher = None
 
 
     # =========================================================================
@@ -155,29 +181,48 @@ class NASADataFetcher:
                            lon: float, 
                            days: int = 90) -> pd.DataFrame:
         """
-        Busca dados COMPLETOS da NASA (NDVI + Clima)
+        Busca dados COMPLETOS de múltiplas fontes
         
         Fontes:
-        1. NASA AppEEARS - MODIS MOD13Q1 (NDVI, EVI)
+        1. NASA AppEEARS - MODIS MOD13Q1 (NDVI, EVI) - 250m
         2. NASA POWER API - Temperatura, Precipitação
+        3. Google Earth Engine - Sentinel-2 (10m) + Landsat (30m) [SE DISPONÍVEL]
         """
         
-        print(f"\n📡 Buscando dados NASA para: lat={lat:.4f}, lon={lon:.4f}")
+        print(f"\n📡 Buscando dados para: lat={lat:.4f}, lon={lon:.4f}")
         print(f"   Período: {days} dias")
         
-        # 1. NDVI da NASA AppEEARS (MODIS)
-        print("\n[1/2] Buscando NDVI MODIS (NASA AppEEARS)...")
+        # 1. NDVI da NASA AppEEARS (MODIS - 250m)
+        print("\n[1/3] Buscando NDVI MODIS (NASA AppEEARS - 250m)...")
         ndvi_df = self.fetch_ndvi_from_modis(lat, lon, days)
         
         # 2. Clima da NASA POWER
-        print("\n[2/2] Buscando dados climáticos (NASA POWER)...")
+        print("\n[2/3] Buscando dados climáticos (NASA POWER)...")
         climate_df = self.fetch_climate_from_power(lat, lon, days)
         
-        # 3. Combinar dados
-        print("\n🔗 Combinando dados NASA...")
-        merged_df = self._merge_nasa_data(ndvi_df, climate_df)
+        # 3. Google Earth Engine (alta resolução - OPCIONAL)
+        gee_sentinel_df = None
+        gee_landsat_df = None
+        if self.gee_fetcher:
+            print("\n[3/3] Buscando dados Google Earth Engine (alta resolução)...")
+            try:
+                # Sentinel-2 (10m)
+                gee_sentinel_df = self.gee_fetcher.fetch_sentinel2_ndvi(lat, lon, days)
+                if gee_sentinel_df is not None and not gee_sentinel_df.empty:
+                    print(f"   ✓ Sentinel-2: {len(gee_sentinel_df)} registros (10m)")
+                
+                # Landsat (30m)
+                gee_landsat_df = self.gee_fetcher.fetch_landsat_ndvi(lat, lon, days)
+                if gee_landsat_df is not None and not gee_landsat_df.empty:
+                    print(f"   ✓ Landsat: {len(gee_landsat_df)} registros (30m)")
+            except Exception as e:
+                print(f"   ⚠️  Google Earth Engine falhou: {e}")
         
-        print(f"\n✅ Total: {len(merged_df)} registros NASA completos")
+        # 4. Combinar dados
+        print("\n🔗 Combinando dados...")
+        merged_df = self._merge_all_data(ndvi_df, climate_df, gee_sentinel_df, gee_landsat_df)
+        
+        print(f"\n✅ Total: {len(merged_df)} registros completos")
         return merged_df
 
 
@@ -185,26 +230,78 @@ class NASADataFetcher:
     # FUNÇÕES AUXILIARES
     # =========================================================================
     
-    def _merge_nasa_data(self, ndvi_df: pd.DataFrame, climate_df: pd.DataFrame) -> pd.DataFrame:
-        """Combina dados MODIS (NDVI) com dados POWER (clima)"""
+    def _merge_all_data(self, 
+                       nasa_ndvi: pd.DataFrame, 
+                       climate: pd.DataFrame,
+                       gee_sentinel: Optional[pd.DataFrame] = None,
+                       gee_landsat: Optional[pd.DataFrame] = None) -> pd.DataFrame:
+        """
+        Combina dados de múltiplas fontes:
+        - NASA MODIS (250m) - NDVI base
+        - NASA POWER - Clima
+        - Google Earth Engine Sentinel-2 (10m) - NDVI alta resolução [OPCIONAL]
+        - Google Earth Engine Landsat (30m) - NDVI média resolução [OPCIONAL]
         
-        # Merge por data (outer join para não perder dados)
-        merged = pd.merge(ndvi_df, climate_df, on='date', how='outer')
+        Estratégia:
+        1. NASA MODIS serve como baseline (sempre disponível)
+        2. GEE Sentinel-2/Landsat são usados para ENRIQUECER dados quando disponíveis
+        3. Prioridade: Sentinel-2 (10m) > Landsat (30m) > MODIS (250m)
+        """
+        
+        # 1. Começar com NASA MODIS + Clima
+        merged = pd.merge(nasa_ndvi, climate, on='date', how='outer')
         merged = merged.sort_values('date')
         
-        # Interpolar NDVI (16 dias) para dias intermediários
+        # 2. Adicionar Sentinel-2 (alta resolução - prioridade máxima)
+        if gee_sentinel is not None and not gee_sentinel.empty:
+            # Renomear para evitar conflito
+            gee_sentinel_renamed = gee_sentinel.rename(columns={
+                'ndvi_s2': 'ndvi_sentinel',
+                'evi_s2': 'evi_sentinel'
+            })
+            merged = pd.merge(merged, gee_sentinel_renamed, on='date', how='outer')
+            
+            # Usar Sentinel-2 quando disponível (maior qualidade)
+            if 'ndvi_sentinel' in merged.columns:
+                merged['ndvi'] = merged['ndvi_sentinel'].fillna(merged['ndvi'])
+            if 'evi_sentinel' in merged.columns and 'evi' in merged.columns:
+                merged['evi'] = merged['evi_sentinel'].fillna(merged['evi'])
+        
+        # 3. Adicionar Landsat (média resolução - segunda prioridade)
+        if gee_landsat is not None and not gee_landsat.empty:
+            gee_landsat_renamed = gee_landsat.rename(columns={
+                'ndvi_l8': 'ndvi_landsat',
+                'evi_l8': 'evi_landsat'
+            })
+            merged = pd.merge(merged, gee_landsat_renamed, on='date', how='outer')
+            
+            # Usar Landsat para preencher lacunas (se Sentinel não disponível)
+            if 'ndvi_landsat' in merged.columns:
+                merged['ndvi'] = merged['ndvi'].fillna(merged['ndvi_landsat'])
+            if 'evi_landsat' in merged.columns and 'evi' in merged.columns:
+                merged['evi'] = merged['evi'].fillna(merged['evi_landsat'])
+        
+        # 4. Interpolar valores faltantes (dias sem medições)
         merged['ndvi'] = merged['ndvi'].interpolate(method='linear')
-        merged['evi'] = merged['evi'].interpolate(method='linear') if 'evi' in merged.columns else None
+        merged['evi'] = merged['evi'].interpolate(method='linear') if 'evi' in merged.columns else merged['ndvi'] * 1.1
         merged['gndvi'] = merged['gndvi'].interpolate(method='linear') if 'gndvi' in merged.columns else merged['ndvi'] * 0.9
         merged['savi'] = merged['savi'].interpolate(method='linear') if 'savi' in merged.columns else merged['ndvi'] * 0.85
         
-        # Preencher valores faltantes (forward/backward fill)
+        # 5. Preencher valores faltantes (forward/backward fill)
         merged = merged.fillna(method='ffill').fillna(method='bfill')
         
-        # Remover linhas completamente vazias
+        # 6. Remover linhas completamente vazias
         merged = merged.dropna(subset=['ndvi', 'temperature'])
         
+        # 7. Limpar colunas auxiliares
+        cols_to_drop = [c for c in merged.columns if c.endswith('_sentinel') or c.endswith('_landsat')]
+        merged = merged.drop(columns=cols_to_drop, errors='ignore')
+        
         return merged
+    
+    def _merge_nasa_data(self, ndvi_df: pd.DataFrame, climate_df: pd.DataFrame) -> pd.DataFrame:
+        """Combina dados MODIS (NDVI) com dados POWER (clima) - LEGACY"""
+        return self._merge_all_data(ndvi_df, climate_df, None, None)
 
 
 # =============================================================================
@@ -215,9 +312,10 @@ def fetch_nasa_data(lat: float,
                    lon: float, 
                    days: int = 90,
                    nasa_username: Optional[str] = None,
-                   nasa_password: Optional[str] = None) -> pd.DataFrame:
+                   nasa_password: Optional[str] = None,
+                   use_gee: bool = True) -> pd.DataFrame:
     """
-    Busca dados EXCLUSIVAMENTE da NASA
+    Busca dados NASA + Google Earth Engine (opcional)
     
     Args:
         lat: Latitude da fazenda
@@ -225,29 +323,29 @@ def fetch_nasa_data(lat: float,
         days: Dias de histórico
         nasa_username: Username NASA Earthdata (ou usar env var NASA_USERNAME)
         nasa_password: Password NASA Earthdata (ou usar env var NASA_PASSWORD)
+        use_gee: Se True, tenta usar Google Earth Engine como fonte complementar
     
     Returns:
         DataFrame com: date, ndvi, evi, gndvi, savi, temperature, precipitation
     
     Fontes:
-        - NASA AppEEARS (MODIS MOD13Q1) - NDVI, EVI
-        - NASA POWER API - Temperatura, Precipitação
+        - NASA AppEEARS (MODIS MOD13Q1) - NDVI, EVI (250m) [SEMPRE]
+        - NASA POWER API - Temperatura, Precipitação [SEMPRE]
+        - Google Earth Engine Sentinel-2 (10m) [SE DISPONÍVEL]
+        - Google Earth Engine Landsat (30m) [SE DISPONÍVEL]
     
     Exemplo:
-        # Opção 1: Com credenciais
-        data = fetch_nasa_data(36.7468, -119.7726,
-                              nasa_username='seu_user',
-                              nasa_password='sua_senha')
-        
-        # Opção 2: Variáveis de ambiente
-        export NASA_USERNAME='seu_user'
-        export NASA_PASSWORD='sua_senha'
+        # Com GEE ativado (padrão)
         data = fetch_nasa_data(36.7468, -119.7726)
+        
+        # Sem GEE (apenas NASA)
+        data = fetch_nasa_data(36.7468, -119.7726, use_gee=False)
     """
     
     fetcher = NASADataFetcher(
         nasa_username=nasa_username,
-        nasa_password=nasa_password
+        nasa_password=nasa_password,
+        use_gee=use_gee
     )
     data = fetcher.fetch_complete_data(lat, lon, days)
     

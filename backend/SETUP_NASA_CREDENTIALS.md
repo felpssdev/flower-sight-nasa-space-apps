@@ -49,7 +49,7 @@ Você receberá um email de confirmação. Clique no link para ativar sua conta.
 
 ---
 
-## 🔧 Passo 2: Configurar no BloomWatch
+## 🔧 Passo 2: Configurar no FlowerSight
 
 ### Opção A: Variáveis de Ambiente (Recomendado)
 

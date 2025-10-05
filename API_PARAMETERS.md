@@ -1,4 +1,4 @@
-# 📡 BloomWatch API - Parâmetros de Predição
+# 📡 FlowerSight API - Parâmetros de Predição
 
 ## 🎯 **Endpoint Principal: `/api/predict`**
 

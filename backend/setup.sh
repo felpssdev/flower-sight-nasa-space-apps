@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# BloomWatch Backend - Setup Rápido
+# FlowerSight Backend - Setup Rápido
 # Este script configura o ambiente e treina os modelos
 
 echo ""
 echo "🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸"
-echo "           BLOOMWATCH BACKEND - SETUP AUTOMÁTICO"
+echo "           FLOWERSIGHT BACKEND - SETUP AUTOMÁTICO"
 echo "🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸"
 echo ""
 
@@ -87,6 +87,6 @@ echo ""
 echo "4. Teste rápido no navegador:"
 echo "   http://localhost:8000/api/predict/test/almond"
 echo ""
-echo "🚀 Boa sorte com o BloomWatch!"
+echo "🚀 Boa sorte com o FlowerSight!"
 echo ""
 

@@ -126,7 +126,7 @@ class NASAAppEEARS:
         
         # Nome da tarefa
         if not task_name:
-            task_name = f"bloomwatch_{lat}_{lon}_{int(time.time())}"
+            task_name = f"flowersight_{lat}_{lon}_{int(time.time())}"
         
         # Construir payload
         payload = {

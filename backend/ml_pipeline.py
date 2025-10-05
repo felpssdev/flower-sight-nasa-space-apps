@@ -1,5 +1,5 @@
 """
-BloomWatch ML Pipeline - Ensemble de Modelos para Predição de Floração
+FlowerSight ML Pipeline - Ensemble de Modelos para Predição de Floração
 Usa LSTM + Random Forest + ANN com dados NDVI, GNDVI, SAVI e clima
 """
 
@@ -511,7 +511,7 @@ class XGBoostBloomPredictor:
         }).sort_values('importance', ascending=False)
 
 
-class BloomWatchEnsemble:
+class FlowerSightEnsemble:
     """
     Ensemble de modelos LSTM + Random Forest + ANN + XGBoost
     Combina predições com pesos otimizados
@@ -548,7 +548,7 @@ class BloomWatchEnsemble:
         """
         
         print("=" * 60)
-        print("TREINANDO BLOOMWATCH ENSEMBLE")
+        print("TREINANDO FLOWERSIGHT ENSEMBLE")
         print("=" * 60)
         
         # 1. Preparar features agregadas para RF e ANN
@@ -702,11 +702,27 @@ class BloomWatchEnsemble:
         ci_lower = predicted_days - 1.96 * std_dev
         ci_upper = predicted_days + 1.96 * std_dev
         
+        # Agreement score: quanto mais próximos os modelos, maior o score (0-1)
+        # Usa coeficiente de variação invertido com normalização robusta
+        mean_pred = np.mean(pred_values)
+        if mean_pred > 0:
+            # Coefficient of Variation (CV): std_dev / mean
+            cv = std_dev / mean_pred
+            # Normalizar para [0, 1]: quanto menor o CV, maior o agreement
+            # CV < 0.1 (10%) = excelente (>90%)
+            # CV = 0.5 (50%) = moderado (~60%)
+            # CV > 1.0 (100%) = péssimo (<40%)
+            agreement_score = max(0.0, min(1.0, 1 / (1 + cv)))
+        else:
+            agreement_score = 0.0
+        
         return {
             'predicted_days': int(np.round(predicted_days)),
             'confidence_interval': (int(np.round(ci_lower)), int(np.round(ci_upper))),
             'individual_predictions': predictions,
-            'agreement_score': 1 - (std_dev / predicted_days) if predicted_days > 0 else 0
+            'agreement_score': float(agreement_score),
+            'model_std_dev': float(std_dev),  # Para debug
+            'model_mean': float(mean_pred)  # Para debug
         }
     
     def save_models(self, path: str = 'models/'):

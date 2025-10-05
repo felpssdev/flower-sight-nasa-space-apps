@@ -1,6 +1,6 @@
-# 📊 Fontes de Dados - BloomWatch
+# 📊 Fontes de Dados - FlowerSight
 
-Documentação completa sobre as fontes de dados do BloomWatch.
+Documentação completa sobre as fontes de dados do FlowerSight.
 
 ---
 

@@ -1,5 +1,5 @@
 """
-Script de teste da API BloomWatch
+Script de teste da API FlowerSight
 Testa todos os endpoints e valida respostas
 """
 
@@ -27,7 +27,7 @@ def test_root():
     print(f"Response: {json.dumps(response.json(), indent=2)}")
     
     assert response.status_code == 200
-    assert response.json()['service'] == 'BloomWatch API'
+    assert response.json()['service'] == 'FlowerSight API'
     print("✓ Teste passou!")
 
 
@@ -160,7 +160,7 @@ def run_all_tests():
     """Executa todos os testes"""
     
     print("\n" + "🚀"*35)
-    print("BLOOMWATCH API - SUITE DE TESTES")
+    print("FLOWERSIGHT API - SUITE DE TESTES")
     print("🚀"*35)
     
     try:

@@ -98,7 +98,7 @@ phenology_data = {
 
 **Ajustar pesos baseado em performance**:
 ```python
-# ml_pipeline.py - BloomWatchEnsemble.__init__()
+# ml_pipeline.py - FlowerSightEnsemble.__init__()
 
 # Pesos atuais:
 self.weights = {
