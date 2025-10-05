@@ -35,13 +35,15 @@ class PhenologyStage(Enum):
 class PhenologyClassifier:
     """
     Classifica o estágio fenológico atual e determina
-    se é possível fazer previsão assertiva de floração
+    se é possível fazer previsão assertiva de floração.
+    
+    Suporta hemisfério norte e sul (ajusta meses automaticamente).
     """
     
-    # Configurações por cultura
+    # Configurações por cultura (HEMISFÉRIO NORTE)
     CROP_CONFIG = {
         'almond': {
-            'bloom_month_range': (2, 4),  # Fev-Abr
+            'bloom_month_range': (2, 4),  # Fev-Abr (HN)
             'chill_hours_required': 200,
             'ndvi_thresholds': {
                 'dormancy': 0.25,
@@ -51,7 +53,7 @@ class PhenologyClassifier:
             }
         },
         'apple': {
-            'bloom_month_range': (3, 5),  # Mar-Mai
+            'bloom_month_range': (3, 5),  # Mar-Mai (HN)
             'chill_hours_required': 800,
             'ndvi_thresholds': {
                 'dormancy': 0.25,
@@ -72,18 +74,37 @@ class PhenologyClassifier:
         }
     }
     
-    def __init__(self, crop_type: str):
+    def __init__(self, crop_type: str, latitude: float = 0.0):
         """
         Inicializa classificador para uma cultura específica
         
         Args:
             crop_type: 'almond', 'apple' ou 'cherry'
+            latitude: latitude da fazenda (para detectar hemisfério)
         """
         if crop_type not in self.CROP_CONFIG:
             raise ValueError(f"Cultura não suportada: {crop_type}")
         
         self.crop_type = crop_type
-        self.config = self.CROP_CONFIG[crop_type]
+        self.latitude = latitude
+        self.is_southern_hemisphere = latitude < 0
+        
+        # Copiar configuração
+        self.config = self.CROP_CONFIG[crop_type].copy()
+        
+        # AJUSTAR MESES DE FLORAÇÃO PARA HEMISFÉRIO SUL
+        if self.is_southern_hemisphere:
+            original_months = self.config['bloom_month_range']
+            # Inverter estações: adicionar 6 meses (com wrap)
+            adjusted_start = (original_months[0] + 6) % 12
+            adjusted_end = (original_months[1] + 6) % 12
+            # Se wrap (ex: out-dez = 10-12), manter ordem
+            if adjusted_start == 0:
+                adjusted_start = 12
+            if adjusted_end == 0:
+                adjusted_end = 12
+            self.config['bloom_month_range'] = (adjusted_start, adjusted_end)
+            print(f"🌎 Hemisfério Sul detectado! Meses ajustados: {original_months} → {self.config['bloom_month_range']}")
     
     def classify_stage(self, data: pd.DataFrame) -> Dict:
         """

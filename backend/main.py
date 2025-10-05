@@ -304,8 +304,8 @@ async def predict_bloom(request: PredictionRequest):
             days=90
         )
         
-        # 2.5. Classificar estágio fenológico
-        phenology_classifier = PhenologyClassifier(request.crop_type)
+        # 2.5. Classificar estágio fenológico (com detecção de hemisfério)
+        phenology_classifier = PhenologyClassifier(request.crop_type, latitude=request.lat)
         phenology_info = phenology_classifier.classify_stage(data)
         
         # 3. DECISÃO: Fazer previsão ML APENAS se estágio permitir

@@ -85,7 +85,7 @@ const FARMS: Farm[] = [
   {
     id: 'almond',
     name: 'Central Valley Almond',
-    crop: 'Almond',
+    crop: 'almond', // Backend usa lowercase
     lat: 36.7468,
     lon: -119.7726,
     location: 'California, USA',
@@ -93,7 +93,7 @@ const FARMS: Farm[] = [
   {
     id: 'apple',
     name: 'Yakima Valley Orchard',
-    crop: 'Apple',
+    crop: 'apple', // Backend usa lowercase
     lat: 46.6021,
     lon: -120.5059,
     location: 'Washington, USA',
@@ -101,10 +101,20 @@ const FARMS: Farm[] = [
   {
     id: 'cherry',
     name: 'Michigan Cherry Farm',
-    crop: 'Cherry',
+    crop: 'cherry', // Backend usa lowercase
     lat: 44.7631,
     lon: -85.6206,
     location: 'Michigan, USA',
+  },
+  {
+    id: 'chile-apple',
+    name: 'Valle Central Apple',
+    crop: 'apple', // Backend usa lowercase
+    lat: -35.0,
+    lon: -71.5,
+    location: 'Curicó, Chile 🇨🇱',
+    icon: '🌸',
+    color: 'emerald',
   },
 ]
 
@@ -158,7 +168,7 @@ export default function FlowerSight() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           farm_name: farm.name,
-          crop_type: farm.id,
+          crop_type: farm.crop, // CORRIGIDO: usa farm.crop em vez de farm.id
           lat: farm.lat,
           lon: farm.lon,
         }),
