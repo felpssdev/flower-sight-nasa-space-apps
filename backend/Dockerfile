@@ -23,9 +23,8 @@ COPY . .
 # Create directories for models and data
 RUN mkdir -p models data
 
-# Copy entrypoint script
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
+# Make entrypoint executable (já foi copiado com COPY . .)
+RUN chmod +x /app/docker-entrypoint.sh
 
 # Expose port
 EXPOSE 8000
@@ -35,5 +34,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD python -c "import requests; requests.get('http://localhost:8000/health')" || exit 1
 
 # Use entrypoint script
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 
