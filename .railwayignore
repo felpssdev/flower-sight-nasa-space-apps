@@ -45,11 +45,6 @@ docs/
 setup.sh
 test_api.py
 
-# Dados locais (serão gerados em produção)
-backend/data/*.csv
-backend/models/*.h5
-backend/models/*.pkl
-
 # Environment
 .env
 .env.local
