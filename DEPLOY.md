@@ -1,48 +1,60 @@
-# 🚀 Deploy FlowerSight - SIMPLES COM DOCKER COMPOSE
+# 🚀 Deploy FlowerSight - Railway (Simplificado)
 
-## ⚡ Deploy em 3 Passos (Railway.app)
+## ⚡ Deploy em 4 Passos
 
-Railway **SUPORTA docker-compose.yml** automaticamente! 🎉
+Railway precisa de deploy **separado** para cada serviço.
 
 ---
 
-### **1. Push para GitHub**
+### **1. Preparar Backend**
 
 ```bash
+# railway.toml já está configurado para backend
 git add .
-git commit -m "FlowerSight - Ready for Railway"
+git commit -m "Backend ready for Railway"
 git push origin main
 ```
 
 ---
 
-### **2. Deploy no Railway**
+### **2. Deploy Backend**
 
-1. Acesse: https://railway.app/new
-2. Clique em **"Deploy from GitHub repo"**
-3. Selecione seu repositório
-4. **Railway detecta `docker-compose.yml` automaticamente!**
-5. Cria 2 serviços: `backend` e `frontend`
+1. **Railway**: https://railway.app/new
+2. **Deploy from GitHub repo**
+3. **Selecione** seu repositório
+4. Railway usa `railway.toml` e `backend/Dockerfile`
+5. **Variables** (em Settings):
+   ```
+   NASA_USERNAME=seu_usuario_nasa
+   NASA_PASSWORD=sua_senha_nasa
+   PORT=8000
+   ```
+6. **Deploy** → Aguarde 20 min ⏳
 
 ---
 
-### **3. Configurar Variáveis**
+### **3. Obter URL do Backend**
 
-**Backend Service:**
-```
-NASA_USERNAME=seu_usuario_nasa
-NASA_PASSWORD=sua_senha_nasa
-```
+Copie a URL (ex: `flowersight-backend-production.up.railway.app`)
 
-**Frontend Service:**
-```
-NEXT_PUBLIC_API_URL=https://seu-backend-url.up.railway.app
-```
+---
 
-⚠️ **IMPORTANTE:** 
-1. Obtenha a URL do backend primeiro
-2. Configure no frontend
-3. Redeploy frontend se necessário
+### **4. Deploy Frontend (Separado)**
+
+**EM OUTRA ABA/PROJETO:**
+
+1. Railway → **+ New Service**
+2. **GitHub Repo** → Mesmo repositório
+3. **Settings**:
+   - Build Command: `cd frontend && npm ci && npm run build`
+   - Start Command: `cd frontend && node .next/standalone/server.js`
+4. **Variables**:
+   ```
+   NEXT_PUBLIC_API_URL=https://SUA-URL-BACKEND.up.railway.app
+   NODE_ENV=production
+   PORT=3000
+   ```
+5. **Deploy** → 5 min ⏳
 
 ---
 
