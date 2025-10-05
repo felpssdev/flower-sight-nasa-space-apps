@@ -1,55 +1,52 @@
-# 🚀 Deploy FlowerSight - Guia Rápido
+# 🚀 Deploy FlowerSight - SIMPLES COM DOCKER COMPOSE
 
 ## ⚡ Deploy em 3 Passos (Railway.app)
 
-### **1. Preparar**
-```bash
-# Certifique-se de ter um repositório GitHub
-git remote -v  # Verificar se tem remote
+Railway **SUPORTA docker-compose.yml** automaticamente! 🎉
 
-# Se não tiver:
-git remote add origin https://github.com/seu-usuario/flowersight.git
-git push -u origin main
+---
+
+### **1. Push para GitHub**
+
+```bash
+git add .
+git commit -m "FlowerSight - Ready for Railway"
+git push origin main
 ```
 
-### **2. Deploy**
+---
 
-#### **Opção A: Via Web (MAIS FÁCIL)** ⭐
+### **2. Deploy no Railway**
+
 1. Acesse: https://railway.app/new
 2. Clique em **"Deploy from GitHub repo"**
 3. Selecione seu repositório
-4. Railway detecta Docker automaticamente
+4. **Railway detecta `docker-compose.yml` automaticamente!**
+5. Cria 2 serviços: `backend` e `frontend`
 
-#### **Opção B: Via CLI**
-```bash
-# Instalar Railway CLI
-brew install railway  # macOS
-# ou: npm install -g @railway/cli
-
-# Executar script
-./railway-deploy.sh
-```
+---
 
 ### **3. Configurar Variáveis**
 
-No dashboard Railway, adicione:
-
-**Backend:**
+**Backend Service:**
 ```
 NASA_USERNAME=seu_usuario_nasa
 NASA_PASSWORD=sua_senha_nasa
 ```
 
-**Frontend:**
+**Frontend Service:**
 ```
-NEXT_PUBLIC_API_URL=https://seu-backend.up.railway.app
+NEXT_PUBLIC_API_URL=https://seu-backend-url.up.railway.app
 ```
+
+⚠️ **IMPORTANTE:** 
+1. Obtenha a URL do backend primeiro
+2. Configure no frontend
+3. Redeploy frontend se necessário
 
 ---
 
 ## ✅ Pronto!
-
-Seu FlowerSight estará online em ~20 minutos!
 
 **URLs:**
 - Frontend: `https://flowersight.up.railway.app`
@@ -58,11 +55,18 @@ Seu FlowerSight estará online em ~20 minutos!
 
 ---
 
-## 📚 Documentação Completa
+## 🐛 Troubleshooting
 
-- 📖 [**Guia Detalhado Railway**](RAILWAY_DEPLOY.md)
-- 🐳 [**Docker Local**](DOCKER.md)
-- 🔌 [**API Docs**](API_PARAMETERS.md)
+### **Backend demora 20 minutos?**
+✅ Normal! Primeira vez treina modelos ML.
+
+### **Frontend não conecta?**
+1. Pegue URL real do backend
+2. Atualize `NEXT_PUBLIC_API_URL` no frontend
+3. Redeploy frontend
+
+### **Erro de memória?**
+Upgrade para Railway Pro ($20/mês)
 
 ---
 
@@ -73,29 +77,37 @@ Seu FlowerSight estará online em ~20 minutos!
 | **Hobby** | $5/mês | Dev/Demo |
 | **Pro** | $20/mês | Produção |
 
-**Recomendação:** Comece com Hobby ($5/mês)
+---
+
+## 📋 Checklist
+
+- [ ] Push para GitHub
+- [ ] Deploy no Railway
+- [ ] Railway detecta docker-compose
+- [ ] Configurar NASA credentials (backend)
+- [ ] Obter URL do backend
+- [ ] Configurar NEXT_PUBLIC_API_URL (frontend)
+- [ ] Testar!
 
 ---
 
-## 🆘 Problemas?
+## 🎯 TL;DR
 
-### Backend timeout no primeiro deploy?
-**Normal!** Treinamento de modelos leva 15-20 min na primeira vez.
+```bash
+# 1. Push
+git push origin main
 
-### Frontend não carrega?
-Verifique se `NEXT_PUBLIC_API_URL` está configurado corretamente.
+# 2. Railway
+https://railway.app/new → Deploy from GitHub
 
-### Erro de memória?
-Upgrade para Pro ($20/mês) ou otimize modelos.
+# 3. Configurar variáveis NASA
+# (no dashboard Railway)
+
+# 4. PROFIT! 🎉
+```
+
+**Railway detecta docker-compose.yml e faz TUDO sozinho!**
 
 ---
 
-## 📞 Suporte
-
-- Railway: https://railway.app/help
-- Issues: https://github.com/seu-repo/issues
-
----
-
-**🌸 FlowerSight - Deploy Simples e Rápido!**
-
+**🌸 FlowerSight - Deploy Simples com Docker Compose**
