@@ -11,12 +11,6 @@ ENV/
 .eggs/
 *.egg
 
-# Models and data (too large, train inside container or mount as volume)
-models/**/*.h5
-models/**/*.pkl
-data/**/*.csv
-data/**/*.npy
-
 # Keep structure
 !models/.gitkeep
 !data/.gitkeep

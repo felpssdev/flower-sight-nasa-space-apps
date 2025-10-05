@@ -29,14 +29,6 @@ wheels/
 # pyenv
 .python-version
 
-# Models and Data (large files)
-models/**/*.h5
-models/**/*.pkl
-data/**/*.csv
-data/**/*.npy
-*.h5
-*.pkl
-
 # Keep directory structure
 !models/.gitkeep
 !data/.gitkeep
