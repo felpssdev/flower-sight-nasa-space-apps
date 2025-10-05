@@ -23,6 +23,12 @@ import {
   Tooltip,
 } from 'recharts'
 
+// ============================================================================
+// CONFIG
+// ============================================================================
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+
 // Dynamic import do mapa (evita SSR issues)
 const MapComponent = dynamic(() => import('./components/Map'), {
   ssr: false,
@@ -163,7 +169,7 @@ export default function FlowerSight() {
       )
 
       const animationPromise = animateSteps()
-      const apiPromise = fetch('http://localhost:8000/api/predict', {
+      const apiPromise = fetch(`${API_URL}/api/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
