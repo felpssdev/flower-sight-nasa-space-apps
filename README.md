@@ -55,7 +55,26 @@ Agricultores perdem **$2.7 bilhões/ano** porque não conseguem prever com preci
 
 ## 🚀 Quick Start
 
-### Opção 1: Docker (Recomendado)
+### Opção 1: Deploy Produção - Railway.app ⭐ (RECOMENDADO)
+
+```bash
+# 1. Push para GitHub
+git push origin main
+
+# 2. Deploy com 1 comando
+./railway-deploy.sh
+
+# OU deploy manual via web
+# https://railway.app/new → Deploy from GitHub
+```
+
+**Custo:** $5-10/mês | **Tempo:** 20 minutos
+
+📖 **[Guia Completo de Deploy](RAILWAY_DEPLOY.md)**
+
+---
+
+### Opção 2: Docker Local (Desenvolvimento)
 
 ```bash
 # Clone o repositório
@@ -71,7 +90,7 @@ docker-compose up --build
 - 🔌 Backend API: http://localhost:8000
 - 📚 API Docs: http://localhost:8000/docs
 
-### Opção 2: Local Development
+### Opção 3: Local Development
 
 #### Backend
 
