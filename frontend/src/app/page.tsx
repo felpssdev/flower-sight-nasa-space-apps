@@ -46,8 +46,10 @@ const MapComponent = dynamic(() => import('./components/Map'), {
 interface PredictionResult {
   days_until_bloom: number
   predicted_bloom_date: string
-  confidence_low: string
-  confidence_high: string
+  confidence_low: string | number
+  confidence_high: string | number
+  confidence_low_date?: string
+  confidence_high_date?: string
   agreement_score: number
   farm_name: string
   crop_type: string
@@ -142,55 +144,88 @@ export default function FlowerSight() {
   const [prediction, setPrediction] = useState<PredictionResult | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [loadingStep, setLoadingStep] = useState(0)
+  const [loadingProgress, setLoadingProgress] = useState(0)
+  const [loadingMessage, setLoadingMessage] = useState('')
   const [showMap, setShowMap] = useState(false)
 
   // ============================================================================
   // HANDLERS
   // ============================================================================
 
-  const animateSteps = async () => {
-    for (let i = 0; i < LOADING_STEPS.length; i++) {
-      setLoadingStep(i)
-      await new Promise((resolve) =>
-        setTimeout(resolve, LOADING_STEPS[i].duration),
-      )
-    }
-  }
-
   const handlePredict = async (farm: Farm) => {
     setIsLoading(true)
     setLoadingStep(0)
+    setLoadingProgress(0)
+    setLoadingMessage('Starting...')
     setPrediction(null)
 
     try {
-      const totalDuration = LOADING_STEPS.reduce(
-        (sum, step) => sum + step.duration,
-        0,
+      // Use EventSource for SSE streaming
+      const eventSource = new EventSource(
+        `${API_URL}/api/predict/stream?` +
+          new URLSearchParams({
+            farm_name: farm.name,
+            crop_type: farm.crop,
+            lat: farm.lat.toString(),
+            lon: farm.lon.toString(),
+          }),
       )
 
-      const animationPromise = animateSteps()
-      const apiPromise = fetch(`${API_URL}/api/predict`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          farm_name: farm.name,
-          crop_type: farm.crop, // CORRIGIDO: usa farm.crop em vez de farm.id
-          lat: farm.lat,
-          lon: farm.lon,
-        }),
-      }).then((res) => res.json())
+      eventSource.addEventListener('progress', (event) => {
+        const data = JSON.parse(event.data)
+        console.log('📊 Progress:', data.percent + '%', '-', data.message)
 
-      await Promise.all([
-        animationPromise,
-        new Promise((resolve) => setTimeout(resolve, totalDuration)),
-      ])
+        // Update progress and message
+        setLoadingProgress(data.percent)
+        setLoadingMessage(data.message)
 
-      const data = await apiPromise
-      setPrediction(data)
+        // Map backend progress to frontend steps (0-5)
+        // Backend: 5%, 15%, 25%, 40%, 50%, 70%, 90%, 95%
+        // Frontend: 6 steps (0-5)
+        let stepIndex = 0
+        if (data.percent >= 95) stepIndex = 5
+        else if (data.percent >= 70) stepIndex = 4
+        else if (data.percent >= 50) stepIndex = 3
+        else if (data.percent >= 25) stepIndex = 2
+        else if (data.percent >= 15) stepIndex = 1
+        else stepIndex = 0
+
+        console.log('→ Setting step:', stepIndex)
+        setLoadingStep(stepIndex)
+      })
+
+      eventSource.addEventListener('complete', (event) => {
+        const data = JSON.parse(event.data)
+        console.log('✅ Complete! Received data:', data)
+        setPrediction(data)
+        setIsLoading(false)
+        setLoadingStep(0)
+        eventSource.close()
+      })
+
+      eventSource.addEventListener('error', (event: MessageEvent) => {
+        console.error('SSE Error:', event)
+        try {
+          const errorData = JSON.parse(event.data)
+          alert(`Error: ${errorData.message || 'Failed to fetch prediction'}`)
+        } catch {
+          alert('Failed to fetch prediction')
+        }
+        setIsLoading(false)
+        setLoadingStep(0)
+        eventSource.close()
+      })
+
+      eventSource.onerror = () => {
+        console.error('EventSource connection error')
+        alert('Connection error. Please try again.')
+        setIsLoading(false)
+        setLoadingStep(0)
+        eventSource.close()
+      }
     } catch (error) {
       console.error('Error:', error)
       alert('Error fetching prediction')
-    } finally {
       setIsLoading(false)
       setLoadingStep(0)
     }
@@ -208,15 +243,32 @@ export default function FlowerSight() {
           <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
             <div className="flex items-center gap-4 mb-6">
               <Loader2 className="w-8 h-8 animate-spin text-green-600" />
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Processing Prediction
-                </h3>
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Processing Prediction
+                  </h3>
+                  <span className="text-sm font-bold text-green-600">
+                    {loadingProgress}%
+                  </span>
+                </div>
                 <p className="text-sm text-gray-500">
-                  {LOADING_STEPS[loadingStep]?.label}
+                  {loadingMessage || LOADING_STEPS[loadingStep]?.label}
                 </p>
               </div>
             </div>
+
+            {/* Progress Bar */}
+            <div className="mb-4">
+              <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full transition-all duration-300"
+                  style={{ width: `${loadingProgress}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Steps Indicators */}
             <div className="space-y-2">
               {LOADING_STEPS.map((step, idx) => (
                 <div
@@ -299,15 +351,15 @@ export default function FlowerSight() {
                 farms={FARMS.map((f) => ({
                   ...f,
                   icon:
-                    f.crop === 'Almond'
+                    f.crop === 'almond'
                       ? '🌰'
-                      : f.crop === 'Apple'
+                      : f.crop === 'apple'
                         ? '🍎'
                         : '🍒',
                   color:
-                    f.crop === 'Almond'
+                    f.crop === 'almond'
                       ? '#8b5a3c'
-                      : f.crop === 'Apple'
+                      : f.crop === 'apple'
                         ? '#ef4444'
                         : '#dc2626',
                 }))}
@@ -316,15 +368,15 @@ export default function FlowerSight() {
                     ? {
                         ...selectedFarm,
                         icon:
-                          selectedFarm.crop === 'Almond'
+                          selectedFarm.crop === 'almond'
                             ? '🌰'
-                            : selectedFarm.crop === 'Apple'
+                            : selectedFarm.crop === 'apple'
                               ? '🍎'
                               : '🍒',
                         color:
-                          selectedFarm.crop === 'Almond'
+                          selectedFarm.crop === 'almond'
                             ? '#8b5a3c'
-                            : selectedFarm.crop === 'Apple'
+                            : selectedFarm.crop === 'apple'
                               ? '#ef4444'
                               : '#dc2626',
                       }
@@ -469,7 +521,7 @@ export default function FlowerSight() {
                         <div className="font-semibold text-lg">
                           {new Date(
                             prediction.predicted_bloom_date,
-                          ).toLocaleDateString('pt-BR', {
+                          ).toLocaleDateString('en-US', {
                             day: '2-digit',
                             month: 'long',
                           })}
@@ -508,13 +560,13 @@ export default function FlowerSight() {
                         Earliest
                       </div>
                       <div className="text-3xl font-bold text-gray-900">
-                        {new Date(prediction.confidence_low).toLocaleDateString(
-                          'pt-BR',
-                          {
-                            day: '2-digit',
-                            month: 'short',
-                          },
-                        )}
+                        {new Date(
+                          prediction.confidence_low_date ||
+                            prediction.confidence_low,
+                        ).toLocaleDateString('en-US', {
+                          day: '2-digit',
+                          month: 'short',
+                        })}
                       </div>
                       <div className="text-xs text-gray-500 mt-1">
                         95% Interval
@@ -526,8 +578,9 @@ export default function FlowerSight() {
                       </div>
                       <div className="text-3xl font-bold text-gray-900">
                         {new Date(
-                          prediction.confidence_high,
-                        ).toLocaleDateString('pt-BR', {
+                          prediction.confidence_high_date ||
+                            prediction.confidence_high,
+                        ).toLocaleDateString('en-US', {
                           day: '2-digit',
                           month: 'short',
                         })}
@@ -571,7 +624,7 @@ export default function FlowerSight() {
                         dataKey="date"
                         tick={{ fontSize: 11, fill: '#6b7280' }}
                         tickFormatter={(date: string) =>
-                          new Date(date).toLocaleDateString('pt-BR', {
+                          new Date(date).toLocaleDateString('en-US', {
                             day: '2-digit',
                             month: 'short',
                           })
@@ -600,7 +653,7 @@ export default function FlowerSight() {
                           'NDVI',
                         ]}
                         labelFormatter={(label: string) =>
-                          new Date(label).toLocaleDateString('pt-BR')
+                          new Date(label).toLocaleDateString('en-US')
                         }
                       />
                       <Line

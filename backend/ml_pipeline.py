@@ -699,8 +699,11 @@ class FlowerSightEnsemble:
         # Intervalo de confiança baseado na variância entre modelos
         pred_values = list(predictions.values())
         std_dev = np.std(pred_values)
-        ci_lower = predicted_days - 1.96 * std_dev
-        ci_upper = predicted_days + 1.96 * std_dev
+        
+        # Garantir intervalo mínimo de ±3 dias (mesmo com alta concordância)
+        margin = max(1.96 * std_dev, 3.0)
+        ci_lower = predicted_days - margin
+        ci_upper = predicted_days + margin
         
         # Agreement score: quanto mais próximos os modelos, maior o score (0-1)
         # Usa coeficiente de variação invertido com normalização robusta
